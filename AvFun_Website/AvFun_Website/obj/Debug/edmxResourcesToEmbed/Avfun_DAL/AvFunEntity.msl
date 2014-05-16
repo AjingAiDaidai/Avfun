@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="avfun_DAL_modelStoreContainer" CdmEntityContainer="avfunEntities">
+    <FunctionImportMapping FunctionImportName="CreateNewUser" FunctionName="avfun_DAL_model.Store.CreateNewUser" />
+    <EntitySetMapping Name="ADMIN">
+      <EntityTypeMapping TypeName="avfun_DAL_model.ADMIN">
+        <MappingFragment StoreEntitySet="ADMIN">
+          <ScalarProperty Name="admin_timestamp" ColumnName="admin_timestamp" />
+          <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
+          <ScalarProperty Name="admin_last_login_ip" ColumnName="admin_last_login_ip" />
+          <ScalarProperty Name="admin_last_login_time" ColumnName="admin_last_login_time" />
+          <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+          <ScalarProperty Name="admin_account" ColumnName="admin_account" />
+          <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+          <ScalarProperty Name="a_id" ColumnName="a_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSE">
+      <EntityTypeMapping TypeName="avfun_DAL_model.COURSE">
+        <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
+          <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
+          <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+          <ScalarProperty Name="course_robot_link" ColumnName="course_robot_link" />
+          <ScalarProperty Name="course_price" ColumnName="course_price" />
+          <ScalarProperty Name="course_intro" ColumnName="course_intro" />
+          <ScalarProperty Name="course_name" ColumnName="course_name" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS">
+      <EntityTypeMapping TypeName="avfun_DAL_model.NEWS">
+        <MappingFragment StoreEntitySet="NEWS">
+          <ScalarProperty Name="news_timestamp" ColumnName="news_timestamp" />
+          <ScalarProperty Name="news_click_count" ColumnName="news_click_count" />
+          <ScalarProperty Name="news_image" ColumnName="news_image" />
+          <ScalarProperty Name="news_isOnIndex" ColumnName="news_isOnIndex" />
+          <ScalarProperty Name="news_isDeleted" ColumnName="news_isDeleted" />
+          <ScalarProperty Name="news_publish_date" ColumnName="news_publish_date" />
+          <ScalarProperty Name="news_author" ColumnName="news_author" />
+          <ScalarProperty Name="news_content" ColumnName="news_content" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="n_id" ColumnName="n_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDER">
+      <EntityTypeMapping TypeName="avfun_DAL_model.ORDER">
+        <MappingFragment StoreEntitySet="ORDER">
+          <ScalarProperty Name="order_timestamp" ColumnName="order_timestamp" />
+          <ScalarProperty Name="order_course" ColumnName="order_course" />
+          <ScalarProperty Name="order_user" ColumnName="order_user" />
+          <ScalarProperty Name="order_isDeleted" ColumnName="order_isDeleted" />
+          <ScalarProperty Name="order_isPaid" ColumnName="order_isPaid" />
+          <ScalarProperty Name="order_price" ColumnName="order_price" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="o_id" ColumnName="o_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REVIEW">
+      <EntityTypeMapping TypeName="avfun_DAL_model.REVIEW">
+        <MappingFragment StoreEntitySet="REVIEW">
+          <ScalarProperty Name="review_timestamp" ColumnName="review_timestamp" />
+          <ScalarProperty Name="review_news" ColumnName="review_news" />
+          <ScalarProperty Name="review_isDeleted" ColumnName="review_isDeleted" />
+          <ScalarProperty Name="review_publish_date" ColumnName="review_publish_date" />
+          <ScalarProperty Name="review_author" ColumnName="review_author" />
+          <ScalarProperty Name="review_content" ColumnName="review_content" />
+          <ScalarProperty Name="review_id" ColumnName="review_id" />
+          <ScalarProperty Name="r_id" ColumnName="r_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER">
+      <EntityTypeMapping TypeName="avfun_DAL_model.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="user_verify_code" ColumnName="user_verify_code" />
+          <ScalarProperty Name="user_timestamp" ColumnName="user_timestamp" />
+          <ScalarProperty Name="user_introduction" ColumnName="user_introduction" />
+          <ScalarProperty Name="user_money" ColumnName="user_money" />
+          <ScalarProperty Name="user_last_login_ip" ColumnName="user_last_login_ip" />
+          <ScalarProperty Name="user_last_login_time" ColumnName="user_last_login_time" />
+          <ScalarProperty Name="user_isChecked" ColumnName="user_isChecked" />
+          <ScalarProperty Name="user_isDeleted" ColumnName="user_isDeleted" />
+          <ScalarProperty Name="user_head" ColumnName="user_head" />
+          <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+          <ScalarProperty Name="user_nickname" ColumnName="user_nickname" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_account" ColumnName="user_account" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="avfun_DAL_model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="avfun_DAL_modelStoreContainer">
+    <EntitySet Name="ADMIN" EntityType="avfun_DAL_model.Store.ADMIN" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="COURSE" EntityType="avfun_DAL_model.Store.COURSE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NEWS" EntityType="avfun_DAL_model.Store.NEWS" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ORDER" EntityType="avfun_DAL_model.Store.ORDER" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="REVIEW" EntityType="avfun_DAL_model.Store.REVIEW" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="USER" EntityType="avfun_DAL_model.Store.USER" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_NEWS_ADMIN" Association="avfun_DAL_model.Store.FK_NEWS_ADMIN">
+      <End Role="ADMIN" EntitySet="ADMIN" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_COURSE" Association="avfun_DAL_model.Store.FK_ORDER_COURSE">
+      <End Role="COURSE" EntitySet="COURSE" />
+      <End Role="ORDER" EntitySet="ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ORDER_USER" Association="avfun_DAL_model.Store.FK_ORDER_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="ORDER" EntitySet="ORDER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REVIEW_NEWS" Association="avfun_DAL_model.Store.FK_REVIEW_NEWS">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+    <AssociationSet Name="FK_REVIEW_USER" Association="avfun_DAL_model.Store.FK_REVIEW_USER">
+      <End Role="USER" EntitySet="USER" />
+      <End Role="REVIEW" EntitySet="REVIEW" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="a_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="admin_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="admin_account" Type="char" Nullable="false" MaxLength="64" />
+    <Property Name="admin_password" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="admin_last_login_time" Type="date" Nullable="false" />
+    <Property Name="admin_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
+    <Property Name="admin_nickname" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="admin_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="COURSE">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="c_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="course_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="course_name" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="course_intro" Type="text" Nullable="false" />
+    <Property Name="course_price" Type="float" Nullable="false" />
+    <Property Name="course_robot_link" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="course_begin_date" Type="date" Nullable="false" />
+    <Property Name="course_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="n_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="news_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="news_title" Type="char" Nullable="false" MaxLength="128" />
+    <Property Name="news_content" Type="text" Nullable="false" />
+    <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="news_publish_date" Type="date" Nullable="false" />
+    <Property Name="news_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
+    <Property Name="news_image" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="news_click_count" Type="int" Nullable="false" />
+    <Property Name="news_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="o_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="order_date" Type="date" Nullable="false" />
+    <Property Name="order_price" Type="float" Nullable="false" />
+    <Property Name="order_isPaid" Type="bit" Nullable="false" />
+    <Property Name="order_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="order_user" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="order_course" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="order_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="r_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="review_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="review_content" Type="text" Nullable="false" />
+    <Property Name="review_author" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="review_publish_date" Type="date" Nullable="false" />
+    <Property Name="review_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="review_news" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="review_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="u_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="user_account" Type="char" Nullable="false" MaxLength="64" />
+    <Property Name="user_password" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="user_nickname" Type="char" Nullable="false" MaxLength="32" />
+    <Property Name="user_sex" Type="bit" Nullable="false" />
+    <Property Name="user_head" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="user_isDeleted" Type="bit" Nullable="false" />
+    <Property Name="user_isChecked" Type="bit" Nullable="false" />
+    <Property Name="user_last_login_time" Type="date" Nullable="false" />
+    <Property Name="user_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
+    <Property Name="user_money" Type="float" Nullable="false" />
+    <Property Name="user_introduction" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="user_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="user_verify_code" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_NEWS_ADMIN">
+    <End Role="ADMIN" Type="avfun_DAL_model.Store.ADMIN" Multiplicity="1" />
+    <End Role="NEWS" Type="avfun_DAL_model.Store.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADMIN">
+        <PropertyRef Name="admin_id" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="news_author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_COURSE">
+    <End Role="COURSE" Type="avfun_DAL_model.Store.COURSE" Multiplicity="1" />
+    <End Role="ORDER" Type="avfun_DAL_model.Store.ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="order_course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ORDER_USER">
+    <End Role="USER" Type="avfun_DAL_model.Store.USER" Multiplicity="1" />
+    <End Role="ORDER" Type="avfun_DAL_model.Store.ORDER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="ORDER">
+        <PropertyRef Name="order_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REVIEW_NEWS">
+    <End Role="NEWS" Type="avfun_DAL_model.Store.NEWS" Multiplicity="1" />
+    <End Role="REVIEW" Type="avfun_DAL_model.Store.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="news_id" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="review_news" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_REVIEW_USER">
+    <End Role="USER" Type="avfun_DAL_model.Store.USER" Multiplicity="1" />
+    <End Role="REVIEW" Type="avfun_DAL_model.Store.REVIEW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="REVIEW">
+        <PropertyRef Name="review_author" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CreateNewUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Account" Type="char" Mode="In" />
+    <Parameter Name="Password" Type="char" Mode="In" />
+    <Parameter Name="Nickname" Type="char" Mode="In" />
+    <Parameter Name="Sex" Type="bit" Mode="In" />
+    <Parameter Name="Head" Type="char" Mode="In" />
+    <Parameter Name="isDeleted" Type="bit" Mode="In" />
+    <Parameter Name="isChecked" Type="bit" Mode="In" />
+    <Parameter Name="LastLoginTime" Type="date" Mode="In" />
+    <Parameter Name="LastLoginIp" Type="char" Mode="In" />
+    <Parameter Name="Money" Type="float" Mode="In" />
+    <Parameter Name="Introduction" Type="char" Mode="In" />
+  </Function>
+</Schema>
