@@ -385,18 +385,27 @@ namespace AvFun_Website.Avfun_BLL
             }
         }
         /// <summary>
-        /// 判断用户是否已经登录，如果登录那么返回包含用户信息的User对象，否则返回Null
+        /// 判断用户是否已经登录，如果登录那么返回包含用户信息的User对象，否则返回Null，相当于认证
         /// </summary>
-        /// <param name="userAccount">用户账号</param>
-        /// <param name="userPassword">用户密码,MD5后加密的</param>
+        /// <param name="httpRequest">当前的httpRequest</param>
         /// <returns>已登录返回User对象，否则返回Null</returns>
-        public static User isLogged(String userAccount, String userPassword)
+        public static User isLogged(HttpRequest httpRequest)
         {
-            User logUser = new User();
-            logUser.User_account = userAccount;
-            logUser.User_password = userPassword;
-            User detailUser = isLegalLogin(logUser);
-            return detailUser;
+            /* 输入验证不可少 */
+            if ( httpRequest.Cookies["userAccount"]  == null
+                || httpRequest.Cookies["userPassword"] == null
+                || httpRequest.Cookies["userAccount"].Value.Length > 64
+                || httpRequest.Cookies["userPassword"].Value.Length != 32
+                )
+                return null;
+            else
+            {
+                User logUser = new User();
+                logUser.User_account = httpRequest.Cookies["userAccount"].Value;
+                logUser.User_password = httpRequest.Cookies["userPassword"].Value;
+                User detailUser = isLegalLogin(logUser);
+                return detailUser;
+            }
         }
     }
 }
