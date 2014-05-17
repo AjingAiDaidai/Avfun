@@ -97,7 +97,13 @@ namespace AvFun_Website.Avfun_DAL
         public User GetUserByAccountAndPassword(User user)
         {
             User ResultUser = null;
-
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+            USER LoginUser = (from usr in DataEntity.USER
+                             where usr.user_account == user.User_account
+                             && usr.user_password == user.User_password
+                              select usr)
+                             .Single();
+            ResultUser = ConvertUSERToUser(LoginUser);
             return ResultUser;
         }
         /// <summary>
@@ -113,7 +119,7 @@ namespace AvFun_Website.Avfun_DAL
                 try
                 {
                     USER DestUser = (from usr in DataEntity.USER
-                             where usr.user_account == user.User_account //找目标user
+                             where usr.user_account == user.User_account //找目标user，LINQ里面字符串相等就是 ==!
                              select usr).Single();
                     DestUser.user_password = user.User_password; //更改密码为新生成的8位随机字符串
                     DataEntity.SaveChanges(); 
@@ -126,6 +132,7 @@ namespace AvFun_Website.Avfun_DAL
 
             return result;
         }
+
         //方便以后做成单例模式
         public static UserData GetNewInstance()
         {

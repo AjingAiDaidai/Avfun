@@ -338,5 +338,65 @@ namespace AvFun_Website.Avfun_BLL
              }
              return result;
          }
+        /// <summary>
+        /// 检查参数中的User类实例是否可以作为合法的登录用户信息
+        /// </summary>
+        /// <param name="user">要检查的User类</param>
+        /// <returns>合法返回true，否则false</returns>
+        private static Boolean isLegalLoginInfo(User user)
+        {
+            Boolean result = true;
+            if (user.User_account == null ||
+                user.User_account.Equals("") ||
+                user.User_account.Length > 64)
+                result = false;
+            if (user.User_password == null ||
+                user.User_password.Length != 32 ||  //其实这不太可能，只判断是否等于32就好了，因为到BLL的全MD5过
+                user.User_password.Equals(""))
+                result = false;
+            return result;
+        }
+        /// <summary>
+        /// 判断用户登录是否合法，合法返回登录用户对应的User对象，非法返回null
+        /// User对象的Account Password必填
+        /// </summary>
+        /// <param name="user">需要判断的User对象</param>
+        /// <returns>User类的实例</returns>
+        public static User isLegalLogin(User user)
+        {
+            /*
+                数据合法性检查
+             */
+            if (!isLegalLoginInfo(user))
+                return null;
+            else
+            {
+                /*操作数据库*/
+                try
+                {
+                    UserData userData = UserData.GetNewInstance();
+                    User entireUser = userData.GetUserByAccountAndPassword(user);
+                    return entireUser;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
+        /// <summary>
+        /// 判断用户是否已经登录，如果登录那么返回包含用户信息的User对象，否则返回Null
+        /// </summary>
+        /// <param name="userAccount">用户账号</param>
+        /// <param name="userPassword">用户密码,MD5后加密的</param>
+        /// <returns>已登录返回User对象，否则返回Null</returns>
+        public static User isLogged(String userAccount, String userPassword)
+        {
+            User logUser = new User();
+            logUser.User_account = userAccount;
+            logUser.User_password = userPassword;
+            User detailUser = isLegalLogin(logUser);
+            return detailUser;
+        }
     }
 }
