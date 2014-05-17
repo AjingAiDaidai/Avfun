@@ -58,10 +58,9 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="AvFun_TestPages\Login.aspx" />
-    <Content Include="AvFun_TestPages\Restrict\SecurePage.aspx" />
-    <Content Include="AvFun_TestPages\TestPostCrossPage_CreatePage.aspx" />
-    <Content Include="AvFun_TestPages\TestPostCrossPage_RegPage.aspx" />
+    <Content Include="AvFun_TestPages\Index.aspx" />
+    <Content Include="AvFun_TestPages\NewUser.aspx" />
+    <Content Include="AvFun_TestPages\Reg.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -131,33 +130,26 @@
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
     <Compile Include="Avfun_DAL\UserData.cs" />
-    <Compile Include="AvFun_TestPages\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AvFun_TestPages\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AvFun_TestPages\Restrict\SecurePage.aspx.cs">
-      <DependentUpon>SecurePage.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\NewUser.aspx.cs">
+      <DependentUpon>NewUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AvFun_TestPages\Restrict\SecurePage.aspx.designer.cs">
-      <DependentUpon>SecurePage.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\NewUser.aspx.designer.cs">
+      <DependentUpon>NewUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AvFun_TestPages\TestPostCrossPage_CreatePage.aspx.cs">
-      <DependentUpon>TestPostCrossPage_CreatePage.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\Reg.aspx.cs">
+      <DependentUpon>Reg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AvFun_TestPages\TestPostCrossPage_CreatePage.aspx.designer.cs">
-      <DependentUpon>TestPostCrossPage_CreatePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AvFun_TestPages\TestPostCrossPage_RegPage.aspx.cs">
-      <DependentUpon>TestPostCrossPage_RegPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AvFun_TestPages\TestPostCrossPage_RegPage.aspx.designer.cs">
-      <DependentUpon>TestPostCrossPage_RegPage.aspx</DependentUpon>
+    <Compile Include="AvFun_TestPages\Reg.aspx.designer.cs">
+      <DependentUpon>Reg.aspx</DependentUpon>
     </Compile>
     <Compile Include="AvFun_UI\Admin.cs" />
     <Compile Include="AvFun_UI\Course.cs" />
@@ -192,7 +184,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="AvFun_MVC_Model\" />
-    <Folder Include="AvFun_TestPages\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -212,7 +203,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AvFunDataEntity.cs</LastGenOutput>
     </None>
-    <Content Include="AvFun_TestPages\Restrict\Web.config" />
     <None Include="AvFun_UI\AvFun_UI_ClassDiagram.cd" />
     <None Include="AvFun_BLL_ClassDiagram.cd" />
     <None Include="AvFun_DAL_ClassDiagram.cd" />

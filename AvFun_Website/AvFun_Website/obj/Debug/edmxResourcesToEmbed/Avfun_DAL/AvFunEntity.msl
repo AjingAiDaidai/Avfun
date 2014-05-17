@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="avfun_DAL_modelStoreContainer" CdmEntityContainer="avfunEntities">
-    <FunctionImportMapping FunctionImportName="CreateNewUser" FunctionName="avfun_DAL_model.Store.CreateNewUser" />
     <EntitySetMapping Name="ADMIN">
       <EntityTypeMapping TypeName="avfun_DAL_model.ADMIN">
         <MappingFragment StoreEntitySet="ADMIN">

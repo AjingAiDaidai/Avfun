@@ -14,6 +14,7 @@ namespace AvFun_Website.AvFun_UI
     [Serializable]
     public class User:GeneralUser
     {
+        #region 属性和accessor
         /* 注意，在该类中我们没有考虑timestamp
          * 因为数据的并发问题不是我们在UI层考虑的问题，这个问题交给了DAL
          */
@@ -165,13 +166,18 @@ namespace AvFun_Website.AvFun_UI
                 this.user_last_login_ip = value;
             }
         }
-
+        #endregion
+        #region 构造函数
         public User()
         {
         }
+        /// <summary>
+        /// 为了拷贝其他实例的构造函数
+        /// </summary>
+        /// <param name="user">要拷贝的实例</param>
         public User(User user)
         {
-            //因为隐式调用的时候，调用的永远都是父类的【无参】构造函数，所以可以这么玩儿。
+           
             this.u_id = user.U_id;
             this.user_id = user.User_id;
             this.user_account = user.User_account;
@@ -186,18 +192,62 @@ namespace AvFun_Website.AvFun_UI
             this.user_money = user.User_money;
             this.user_introduction = user.User_introduction;
             this.user_verify_code = user.User_verify_code;
+            this.user_timestamp = user.User_timestamp;
             //TimeStamp没改。
         }
-        public User(String account, String password, String nickname, Boolean sex, String head, String introduction)
+        /// <summary>
+        /// 主要是为注册提供的构造函数，注意，没提供时间戳！
+        /// </summary>
+        /// <param name="account">账号，必填</param>
+        /// <param name="password">密码，必填，必须是MD5加密后的</param>
+        /// <param name="nickname">昵称，必填</param>
+        /// <param name="sex">性别，默认为true，男生</param>
+        /// <param name="head">头像，有默认头像</param>
+        /// <param name="isDeleted">是否删除，默认未删除</param>
+        /// <param name="isChecked">是否激活，默认未激活</param>
+        /// <param name="last_login_date">最后登录时间，默认取服务器当前时间</param>
+        /// <param name="last_login_ip">最后登录IP，默认取空:""</param>
+        /// <param name="money">金额，默认取0</param>
+        /// <param name="introduction">简介，默认取null</param>
+        /// <param name="verify_code">发给用户要求激活的激活码，自动生成，可以不写</param>
+        /// <param name="U_ID">无意义的自增长用户id</param>
+        /// <param name="USER_ID">用户主键，USER_ID</param>
+        public User(String account, String password, String nickname,
+                    Boolean sex = true, //默认是男生
+                    String last_login_ip = null, //最后登录ip
+                    String head = "img/01.jpg", //默认头像
+                    Boolean isDeleted = false, //默认没删除
+                    Boolean isChecked = false,  //默认未激活
+                    DateTime last_login_date = new DateTime(),
+                    float    money = 0.0f,
+                    String   introduction = null,
+                    Guid     verify_code = new Guid(),
+                    int      U_ID = 0,              //名称冲突，所以大写
+                    Guid     USER_ID = new Guid()  //名称冲突，所以大写
+            )
         {
-            //因为隐式调用的时候，调用的永远都是父类的【无参】构造函数，所以可以这么玩儿。
-            this.user_password = password;
+            //此项不能是DateTime否则是0000-00-00
+            last_login_date = DateTime.Now;
+            //此项不能是new GUID()否则是0000000000-0000000000000000
+            verify_code = Guid.NewGuid();
+            //同理
+            USER_ID = Guid.NewGuid();
+
             this.user_account = account;
+            this.user_password = password.ToUpper();
             this.user_nickname = nickname;
             this.user_sex = sex;
             this.user_head = head;
+            this.user_isDeleted = isDeleted;
+            this.user_isChecked = isChecked;
+            this.user_last_login_date = last_login_date;
+            this.user_last_login_ip = last_login_ip;
+            this.user_money = money;
             this.user_introduction = introduction;
+            this.user_verify_code = verify_code;
+            this.u_id = U_ID;
+            this.user_id = USER_ID;
         }
-
+        #endregion
     }
 }

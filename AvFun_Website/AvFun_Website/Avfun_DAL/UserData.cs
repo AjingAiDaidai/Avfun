@@ -8,13 +8,13 @@ namespace AvFun_Website.Avfun_DAL
 {
     public class UserData : IUserData
     {
+        /// <summary>
+        /// 将BLL层传递过来的UI.User对象转换为Enitity映射中的USER对象，所有属性拷贝
+        /// </summary>
+        /// <param name="user">UI.User对象，由BLL层传递</param>
+        /// <returns>转换完毕的USER对象</returns>
         private USER CovertUserToUSER(User user)
         {
-            ///<summary>
-            ///将UI的User对象转换为USER对象
-            ///同名字段完全拷贝
-            ///没有数据验证
-            ///</summary>
             USER ResultUSER = new USER();
             ResultUSER.u_id = user.U_id;
             ResultUSER.user_id = user.User_id;
@@ -31,30 +31,21 @@ namespace AvFun_Website.Avfun_DAL
             ResultUSER.user_sex = user.User_sex;
             ResultUSER.user_timestamp = user.User_timestamp;
             ResultUSER.user_verify_code = user.User_verify_code;
-
             return ResultUSER;
         }
+        /// <summary>
+        /// 注册新用户，无数据验证，数据验证应该在BLL层完成
+        /// </summary>
+        /// <param name="user">需要新创建的UI.User类</param>
+        /// <returns>影响的行数，大于0说明成功</returns>
         public int CreateUser(User user)
         {
-            ///<summary>
-            ///调用存储过程向USER表添加新用户
-            ///这里调用的时候。user的user_id,和timestamp应该为null
-            ///</summary>
+            int res;
             avfunEntities DataEntity = DataEntityManager.GetDataEntity();
-            int EffectRowsNumber = -1; //影响的行数
-            EffectRowsNumber = DataEntity.CreateNewUser(user.User_account,  //账号，在这里不做数据验证
-                                            user.User_password, //密码
-                                            user.User_nickname, //昵称
-                                            user.User_sex, //性别
-                                            user.User_head, //头像
-                                            user.User_isDeleted, //是否删除
-                                            user.User_isChecked, //是否激活
-                                            user.User_last_login_date, //最后登录日期
-                                            user.User_last_login_ip, //最后登录ip
-                                            user.User_money, //用户金额
-                                            user.User_introduction); //用户简介
-           
-            return EffectRowsNumber;
+            USER NewUSER = this.CovertUserToUSER(user);
+            DataEntity.USER.AddObject(NewUSER);
+            res = DataEntity.SaveChanges();
+            return res;
         }
 
         public int InsertUser(User user)
