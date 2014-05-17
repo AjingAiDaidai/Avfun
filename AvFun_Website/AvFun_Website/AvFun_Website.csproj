@@ -176,6 +176,9 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="TestAbs.cs" />
+    <Compile Include="LoginVerifyCodeGenerator.ashx.cs">
+      <DependentUpon>LoginVerifyCodeGenerator.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -205,6 +208,7 @@
     <None Include="AvFun_BLL_ClassDiagram.cd" />
     <None Include="AvFun_DAL_ClassDiagram.cd" />
     <None Include="AvFun_MVC_Interface.cd" />
+    <Content Include="LoginVerifyCodeGenerator.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
