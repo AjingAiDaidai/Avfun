@@ -58,11 +58,10 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="AvFun_TestPages\Index.aspx" />
-    <Content Include="AvFun_TestPages\NewUser.aspx" />
-    <Content Include="AvFun_TestPages\Reg.aspx" />
+    <Content Include="Index.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="NewUser.aspx" />
     <Content Include="Styles\Site.css" />
-    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -115,6 +114,7 @@
     </Compile>
     <Compile Include="Avfun_BLL\IGeneralUser.cs" />
     <Compile Include="Avfun_BLL\IUser.cs" />
+    <Compile Include="Avfun_BLL\ReadWebConfig.cs" />
     <Compile Include="Avfun_BLL\UserOpr.cs" />
     <Compile Include="Avfun_DAL\AvFunDataEntity.cs">
       <AutoGen>True</AutoGen>
@@ -130,26 +130,29 @@
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
     <Compile Include="Avfun_DAL\UserData.cs" />
-    <Compile Include="AvFun_TestPages\Index.aspx.cs">
+    <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AvFun_TestPages\Index.aspx.designer.cs">
+    <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AvFun_TestPages\NewUser.aspx.cs">
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NewUser.aspx.cs">
       <DependentUpon>NewUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AvFun_TestPages\NewUser.aspx.designer.cs">
+    <Compile Include="NewUser.aspx.designer.cs">
       <DependentUpon>NewUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AvFun_TestPages\Reg.aspx.cs">
-      <DependentUpon>Reg.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AvFun_TestPages\Reg.aspx.designer.cs">
-      <DependentUpon>Reg.aspx</DependentUpon>
+    <Compile Include="RegVerifyCodeGenerator.ashx.cs">
+      <DependentUpon>RegVerifyCodeGenerator.ashx</DependentUpon>
     </Compile>
     <Compile Include="AvFun_UI\Admin.cs" />
     <Compile Include="AvFun_UI\Course.cs" />
@@ -161,13 +164,6 @@
     <Compile Include="AvFun_UI\Order.cs" />
     <Compile Include="AvFun_UI\Review.cs" />
     <Compile Include="AvFun_UI\User.cs" />
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +180,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="AvFun_MVC_Model\" />
+    <Folder Include="AvFun_TestPages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -203,6 +200,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AvFunDataEntity.cs</LastGenOutput>
     </None>
+    <Content Include="RegVerifyCodeGenerator.ashx" />
     <None Include="AvFun_UI\AvFun_UI_ClassDiagram.cd" />
     <None Include="AvFun_BLL_ClassDiagram.cd" />
     <None Include="AvFun_DAL_ClassDiagram.cd" />

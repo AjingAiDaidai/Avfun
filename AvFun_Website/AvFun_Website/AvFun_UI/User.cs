@@ -18,9 +18,9 @@ namespace AvFun_Website.AvFun_UI
         /* 注意，在该类中我们没有考虑timestamp
          * 因为数据的并发问题不是我们在UI层考虑的问题，这个问题交给了DAL
          */
-        private float user_money;
+        private double user_money;
 
-        public float User_money
+        public double User_money
         {
             get { return user_money; }
             set { user_money = value; }
