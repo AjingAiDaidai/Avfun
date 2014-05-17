@@ -8,6 +8,7 @@ namespace AvFun_Website.Avfun_DAL
 {
     public class UserData : IUserData
     {
+
         /// <summary>
         /// 将DAL的USER类转换成BLL的User类
         /// </summary>
@@ -39,7 +40,7 @@ namespace AvFun_Website.Avfun_DAL
         /// </summary>
         /// <param name="user">UI.User对象，由BLL层传递</param>
         /// <returns>转换完毕的USER对象</returns>
-        private USER CovertUserToUSER(User user)
+        private USER ConvertUserToUSER(User user)
         {
             USER ResultUSER = new USER();
             ResultUSER.u_id = user.U_id;
@@ -68,7 +69,7 @@ namespace AvFun_Website.Avfun_DAL
         {
             int res;
             avfunEntities DataEntity = DataEntityManager.GetDataEntity();
-            USER NewUSER = this.CovertUserToUSER(user);
+            USER NewUSER = this.ConvertUserToUSER(user);
             DataEntity.USER.AddObject(NewUSER);
             res = DataEntity.SaveChanges();
             return res;
@@ -76,7 +77,7 @@ namespace AvFun_Website.Avfun_DAL
 
         public int InsertUser(User user)
         {
-            throw new NotImplementedException();
+            return CreateUser(user);
         }
 
         public USER[] GetUsers()
@@ -98,6 +99,32 @@ namespace AvFun_Website.Avfun_DAL
             User ResultUser = null;
 
             return ResultUser;
+        }
+        /// <summary>
+        /// DAL层重设密码函数，成功返回true，否则返回false
+        /// </summary>
+        /// <param name="user">要改变密码的user,account必填,password必填，为重新生成的密码</param>
+        /// <returns>成功返回true，否则false</returns>
+        public Boolean GetForgetPassword(User user)
+        {
+            Boolean result = false;
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+
+                try
+                {
+                    USER DestUser = (from usr in DataEntity.USER
+                             where usr.user_account == user.User_account //找目标user
+                             select usr).Single();
+                    DestUser.user_password = user.User_password; //更改密码为新生成的8位随机字符串
+                    DataEntity.SaveChanges(); 
+                    result = true;
+                }
+                catch (Exception)
+                {
+                    result = false;
+                }
+
+            return result;
         }
         //方便以后做成单例模式
         public static UserData GetNewInstance()

@@ -58,6 +58,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="ForgetPassword.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NewUser.aspx" />
@@ -130,6 +131,13 @@
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
     <Compile Include="Avfun_DAL\UserData.cs" />
+    <Compile Include="ForgetPassword.aspx.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgetPassword.aspx.designer.cs">
+      <DependentUpon>ForgetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

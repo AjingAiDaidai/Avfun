@@ -9,6 +9,38 @@ namespace AvFun_Website.Avfun_BLL
 {
     public class UserOpr:IUser
     {
+        ///<summary>
+        ///生成随机字符串
+        ///</summary>
+        ///<param name="length">目标字符串的长度</param>
+        ///<param name="useNum">是否包含数字，1=包含，默认为包含</param>
+        ///<param name="useLow">是否包含小写字母，1=包含，默认为包含</param>
+        ///<param name="useUpp">是否包含大写字母，1=包含，默认为包含</param>
+        ///<param name="useSpe">是否包含特殊字符，1=包含，默认为不包含</param>
+        ///<param name="custom">要包含的自定义字符，直接输入要包含的字符列表</param>
+        ///<returns>指定长度的随机字符串</returns>
+        public static String GenerateRandomString(int length,  //随机字符串长度
+            bool useNum = true,  //是否用数字
+            bool useLow = true,  //是否用小写
+            bool useUpp = true,  //是否用大写
+            bool useSpe = true,  //是否用特殊字符
+            String custom = ""   //是否用用户自定义参数
+            )
+        {
+            byte[] b = new byte[4];
+            new System.Security.Cryptography.RNGCryptoServiceProvider().GetBytes(b);
+            Random r = new Random(BitConverter.ToInt32(b, 0));
+            String s = null, str = custom;
+            if (useNum == true) { str += "0123456789"; }
+            if (useLow == true) { str += "abcdefghijklmnopqrstuvwxyz"; }
+            if (useUpp == true) { str += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; }
+            if (useSpe == true) { str += "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; }
+            for (int i = 0; i < length; i++)
+            {
+                s += str.Substring(r.Next(0, str.Length - 1), 1);
+            }
+            return s;
+        }
         /// <summary>
         /// MD5加密函数，返回大写的32位MD5加密值
         /// </summary>
@@ -23,11 +55,10 @@ namespace AvFun_Website.Avfun_BLL
             throw new NotImplementedException();
         }
         /// <summary>
-        /// 向新注册的用户发送激活账户的邮件，返回值大于0说明发送成功
+        /// 向新注册的用户发送激活账户的邮件
         /// public的原因是因为，重发确认信功能中也要用到
         /// </summary>
         /// <param name="newUser">刚刚创建的用户对应的UI.User实例</param>
-        /// <returns>返回值大于0说明发送成功</returns>
         public static void SendVerifyMailToNewUser(User newUser)
         {
             #region 准备阶段
@@ -81,6 +112,73 @@ namespace AvFun_Website.Avfun_BLL
             //開啟ssl
             MySmtp.EnableSsl = true;
             
+            //發送郵件
+            MySmtp.Send(mail);
+
+            //放掉宣告出來的MySmtp
+            MySmtp = null;
+
+            //放掉宣告出來的mail
+            mail.Dispose();
+            #endregion 发信模块
+        }
+
+        /// <summary>
+        /// 向忘记密码的用户发送取回密码的邮件
+        /// </summary>
+        /// <param name="newUser">忘记密码的用户对应的UI.User实例，Account必填</param>
+        /// <param name="newPasswordPlanText">新密码的明文，必填</param>
+        public static void SendNewPasswordMailToUser(User newUser, String newPasswordPlanText)
+        {
+            #region 准备阶段
+            //读取信息
+            /* WebConfig内容
+             *     <add key ="domain" value="http://localhost:30052/"/>
+    <add key ="MailAddress" value="0daydigger.avfun@gmail.com"/>
+    <add key ="MailPassword" value="hhxbyfdopdadawxz"/>
+    <add key ="MailNickname" value ="Avfun管理组"/>
+    <add key ="MailSubject" value ="【Avfun用户管理组账号激活提醒】"/>
+             * */
+            String WebDomain = ReadWebConfig.GetAppSettingValue("Domain");
+            String MailAddress = ReadWebConfig.GetAppSettingValue("MailAddress");
+            String MailPassword = ReadWebConfig.GetAppSettingValue("MailPassword");
+            String MailNickname = ReadWebConfig.GetAppSettingValue("MailNickname");
+            String MailSubject = ReadWebConfig.GetAppSettingValue("MailGetPasswordSubject");
+            #endregion
+            #region 发信模块
+            MailMessage mail = new MailMessage();
+
+            //前面是發信email後面是顯示的名稱
+            mail.From = new MailAddress(MailAddress, MailNickname);
+            //收信者email
+            mail.To.Add(newUser.User_account);
+            //設定優先權
+            mail.Priority = MailPriority.Normal;
+            //標題
+            mail.Subject = MailSubject + newUser.User_nickname;
+
+            //內容
+            mail.Body =
+                "尊敬的Avfun用户:"
+                + "<br/>您好 "
+                + "<br/>您的新密码是" + newPasswordPlanText
+                + "<br/>请牢记您的新密码并及时更改"
+                + "<br/> Avfun管理组，敬上";
+
+
+
+            //內容使用html
+            mail.IsBodyHtml = true;
+
+            //設定gmail的smtp
+            SmtpClient MySmtp = new SmtpClient("smtp.gmail.com", 587);
+
+            //您在gmail的帳號密碼
+            MySmtp.Credentials = new System.Net.NetworkCredential(MailAddress, MailPassword);
+
+            //開啟ssl
+            MySmtp.EnableSsl = true;
+
             //發送郵件
             MySmtp.Send(mail);
 
@@ -202,6 +300,43 @@ namespace AvFun_Website.Avfun_BLL
              UserData UserData_Get = UserData.GetNewInstance();
              ResultUser = UserData_Get.GetUserByAccountAndPassword(user);
              return ResultUser;
+         }
+        /// <summary>
+        /// 取回密码函数，成功返回true，否则返回false
+        /// </summary>
+        /// <param name="user">重设密码的User类，Account必填</param>
+        /// <returns>成功返回true，否则返回false</returns>
+ 
+        public static Boolean GetForgetPassword(User user)
+         {
+
+             Boolean result = false;
+             UserData userData = UserData.GetNewInstance();
+
+             if (user.User_account == null || //不为null
+                 user.User_account.Equals("") || //不为空
+                 user.User_account.Length > 64)
+             {//不长于64
+                 // 数据验证完毕
+                 result = false;
+             }
+             else
+             {
+                 //调用DAL重设密码
+                String newUserPassword = GenerateRandomString(8);// 生成8位新密码，包括大小写特殊字符等等等等
+                user.User_password = MD5(newUserPassword); //加密后传入数据库
+                if (userData.GetForgetPassword(user)) //数据库那边搞定了！~
+                {
+                    result = true;
+                    //给用户发邮件
+                    SendNewPasswordMailToUser(user, newUserPassword);
+                }
+                else
+                {
+                    result = false;
+                }
+             }
+             return result;
          }
     }
 }
