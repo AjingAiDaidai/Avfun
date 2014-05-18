@@ -132,23 +132,25 @@ namespace AvFun_Website.Avfun_DAL
 
             return result;
         }
-
         /// <summary>
-        /// 更新用户登陆后的信息，ip啊,datetime之类的
+        /// 修改用户密码，User为登录的用户，newPassword为新密码，成功返回true否则返回false
         /// </summary>
-        /// <param name="user">要更新的user类</param>
-        public Boolean UpdateLogInformation(User user)
+        /// <param name="user">登录的用户</param>
+        /// <param name="newPassword">新密码（MD5大写字符串）</param>
+        /// <returns>成功true失败false</returns>
+        public Boolean ChangeUserPassword(User user, String newPassword)
         {
-            Boolean result = false;
+              Boolean result = true;
             avfunEntities DataEntity = DataEntityManager.GetDataEntity();
             try
             {
-                USER loggedUSER = (from usr in DataEntity.USER
-                                   where usr.user_account == user.User_account
-                                   && usr.user_password == usr.user_password
-                                   select usr).Single();
-                loggedUSER.user_last_login_ip = user.User_last_login_ip;
-                loggedUSER.user_last_login_time = user.User_last_login_date;
+                USER OldUSER = (from usr in DataEntity.USER
+                                where usr.user_account == user.User_account   //账号
+                                && usr.user_password == user.User_password  //密码
+                                && usr.user_timestamp == user.User_timestamp //时间戳，注意，这个很重要！确保一致性！
+                                select usr
+                                    ).Single();
+                OldUSER.user_password = newPassword;
                 DataEntity.SaveChanges();
                 result = true;
             }
@@ -158,7 +160,53 @@ namespace AvFun_Website.Avfun_DAL
             }
             return result;
         }
-        //方便以后做成单例模式
+        /// <summary>
+        /// 更新用户信息，数据校验在BLL完成
+        /// </summary>
+        /// <param name="user">要更新的用户</param>
+        /// <returns>成功true失败false</returns>
+        public Boolean UpdateUserInfo(User user)
+        {
+            Boolean result = true;
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+            try{
+                USER newInfoUSER = (from usr in DataEntity.USER
+                                    where usr.user_account == user.User_account   //账号
+                                    &&    usr.user_password == user.User_password  //密码
+                                    &&    usr.user_timestamp == user.User_timestamp //时间戳，注意，这个很重要！确保一致性！
+                                    select usr
+                                    ).Single();
+            
+                //            newInfoUSER = ConvertUserToUSER(user); 这是传指针，算了，老实点，一个个拷贝
+               // newInfoUSER.u_id = user.U_id;  自动生成的不能改
+                newInfoUSER.user_id = user.User_id;
+                newInfoUSER.user_head = user.User_head;
+                newInfoUSER.user_account = user.User_account;
+                newInfoUSER.user_introduction = user.User_introduction;
+                newInfoUSER.user_isChecked = user.User_isChecked;
+                newInfoUSER.user_isDeleted = user.User_isDeleted;
+                newInfoUSER.user_last_login_ip = user.User_last_login_ip;
+                newInfoUSER.user_last_login_time = user.User_last_login_date;
+                newInfoUSER.user_money = user.User_money;
+                newInfoUSER.user_nickname = user.User_nickname;
+//                newInfoUSER.user_password = user.User_password; 密码单独修改！
+                newInfoUSER.user_sex = user.User_sex;
+             //   newInfoUSER.user_timestamp = user.User_timestamp; 妈蛋时间戳不能改啊改了还同步个J8啊！
+                newInfoUSER.user_verify_code = user.User_verify_code;
+            
+                DataEntity.SaveChanges();
+                result = true;
+            }
+            catch(Exception)
+            {
+                result = false;
+            }
+            return result;
+        }
+        /// <summary>
+        /// 获取UserData对象实例，方便以后做单例模式（如果需要）或对象池管理
+        /// </summary>
+        /// <returns>UserData实例</returns>
         public static UserData GetNewInstance()
         {
             return new UserData();

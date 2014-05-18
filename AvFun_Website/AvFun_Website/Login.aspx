@@ -17,7 +17,7 @@
     <form id="LoginForm" runat="server">
     <div>
     
-        <asp:Label ID="lblUserName" runat="server" Text="登录邮箱"></asp:Label>
+        <asp:Label ID="lblUserName" runat="server" Text="邮箱"></asp:Label>
         <asp:TextBox ID="UserAccount" runat="server" MaxLength="64"></asp:TextBox>
         <asp:HyperLink ID="urlReg" runat="server" NavigateUrl="~/NewUser.aspx" 
             Target="_blank">注册</asp:HyperLink>

@@ -130,6 +130,15 @@ namespace AvFun_Website.user_pages {
         protected global::System.Web.UI.WebControls.Label lblMoney;
         
         /// <summary>
+        /// urlMoney 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink urlMoney;
+        
+        /// <summary>
         /// lblHead 控件。
         /// </summary>
         /// <remarks>
@@ -164,6 +173,33 @@ namespace AvFun_Website.user_pages {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUserNickname;
+        
+        /// <summary>
+        /// nicknameRequired 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator nicknameRequired;
+        
+        /// <summary>
+        /// lblSex 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSex;
+        
+        /// <summary>
+        /// UserSex 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList UserSex;
         
         /// <summary>
         /// lblUserIntroduction 控件。

@@ -39,8 +39,9 @@ function GetImgCode()
             ControlToValidate="UserAccount" 
             ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">邮箱格式不正确，请检查</asp:RegularExpressionValidator>
         <br />
+        <asp:Label ID="lblSex" runat="server" Text="性别："></asp:Label>
         <br />
-        性别：<asp:RadioButtonList ID="UserSex" runat="server" 
+        <asp:RadioButtonList ID="UserSex" runat="server" 
             RepeatDirection="Horizontal">
             <asp:ListItem Selected="True" Value="Male">男</asp:ListItem>
             <asp:ListItem Value="Female">女</asp:ListItem>

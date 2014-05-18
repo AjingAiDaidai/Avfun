@@ -354,10 +354,7 @@ namespace AvFun_Website.Avfun_BLL
                 user.User_password.Length != 32 ||  //其实这不太可能，只判断是否等于32就好了，因为到BLL的全MD5过
                 user.User_password.Equals(""))
                 result = false;
-            if (user.User_last_login_ip == null ||   //最后登录ip必填
-                user.User_last_login_ip.Length < 8 ||
-                user.User_last_login_ip.Length > 64)
-                return false;
+
             return result;
         }
         /// <summary>
@@ -416,23 +413,39 @@ namespace AvFun_Website.Avfun_BLL
             }
         }
         /// <summary>
-        /// 登录成功后服务器内部调用，更新用户登录信息
+        /// BAL修改用户密码，包括数据检验，成功返回true否则返回false
         /// </summary>
-        /// <param name="user">已验证的User类</param>
-        public static Boolean UpdateLogInformation(User user)
+        /// <param name="user">要修改的用户</param>
+        /// <param name="newPassword">新密码，应为32位MD5大写字符串</param>
+        /// <returns>成功返回true否则false</returns>
+        public static Boolean ChagneUserPassword(User user, String newPassword)
         {
-            /* 准备 */
             Boolean result = true;
+            if (newPassword.Length != 32) //新密码长度检验
+                result = false;
+            if (!isLegalNewUser(user))
+                result = false;
             UserData userData = UserData.GetNewInstance();
-            /* 数据完整性检查 */
-            if (isLegalLoginInfo(user))
+            result =  userData.ChangeUserPassword(user, newPassword);
+            return result;
+        }
+        /// <summary>
+        /// 更新用户信息，会有isLegalLoginInfo检查的。成功返回true否则返回false
+        /// </summary>
+        /// <param name="user">要更新的user信息</param>
+        /// <returns>成功返回true否则返回false</returns>
+        public static Boolean UpdateUserInfo(User user)
+        {
+            Boolean result = true;
+            /* 数据检验 */
+            if (!isLegalNewUser(user))
             {
-                //更新
-                result = userData.UpdateLogInformation(user);
+                result = false;
             }
             else
             {
-                result = false;
+                UserData userData = UserData.GetNewInstance();
+                result = userData.UpdateUserInfo(user);
             }
             return result;
         }

@@ -26,7 +26,13 @@ namespace AvFun_Website
                     #region Control处理部分
                     //获取提交表单的信息，去掉所有前导和滞后空格
                     String userAccount = Request.Form["UserAccount"].Trim();
-                    String userPassword = Request.Form["UserPassword"].Trim();
+                    String userPassword = Request.Form["UserPassword"]; //密码不用去空格
+                    if (userPassword.Length < 6 || userPassword.Length > 16)
+                    {
+                        RegResult.Text = "密码长度应该在6-16位之间，请重新输入";
+                        RegResult.Visible = true;
+                        return;
+                    }
                     String strUserSex = Request.Form["UserSex"].Trim();
                     String userIntroduction = Request.Form["UserIntroduction"].Trim();
                     String userNickname = Request.Form["UserNickname"].Trim();

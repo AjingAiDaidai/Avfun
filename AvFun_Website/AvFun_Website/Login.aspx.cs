@@ -41,8 +41,6 @@ namespace AvFun_Website
                     User verifyUser = new User();
                     verifyUser.User_account = userAccount;
                     verifyUser.User_password = UserOpr.MD5(userPassword);
-                    verifyUser.User_last_login_date = DateTime.Now; //获取当前登录日期
-                    verifyUser.User_last_login_ip = HttpContext.Current.Request.UserHostAddress; //最后一次登录ip
                     //验证用户是否是合法登录请求
                     User entireUser = UserOpr.isLegalLogin(verifyUser);
                     if (entireUser == null) //账号或密码错误，未注册，都是这个
@@ -52,8 +50,11 @@ namespace AvFun_Website
                     }
                     else
                     {
-                        //登录成功，更改提示信息，更新登录信息中的IP和日期
-                        UserOpr.UpdateLogInformation(verifyUser);
+                        //登录成功，更改提示信息，更新登录信息中的IP和日期，这里记得换成UpdateUserInfo！
+
+                        entireUser.User_last_login_date = DateTime.Now; //获取当前登录日期
+                        entireUser.User_last_login_ip = HttpContext.Current.Request.UserHostAddress; //最后一次登录ip
+                        UserOpr.UpdateUserInfo(entireUser);
                         LoginInfo.Text = "登录成功！3秒后跳转回主页";
                         //授予Cookies，相当于授权了
 
