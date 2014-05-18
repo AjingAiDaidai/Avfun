@@ -57,7 +57,11 @@ namespace AvFun_Website
                         Session.Remove(RegVerifyCodeGenerator.strIdentify); //防止后退提交
                         #region 用户注册，与UserOpr打交道
                         //开始注册用户，数据完整性检查在BLL.UserOpr类中
-                        User newUser = new User(userAccount, userPassword, userNickname, userSex, userLastLoginIp);
+                        String user_head = "img/01.jpg"; //男生默认头像
+                        if (userSex == false) //是女生
+                            user_head = "img/00.jpg"; //女生默认头像
+
+                        User newUser = new User(userAccount, userPassword, userNickname, userSex, userLastLoginIp,user_head.Trim());
                         newUser.User_introduction = userIntroduction;
 
                         if (UserOpr.CreateUser(newUser) > 0)

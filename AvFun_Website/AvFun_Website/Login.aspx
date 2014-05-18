@@ -43,7 +43,7 @@
         <asp:RequiredFieldValidator ID="LoginVerifyCodeRequire" runat="server" 
             ControlToValidate="LoginVerifyCode">*请填写验证码（不区分大小写）</asp:RequiredFieldValidator>
         <br />
-        <asp:CheckBox ID="RememberMe" runat="server" Text="下次免登陆" />
+        <asp:CheckBox ID="RememberMe" runat="server" Text="7天内免登陆" Checked="True" />
         <br />
         <asp:Button ID="btnLogin" runat="server" Text="登录" />
     

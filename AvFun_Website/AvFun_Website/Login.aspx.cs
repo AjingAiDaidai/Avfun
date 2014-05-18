@@ -41,6 +41,8 @@ namespace AvFun_Website
                     User verifyUser = new User();
                     verifyUser.User_account = userAccount;
                     verifyUser.User_password = UserOpr.MD5(userPassword);
+                    verifyUser.User_last_login_date = DateTime.Now; //获取当前登录日期
+                    verifyUser.User_last_login_ip = HttpContext.Current.Request.UserHostAddress; //最后一次登录ip
                     //验证用户是否是合法登录请求
                     User entireUser = UserOpr.isLegalLogin(verifyUser);
                     if (entireUser == null) //账号或密码错误，未注册，都是这个
@@ -50,23 +52,25 @@ namespace AvFun_Website
                     }
                     else
                     {
-                        //登录成功
+                        //登录成功，更改提示信息，更新登录信息中的IP和日期
+                        UserOpr.UpdateLogInformation(verifyUser);
                         LoginInfo.Text = "登录成功！3秒后跳转回主页";
-                        //授予Cookies，相当于授权了，这里本来想放对象的，结果，算了，他娘的，数据同步不好不说，安全性还不好。
-                        Response.Cookies["userAccount"].Value = entireUser.User_account;
-                        Response.Cookies["userPassword"].Value = entireUser.User_password;
+                        //授予Cookies，相当于授权了
+
+                        HttpCookie userAccountCookie = new HttpCookie("userAccount");
+                        HttpCookie userPasswordCookie = new HttpCookie("userPassword");
+                        userAccountCookie.Value = verifyUser.User_account;
+                        userPasswordCookie.Value = verifyUser.User_password;
+
                         if (RememberMe.Checked) //这个判断很诡异，貌似Request.Form不好用的样子。
                         {
-                            //如果选了RememberMe就永久保存
-                            Response.Cookies["userAccount"].Expires = DateTime.MaxValue;
-                            Response.Cookies["userPassword"].Expires = DateTime.MaxValue;
+                            //如果选了RememberMe就保留一个星期
+                            userPasswordCookie.Expires = DateTime.Now.AddDays(7D);
+                            userAccountCookie.Expires = DateTime.Now.AddDays(7D);
                         }
-                        else
-                        {
-                            //不选就保留一个星期
-                            Response.Cookies["userAccount"].Expires = DateTime.Now.AddDays(7);
-                            Response.Cookies["userPassword"].Expires = DateTime.Now.AddDays(7);
-                        }
+                        //添加Cookie，相当于授权
+                        Response.Cookies.Add(userAccountCookie);
+                        Response.Cookies.Add(userPasswordCookie);
                         //重定向
                         HtmlMeta RedirectMeta = new HtmlMeta(); //重定向用Meta标签
                         RedirectMeta.HttpEquiv = "refresh"; //指定行为为跳转

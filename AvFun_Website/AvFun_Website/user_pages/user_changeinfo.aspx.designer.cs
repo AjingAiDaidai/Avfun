@@ -7,10 +7,19 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace AvFun_Website {
+namespace AvFun_Website.user_pages {
     
     
-    public partial class Index {
+    public partial class user_changeinfo {
+        
+        /// <summary>
+        /// logStatus 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label logStatus;
         
         /// <summary>
         /// form1 控件。
@@ -22,129 +31,165 @@ namespace AvFun_Website {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// unloginDiv 控件。
+        /// loggedDiv 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl unloginDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loggedDiv;
         
         /// <summary>
-        /// urlLogin 控件。
+        /// lblUserAccount 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlLogin;
+        protected global::System.Web.UI.WebControls.Label lblUserAccount;
         
         /// <summary>
-        /// HyperLink1 控件。
+        /// txtUserAccount 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.TextBox txtUserAccount;
         
         /// <summary>
-        /// urlNews 控件。
+        /// lblChangePasswordStatus 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlNews;
+        protected global::System.Web.UI.WebControls.Label lblChangePasswordStatus;
         
         /// <summary>
-        /// urlCourseIntro 控件。
+        /// lblOldPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlCourseIntro;
+        protected global::System.Web.UI.WebControls.Label lblOldPassword;
         
         /// <summary>
-        /// loginDiv 控件。
+        /// txtUserOldPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl loginDiv;
+        protected global::System.Web.UI.WebControls.TextBox txtUserOldPassword;
         
         /// <summary>
-        /// WelcomeInfo1 控件。
+        /// lblNewPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WelcomeInfo1;
+        protected global::System.Web.UI.WebControls.Label lblNewPassword;
         
         /// <summary>
-        /// loggedUserNickname 控件。
+        /// txtUserNewPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label loggedUserNickname;
+        protected global::System.Web.UI.WebControls.TextBox txtUserNewPassword;
         
         /// <summary>
-        /// WelcomeInfo2 控件。
+        /// urlVerifyNewPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WelcomeInfo2;
+        protected global::System.Web.UI.WebControls.Label urlVerifyNewPassword;
         
         /// <summary>
-        /// btnLogout 控件。
+        /// txtUserVerifyNewPassword 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
+        protected global::System.Web.UI.WebControls.TextBox txtUserVerifyNewPassword;
         
         /// <summary>
-        /// urlUserIndex 控件。
+        /// lblMoney 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlUserIndex;
+        protected global::System.Web.UI.WebControls.Label lblMoney;
         
         /// <summary>
-        /// urlMoney 控件。
+        /// lblHead 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlMoney;
+        protected global::System.Web.UI.WebControls.Label lblHead;
         
         /// <summary>
-        /// urlChooseCourse 控件。
+        /// imgHead 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlChooseCourse;
+        protected global::System.Web.UI.WebControls.Image imgHead;
         
         /// <summary>
-        /// urlChat 控件。
+        /// lblNickname 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlChat;
+        protected global::System.Web.UI.WebControls.Label lblNickname;
+        
+        /// <summary>
+        /// txtUserNickname 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUserNickname;
+        
+        /// <summary>
+        /// lblUserIntroduction 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserIntroduction;
+        
+        /// <summary>
+        /// txtUserIntroduction 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUserIntroduction;
+        
+        /// <summary>
+        /// btnSubmit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }

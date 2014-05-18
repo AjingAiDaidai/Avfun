@@ -354,6 +354,10 @@ namespace AvFun_Website.Avfun_BLL
                 user.User_password.Length != 32 ||  //其实这不太可能，只判断是否等于32就好了，因为到BLL的全MD5过
                 user.User_password.Equals(""))
                 result = false;
+            if (user.User_last_login_ip == null ||   //最后登录ip必填
+                user.User_last_login_ip.Length < 8 ||
+                user.User_last_login_ip.Length > 64)
+                return false;
             return result;
         }
         /// <summary>
@@ -392,7 +396,8 @@ namespace AvFun_Website.Avfun_BLL
         public static User isLogged(HttpRequest httpRequest)
         {
             /* 输入验证不可少 */
-            if ( httpRequest.Cookies["userAccount"]  == null
+            /* 账号密码输入验证 */
+            if (httpRequest.Cookies["userAccount"] == null
                 || httpRequest.Cookies["userPassword"] == null
                 || httpRequest.Cookies["userAccount"].Value.Length > 64
                 || httpRequest.Cookies["userPassword"].Value.Length != 32
@@ -403,9 +408,33 @@ namespace AvFun_Website.Avfun_BLL
                 User logUser = new User();
                 logUser.User_account = httpRequest.Cookies["userAccount"].Value;
                 logUser.User_password = httpRequest.Cookies["userPassword"].Value;
+                //这个调用必须指定ip
+                logUser.User_last_login_ip = HttpContext.Current.Request.UserHostAddress;
+                logUser.User_last_login_date = DateTime.Now;
                 User detailUser = isLegalLogin(logUser);
                 return detailUser;
             }
+        }
+        /// <summary>
+        /// 登录成功后服务器内部调用，更新用户登录信息
+        /// </summary>
+        /// <param name="user">已验证的User类</param>
+        public static Boolean UpdateLogInformation(User user)
+        {
+            /* 准备 */
+            Boolean result = true;
+            UserData userData = UserData.GetNewInstance();
+            /* 数据完整性检查 */
+            if (isLegalLoginInfo(user))
+            {
+                //更新
+                result = userData.UpdateLogInformation(user);
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
         }
     }
 }

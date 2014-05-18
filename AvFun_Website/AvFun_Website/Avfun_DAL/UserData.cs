@@ -133,6 +133,31 @@ namespace AvFun_Website.Avfun_DAL
             return result;
         }
 
+        /// <summary>
+        /// 更新用户登陆后的信息，ip啊,datetime之类的
+        /// </summary>
+        /// <param name="user">要更新的user类</param>
+        public Boolean UpdateLogInformation(User user)
+        {
+            Boolean result = false;
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+            try
+            {
+                USER loggedUSER = (from usr in DataEntity.USER
+                                   where usr.user_account == user.User_account
+                                   && usr.user_password == usr.user_password
+                                   select usr).Single();
+                loggedUSER.user_last_login_ip = user.User_last_login_ip;
+                loggedUSER.user_last_login_time = user.User_last_login_date;
+                DataEntity.SaveChanges();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            return result;
+        }
         //方便以后做成单例模式
         public static UserData GetNewInstance()
         {

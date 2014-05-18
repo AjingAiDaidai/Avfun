@@ -67,6 +67,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="user_pages\user_changeinfo.aspx" />
     <Content Include="user_pages\user_index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -188,6 +189,13 @@
     <Compile Include="LoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>LoginVerifyCodeGenerator.ashx</DependentUpon>
     </Compile>
+    <Compile Include="user_pages\user_changeinfo.aspx.cs">
+      <DependentUpon>user_changeinfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_pages\user_changeinfo.aspx.designer.cs">
+      <DependentUpon>user_changeinfo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user_pages\user_index.aspx.cs">
       <DependentUpon>user_index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -200,6 +208,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="AvFun_MVC_Model\" />
     <Folder Include="AvFun_TestPages\" />
+    <Folder Include="user_pages\img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
