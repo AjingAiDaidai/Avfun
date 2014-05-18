@@ -67,6 +67,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="user_pages\user_index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -186,6 +187,13 @@
     <Compile Include="TestAbs.cs" />
     <Compile Include="LoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>LoginVerifyCodeGenerator.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="user_pages\user_index.aspx.cs">
+      <DependentUpon>user_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_pages\user_index.aspx.designer.cs">
+      <DependentUpon>user_index.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

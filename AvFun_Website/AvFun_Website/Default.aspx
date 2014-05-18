@@ -20,6 +20,8 @@
         <asp:Label ID="loggedUserNickname" runat="server"></asp:Label>
         <asp:Label ID="WelcomeInfo2" runat="server" Text="大人，欢迎回来！"></asp:Label>
         <asp:LinkButton ID="btnLogout" runat="server">登出</asp:LinkButton>
+&nbsp;<asp:HyperLink ID="urlUserIndex" runat="server" 
+            NavigateUrl="~/user_pages/user_index.aspx" Target="_self">用户中心</asp:HyperLink>
     </div>
     </form>
 </body>
