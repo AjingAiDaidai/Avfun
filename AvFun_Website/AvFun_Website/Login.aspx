@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>登录——問う、あなたがわたしのMasterか？</title>
 </head>
 <script language="javascript" type="text/javascript">
     function GetImgCode() {

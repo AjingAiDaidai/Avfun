@@ -139,6 +139,9 @@ namespace AvFun_Website.AvFun_UI
                 this.user_last_login_ip = value;
             }
         }
+        public Admin()
+        {
+        }
         public Admin(Admin admin)
         {
             //因为隐式调用的时候，调用的永远都是父类的【无参】构造函数，所以可以这么玩儿。
@@ -153,6 +156,7 @@ namespace AvFun_Website.AvFun_UI
             this.user_isChecked = admin.User_isChecked;
             this.user_last_login_date = admin.User_last_login_date;
             this.user_last_login_ip = admin.User_last_login_ip;
+            this.user_timestamp = admin.User_timestamp;
         }
         public Admin(String account, String password, String nickname, Boolean sex, String head, String introduction)
         {

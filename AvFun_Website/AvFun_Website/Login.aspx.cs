@@ -69,6 +69,12 @@ namespace AvFun_Website
                             userPasswordCookie.Expires = DateTime.Now.AddDays(7D);
                             userAccountCookie.Expires = DateTime.Now.AddDays(7D);
                         }
+                        else
+                        {
+                            //否则只保存1天
+                            userPasswordCookie.Expires = DateTime.Now.AddDays(1D);
+                            userAccountCookie.Expires = DateTime.Now.AddDays(1D); 
+                        }
                         //添加Cookie，相当于授权
                         Response.Cookies.Add(userAccountCookie);
                         Response.Cookies.Add(userPasswordCookie);

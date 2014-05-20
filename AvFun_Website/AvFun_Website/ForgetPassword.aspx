@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>取回密码——ご暗証番号を取りたいんですか？</title>
 </head>
 <body>
 

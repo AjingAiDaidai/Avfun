@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>ご主人様、お帰りなさいございます！【个人中心】</title>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -15,9 +15,11 @@
         <asp:HyperLink ID="urlChooseCourse" runat="server">选择女友</asp:HyperLink>
         <asp:HyperLink ID="urlChat" runat="server">临幸后宫</asp:HyperLink>
         <asp:HyperLink ID="urlChangInfo" runat="server" 
-            NavigateUrl="~/user_pages/user_changeinfo.aspx" Target="_self">修改资料</asp:HyperLink>
+            NavigateUrl="~/user_pages/user_changeinfo.aspx" Target="_blank">修改资料</asp:HyperLink>
         <asp:HyperLink ID="urlAnalyze" runat="server">统计信息</asp:HyperLink>
         <asp:Label ID="lblMoney" runat="server" Text="令咒充值"></asp:Label>
+        <asp:HyperLink ID="urlResendMail" runat="server" 
+            NavigateUrl="~/user_pages/ResendVerifyMail.aspx" Target="_blank">重发确认信</asp:HyperLink>
         <br />
         
         <asp:Table ID="tbl_UserDetail" runat="server">

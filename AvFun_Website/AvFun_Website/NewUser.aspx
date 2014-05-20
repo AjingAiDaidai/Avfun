@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>用户注册——もっと一つのご主人様をいただくかな</title>
 </head>
 <script language="javascript" type="text/javascript"> 
 function GetImgCode() 

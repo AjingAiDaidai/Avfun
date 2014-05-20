@@ -171,8 +171,7 @@ namespace AvFun_Website.Avfun_DAL
             avfunEntities DataEntity = DataEntityManager.GetDataEntity();
             try{
                 USER newInfoUSER = (from usr in DataEntity.USER
-                                    where usr.user_account == user.User_account   //账号
-                                    &&    usr.user_password == user.User_password  //密码
+                                    where usr.user_id == user.User_id   //账号
                                     &&    usr.user_timestamp == user.User_timestamp //时间戳，注意，这个很重要！确保一致性！
                                     select usr
                                     ).Single();
@@ -189,7 +188,7 @@ namespace AvFun_Website.Avfun_DAL
                 newInfoUSER.user_last_login_time = user.User_last_login_date;
                 newInfoUSER.user_money = user.User_money;
                 newInfoUSER.user_nickname = user.User_nickname;
-//                newInfoUSER.user_password = user.User_password; 密码单独修改！
+                newInfoUSER.user_password = user.User_password; 
                 newInfoUSER.user_sex = user.User_sex;
              //   newInfoUSER.user_timestamp = user.User_timestamp; 妈蛋时间戳不能改啊改了还同步个J8啊！
                 newInfoUSER.user_verify_code = user.User_verify_code;

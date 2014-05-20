@@ -58,10 +58,14 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="admin\admin_changeInfo.aspx" />
+    <Content Include="admin\admin_index.aspx" />
+    <Content Include="admin\admin_login.aspx" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="NewUser.aspx" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\uploadify\jquery.uploadify.js" />
     <Content Include="Scripts\uploadify\jquery.uploadify.min.js" />
     <Content Include="Scripts\uploadify\uploadify-cancel.png" />
@@ -73,6 +77,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="user_pages\ResendVerifyMail.aspx" />
     <Content Include="user_pages\user_changeinfo.aspx" />
     <Content Include="user_pages\user_index.aspx" />
     <Content Include="Web.config">
@@ -121,10 +126,36 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\admin_changeInfo.aspx.cs">
+      <DependentUpon>admin_changeInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_changeInfo.aspx.designer.cs">
+      <DependentUpon>admin_changeInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_index.aspx.cs">
+      <DependentUpon>admin_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_index.aspx.designer.cs">
+      <DependentUpon>admin_index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_login.aspx.cs">
+      <DependentUpon>admin_login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_login.aspx.designer.cs">
+      <DependentUpon>admin_login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\AdminLoginVerifyCodeGenerator.ashx.cs">
+      <DependentUpon>AdminLoginVerifyCodeGenerator.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Avfun_BLL\AdminOpr.cs" />
     <Compile Include="Avfun_BLL\IGeneralUser.cs" />
     <Compile Include="Avfun_BLL\IUser.cs" />
     <Compile Include="Avfun_BLL\ReadWebConfig.cs" />
     <Compile Include="Avfun_BLL\UserOpr.cs" />
+    <Compile Include="Avfun_DAL\AdminData.cs" />
     <Compile Include="Avfun_DAL\AvFunDataEntity.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,6 +226,13 @@
     <Compile Include="LoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>LoginVerifyCodeGenerator.ashx</DependentUpon>
     </Compile>
+    <Compile Include="user_pages\ResendVerifyMail.aspx.cs">
+      <DependentUpon>ResendVerifyMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_pages\ResendVerifyMail.aspx.designer.cs">
+      <DependentUpon>ResendVerifyMail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user_pages\UserUploadHeadImage.ashx.cs">
       <DependentUpon>UserUploadHeadImage.ashx</DependentUpon>
     </Compile>
@@ -217,6 +255,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="AvFun_MVC_Model\" />
     <Folder Include="AvFun_TestPages\" />
+    <Folder Include="news\" />
+    <Folder Include="orders\" />
     <Folder Include="user_pages\img\" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +273,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\AdminLoginVerifyCodeGenerator.ashx" />
     <None Include="Avfun_DAL\AvFunDataEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AvFunDataEntity.cs</LastGenOutput>

@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>AvFun在线日语学习网站——オタクが世界を守って、救っている</title>
 </head>
 <body>
     <form id="form1" runat="server">

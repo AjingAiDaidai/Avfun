@@ -55,6 +55,16 @@ namespace AvFun_Website.user_pages
                     txtUserIntroduction.Text = loggedUser.User_introduction.Trim();
                     //昵称。记得去空格
                     txtUserNickname.Text = loggedUser.User_nickname.Trim();
+                    if (loggedUser.User_sex) //男生
+                    {
+                        UserSex.Items[0].Selected = true;
+                        UserSex.Items[1].Selected = false;
+                    }
+                    else
+                    {
+                        UserSex.Items[0].Selected = false;
+                        UserSex.Items[1].Selected = true; //女生
+                    }
                 }
                 else
                 {
@@ -64,7 +74,9 @@ namespace AvFun_Website.user_pages
                     String verifyNewPassword = Request.Form["txtUserVerifyNewPassword"];
                     String userIntroduction = Request.Form["txtUserIntroduction"].Trim();
                     String userNickname = Request.Form["txtUserNickName"].Trim(); //记得去空格
-                    
+                    //头像！这里用完记得立刻释放掉Cookie
+                    String userHead = Request.Cookies["userHead"].Value;
+
                     //转换为布尔型，注意用户性别1为男0为女
                     String strUserSex = Request.Form["UserSex"].Trim();
                     Boolean userSex = strUserSex.ToUpper().Trim().Equals("MALE");
@@ -103,6 +115,9 @@ namespace AvFun_Website.user_pages
                                 }
                                 else
                                 {
+                                    //修改后一并提交
+                                    newInfoUser.User_password = UserOpr.MD5(newPassword);
+                                    /*
                                     //修改用户密码
                                     if (UserOpr.ChagneUserPassword(newInfoUser, UserOpr.MD5(newPassword)))
                                     {
@@ -118,8 +133,9 @@ namespace AvFun_Website.user_pages
                                         lblChangePasswordStatus.Visible = true;
                                         return; //停止提交
                                     }
+                                     * */
                                 }
-                               
+
                             }
                         }
                     }
@@ -129,7 +145,15 @@ namespace AvFun_Website.user_pages
 
                     newInfoUser.User_introduction = userIntroduction;
                     newInfoUser.User_nickname = userNickname;
-                    newInfoUser.User_head = imgHead.ImageUrl; //这里注意看一下是相对路径还是绝对路径
+                    if (userHead != null) 
+                    {
+                        newInfoUser.User_head = userHead; //这里注意看一下是相对路径还是绝对路径
+                        //释放Cookie
+                        HttpCookie userHeadCookie = new HttpCookie("userHead");
+                        userHeadCookie.Expires = DateTime.Now.AddDays(-1D);
+                        Response.Cookies.Add(userHeadCookie);
+                    }
+
                     newInfoUser.User_sex = userSex;
                     #endregion
 
@@ -138,8 +162,15 @@ namespace AvFun_Website.user_pages
                     if (UserOpr.UpdateUserInfo(newInfoUser))
                     {
                         //修改成功
-                        logStatus.Text = "资料修改成功了哦，如果修改了密码，要重新登录的哦！";
+                        logStatus.Text = "资料修改成功了哦，3秒后回到用户主页哦";
                         logStatus.Visible = true;
+                        loggedDiv.Visible = false;
+                        //重定向
+                        HtmlMeta RedirectMeta = new HtmlMeta(); //重定向用Meta标签
+                        RedirectMeta.HttpEquiv = "refresh"; //指定行为为跳转
+                        RedirectMeta.Content = "3;url=user_index.aspx"; //时间为三秒，跳转到首页
+                        this.Page.Header.Controls.Add(RedirectMeta);
+
                     }
                     else
                     {
