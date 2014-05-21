@@ -18,6 +18,7 @@
     <EntitySetMapping Name="COURSE">
       <EntityTypeMapping TypeName="avfun_DAL_model.COURSE">
         <MappingFragment StoreEntitySet="COURSE">
+          <ScalarProperty Name="course_last_date" ColumnName="course_last_date" />
           <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
           <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
           <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
@@ -94,6 +95,22 @@
           <ScalarProperty Name="user_account" ColumnName="user_account" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="u_id" ColumnName="u_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminNewsList">
+      <EntityTypeMapping TypeName="avfun_DAL_model.AdminNewsList">
+        <MappingFragment StoreEntitySet="AdminNewsList">
+          <ScalarProperty Name="news_author" ColumnName="news_author" />
+          <ScalarProperty Name="news_content" ColumnName="news_content" />
+          <ScalarProperty Name="news_click_count" ColumnName="news_click_count" />
+          <ScalarProperty Name="news_image" ColumnName="news_image" />
+          <ScalarProperty Name="news_isOnIndex" ColumnName="news_isOnIndex" />
+          <ScalarProperty Name="news_isDeleted" ColumnName="news_isDeleted" />
+          <ScalarProperty Name="news_publish_date" ColumnName="news_publish_date" />
+          <ScalarProperty Name="news_title" ColumnName="news_title" />
+          <ScalarProperty Name="news_id" ColumnName="news_id" />
+          <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

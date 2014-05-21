@@ -411,6 +411,16 @@
     <Content Include="ForgetPassword.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="news_image\140521121654584138.jpg" />
+    <Content Include="news_image\140521121845089794.jpg" />
+    <Content Include="news_image\140521121952047309.jpg" />
+    <Content Include="news_image\140521122137723630.jpg" />
+    <Content Include="news_image\140521122204848197.jpg" />
+    <Content Include="news_image\140521122507795997.jpg" />
+    <Content Include="news_image\7.jpg" />
+    <Content Include="news_image\xiaobai1.jpg" />
+    <Content Include="news_image\xiaobai2.jpg" />
+    <Content Include="news_image\xiaobai3.jpg" />
     <Content Include="NewUser.aspx" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\uploadify\jquery.uploadify.js" />
@@ -511,9 +521,13 @@
     <Compile Include="admin\news_manage_index.aspx.designer.cs">
       <DependentUpon>news_manage_index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\NewsUploadHeadImage.ashx.cs">
+      <DependentUpon>NewsUploadHeadImage.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Avfun_BLL\AdminOpr.cs" />
     <Compile Include="Avfun_BLL\IGeneralUser.cs" />
     <Compile Include="Avfun_BLL\IUser.cs" />
+    <Compile Include="Avfun_BLL\NewsOpr.cs" />
     <Compile Include="Avfun_BLL\ReadWebConfig.cs" />
     <Compile Include="Avfun_BLL\UserOpr.cs" />
     <Compile Include="Avfun_DAL\AdminData.cs" />
@@ -530,6 +544,7 @@
     <Compile Include="Avfun_DAL\DataEntityManager.cs" />
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
+    <Compile Include="Avfun_DAL\NewsData.cs" />
     <Compile Include="Avfun_DAL\UserData.cs" />
     <Compile Include="admin\image_upload.ashx.cs">
       <DependentUpon>image_upload.ashx</DependentUpon>
@@ -638,6 +653,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\AdminLoginVerifyCodeGenerator.ashx" />
+    <Content Include="admin\NewsUploadHeadImage.ashx" />
     <None Include="Avfun_DAL\AvFunDataEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AvFunDataEntity.cs</LastGenOutput>

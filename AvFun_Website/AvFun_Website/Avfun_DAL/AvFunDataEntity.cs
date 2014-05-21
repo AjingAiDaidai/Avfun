@@ -169,6 +169,22 @@ namespace AvFun_Website.Avfun_DAL
             }
         }
         private ObjectSet<USER> _USER;
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        public ObjectSet<AdminNewsList> AdminNewsList
+        {
+            get
+            {
+                if ((_AdminNewsList == null))
+                {
+                    _AdminNewsList = base.CreateObjectSet<AdminNewsList>("AdminNewsList");
+                }
+                return _AdminNewsList;
+            }
+        }
+        private ObjectSet<AdminNewsList> _AdminNewsList;
 
         #endregion
         #region AddTo 方法
@@ -219,6 +235,14 @@ namespace AvFun_Website.Avfun_DAL
         public void AddToUSER(USER uSER)
         {
             base.AddObject("USER", uSER);
+        }
+    
+        /// <summary>
+        /// 用于向 AdminNewsList EntitySet 添加新对象的方法，已弃用。请考虑改用关联的 ObjectSet&lt;T&gt; 属性的 .Add 方法。
+        /// </summary>
+        public void AddToAdminNewsList(AdminNewsList adminNewsList)
+        {
+            base.AddObject("AdminNewsList", adminNewsList);
         }
 
         #endregion
@@ -626,6 +650,322 @@ namespace AvFun_Website.Avfun_DAL
     /// <summary>
     /// 没有元数据文档可用。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="avfun_DAL_model", Name="AdminNewsList")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AdminNewsList : EntityObject
+    {
+        #region 工厂方法
+    
+        /// <summary>
+        /// 创建新的 AdminNewsList 对象。
+        /// </summary>
+        /// <param name="admin_nickname">admin_nickname 属性的初始值。</param>
+        /// <param name="news_id">news_id 属性的初始值。</param>
+        /// <param name="news_title">news_title 属性的初始值。</param>
+        /// <param name="news_publish_date">news_publish_date 属性的初始值。</param>
+        /// <param name="news_isDeleted">news_isDeleted 属性的初始值。</param>
+        /// <param name="news_isOnIndex">news_isOnIndex 属性的初始值。</param>
+        /// <param name="news_image">news_image 属性的初始值。</param>
+        /// <param name="news_click_count">news_click_count 属性的初始值。</param>
+        /// <param name="news_content">news_content 属性的初始值。</param>
+        /// <param name="news_author">news_author 属性的初始值。</param>
+        public static AdminNewsList CreateAdminNewsList(global::System.String admin_nickname, global::System.Guid news_id, global::System.String news_title, global::System.DateTime news_publish_date, global::System.Boolean news_isDeleted, global::System.Boolean news_isOnIndex, global::System.String news_image, global::System.Int32 news_click_count, global::System.String news_content, global::System.Guid news_author)
+        {
+            AdminNewsList adminNewsList = new AdminNewsList();
+            adminNewsList.admin_nickname = admin_nickname;
+            adminNewsList.news_id = news_id;
+            adminNewsList.news_title = news_title;
+            adminNewsList.news_publish_date = news_publish_date;
+            adminNewsList.news_isDeleted = news_isDeleted;
+            adminNewsList.news_isOnIndex = news_isOnIndex;
+            adminNewsList.news_image = news_image;
+            adminNewsList.news_click_count = news_click_count;
+            adminNewsList.news_content = news_content;
+            adminNewsList.news_author = news_author;
+            return adminNewsList;
+        }
+
+        #endregion
+        #region 基元属性
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String admin_nickname
+        {
+            get
+            {
+                return _admin_nickname;
+            }
+            set
+            {
+                if (_admin_nickname != value)
+                {
+                    Onadmin_nicknameChanging(value);
+                    ReportPropertyChanging("admin_nickname");
+                    _admin_nickname = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("admin_nickname");
+                    Onadmin_nicknameChanged();
+                }
+            }
+        }
+        private global::System.String _admin_nickname;
+        partial void Onadmin_nicknameChanging(global::System.String value);
+        partial void Onadmin_nicknameChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid news_id
+        {
+            get
+            {
+                return _news_id;
+            }
+            set
+            {
+                if (_news_id != value)
+                {
+                    Onnews_idChanging(value);
+                    ReportPropertyChanging("news_id");
+                    _news_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_id");
+                    Onnews_idChanged();
+                }
+            }
+        }
+        private global::System.Guid _news_id;
+        partial void Onnews_idChanging(global::System.Guid value);
+        partial void Onnews_idChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String news_title
+        {
+            get
+            {
+                return _news_title;
+            }
+            set
+            {
+                if (_news_title != value)
+                {
+                    Onnews_titleChanging(value);
+                    ReportPropertyChanging("news_title");
+                    _news_title = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("news_title");
+                    Onnews_titleChanged();
+                }
+            }
+        }
+        private global::System.String _news_title;
+        partial void Onnews_titleChanging(global::System.String value);
+        partial void Onnews_titleChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime news_publish_date
+        {
+            get
+            {
+                return _news_publish_date;
+            }
+            set
+            {
+                if (_news_publish_date != value)
+                {
+                    Onnews_publish_dateChanging(value);
+                    ReportPropertyChanging("news_publish_date");
+                    _news_publish_date = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_publish_date");
+                    Onnews_publish_dateChanged();
+                }
+            }
+        }
+        private global::System.DateTime _news_publish_date;
+        partial void Onnews_publish_dateChanging(global::System.DateTime value);
+        partial void Onnews_publish_dateChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean news_isDeleted
+        {
+            get
+            {
+                return _news_isDeleted;
+            }
+            set
+            {
+                if (_news_isDeleted != value)
+                {
+                    Onnews_isDeletedChanging(value);
+                    ReportPropertyChanging("news_isDeleted");
+                    _news_isDeleted = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_isDeleted");
+                    Onnews_isDeletedChanged();
+                }
+            }
+        }
+        private global::System.Boolean _news_isDeleted;
+        partial void Onnews_isDeletedChanging(global::System.Boolean value);
+        partial void Onnews_isDeletedChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean news_isOnIndex
+        {
+            get
+            {
+                return _news_isOnIndex;
+            }
+            set
+            {
+                if (_news_isOnIndex != value)
+                {
+                    Onnews_isOnIndexChanging(value);
+                    ReportPropertyChanging("news_isOnIndex");
+                    _news_isOnIndex = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_isOnIndex");
+                    Onnews_isOnIndexChanged();
+                }
+            }
+        }
+        private global::System.Boolean _news_isOnIndex;
+        partial void Onnews_isOnIndexChanging(global::System.Boolean value);
+        partial void Onnews_isOnIndexChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String news_image
+        {
+            get
+            {
+                return _news_image;
+            }
+            set
+            {
+                if (_news_image != value)
+                {
+                    Onnews_imageChanging(value);
+                    ReportPropertyChanging("news_image");
+                    _news_image = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("news_image");
+                    Onnews_imageChanged();
+                }
+            }
+        }
+        private global::System.String _news_image;
+        partial void Onnews_imageChanging(global::System.String value);
+        partial void Onnews_imageChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 news_click_count
+        {
+            get
+            {
+                return _news_click_count;
+            }
+            set
+            {
+                if (_news_click_count != value)
+                {
+                    Onnews_click_countChanging(value);
+                    ReportPropertyChanging("news_click_count");
+                    _news_click_count = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_click_count");
+                    Onnews_click_countChanged();
+                }
+            }
+        }
+        private global::System.Int32 _news_click_count;
+        partial void Onnews_click_countChanging(global::System.Int32 value);
+        partial void Onnews_click_countChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String news_content
+        {
+            get
+            {
+                return _news_content;
+            }
+            set
+            {
+                if (_news_content != value)
+                {
+                    Onnews_contentChanging(value);
+                    ReportPropertyChanging("news_content");
+                    _news_content = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("news_content");
+                    Onnews_contentChanged();
+                }
+            }
+        }
+        private global::System.String _news_content;
+        partial void Onnews_contentChanging(global::System.String value);
+        partial void Onnews_contentChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid news_author
+        {
+            get
+            {
+                return _news_author;
+            }
+            set
+            {
+                if (_news_author != value)
+                {
+                    Onnews_authorChanging(value);
+                    ReportPropertyChanging("news_author");
+                    _news_author = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("news_author");
+                    Onnews_authorChanged();
+                }
+            }
+        }
+        private global::System.Guid _news_author;
+        partial void Onnews_authorChanging(global::System.Guid value);
+        partial void Onnews_authorChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// 没有元数据文档可用。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="avfun_DAL_model", Name="COURSE")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -645,7 +985,8 @@ namespace AvFun_Website.Avfun_DAL
         /// <param name="course_begin_date">course_begin_date 属性的初始值。</param>
         /// <param name="course_isDeleted">course_isDeleted 属性的初始值。</param>
         /// <param name="course_timestamp">course_timestamp 属性的初始值。</param>
-        public static COURSE CreateCOURSE(global::System.Int32 c_id, global::System.Guid course_id, global::System.String course_name, global::System.String course_intro, global::System.Double course_price, global::System.String course_robot_link, global::System.DateTime course_begin_date, global::System.Boolean course_isDeleted, global::System.Byte[] course_timestamp)
+        /// <param name="course_last_date">course_last_date 属性的初始值。</param>
+        public static COURSE CreateCOURSE(global::System.Int32 c_id, global::System.Guid course_id, global::System.String course_name, global::System.String course_intro, global::System.Double course_price, global::System.String course_robot_link, global::System.DateTime course_begin_date, global::System.Boolean course_isDeleted, global::System.Byte[] course_timestamp, global::System.Int32 course_last_date)
         {
             COURSE cOURSE = new COURSE();
             cOURSE.c_id = c_id;
@@ -657,6 +998,7 @@ namespace AvFun_Website.Avfun_DAL
             cOURSE.course_begin_date = course_begin_date;
             cOURSE.course_isDeleted = course_isDeleted;
             cOURSE.course_timestamp = course_timestamp;
+            cOURSE.course_last_date = course_last_date;
             return cOURSE;
         }
 
@@ -881,6 +1223,30 @@ namespace AvFun_Website.Avfun_DAL
         private global::System.Byte[] _course_timestamp;
         partial void Oncourse_timestampChanging(global::System.Byte[] value);
         partial void Oncourse_timestampChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 course_last_date
+        {
+            get
+            {
+                return _course_last_date;
+            }
+            set
+            {
+                Oncourse_last_dateChanging(value);
+                ReportPropertyChanging("course_last_date");
+                _course_last_date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("course_last_date");
+                Oncourse_last_dateChanged();
+            }
+        }
+        private global::System.Int32 _course_last_date;
+        partial void Oncourse_last_dateChanging(global::System.Int32 value);
+        partial void Oncourse_last_dateChanged();
 
         #endregion
     

@@ -129,5 +129,8 @@ namespace AvFun_Website.AvFun_UI
             this.news_image = image;
             this.news_isOnIndex = isOnIndex;
         }
+        public News()
+        {
+        }
     }
 }

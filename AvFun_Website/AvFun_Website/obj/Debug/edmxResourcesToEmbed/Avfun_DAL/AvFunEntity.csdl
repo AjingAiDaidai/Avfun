@@ -40,6 +40,7 @@
       <End Role="USER" EntitySet="USER" />
       <End Role="REVIEW" EntitySet="REVIEW" />
     </AssociationSet>
+    <EntitySet Name="AdminNewsList" EntityType="avfun_DAL_model.AdminNewsList" />
   </EntityContainer>
   <EntityType Name="ADMIN">
     <Key>
@@ -69,6 +70,7 @@
     <Property Type="Boolean" Name="course_isDeleted" Nullable="false" />
     <Property Type="Binary" Name="course_timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="ORDER" Relationship="avfun_DAL_model.FK_ORDER_COURSE" FromRole="COURSE" ToRole="ORDER" />
+    <Property Type="Int32" Name="course_last_date" Nullable="false" />
   </EntityType>
   <EntityType Name="NEWS">
     <Key>
@@ -201,4 +203,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="AdminNewsList">
+    <Key>
+      <PropertyRef Name="admin_nickname" />
+      <PropertyRef Name="news_id" />
+      <PropertyRef Name="news_title" />
+      <PropertyRef Name="news_publish_date" />
+      <PropertyRef Name="news_isDeleted" />
+      <PropertyRef Name="news_isOnIndex" />
+      <PropertyRef Name="news_image" />
+      <PropertyRef Name="news_click_count" />
+      <PropertyRef Name="news_content" />
+      <PropertyRef Name="news_author" />
+    </Key>
+    <Property Type="String" Name="admin_nickname" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="Guid" Name="news_id" Nullable="false" />
+    <Property Type="String" Name="news_title" Nullable="false" MaxLength="128" FixedLength="true" Unicode="false" />
+    <Property Type="DateTime" Name="news_publish_date" Nullable="false" />
+    <Property Type="Boolean" Name="news_isDeleted" Nullable="false" />
+    <Property Type="Boolean" Name="news_isOnIndex" Nullable="false" />
+    <Property Type="String" Name="news_image" Nullable="false" MaxLength="256" FixedLength="true" Unicode="false" />
+    <Property Type="Int32" Name="news_click_count" Nullable="false" />
+    <Property Type="String" Name="news_content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Guid" Name="news_author" Nullable="false" />
+  </EntityType>
 </Schema>

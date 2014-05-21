@@ -12,6 +12,20 @@
           <EntitySet Name="ORDER" EntityType="avfun_DAL_model.Store.ORDER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="REVIEW" EntityType="avfun_DAL_model.Store.REVIEW" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="USER" EntityType="avfun_DAL_model.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AdminNewsList" EntityType="avfun_DAL_model.Store.AdminNewsList" store:Type="Views" store:Schema="dbo" store:Name="AdminNewsList">
+            <DefiningQuery>SELECT 
+      [AdminNewsList].[admin_nickname] AS [admin_nickname], 
+      [AdminNewsList].[news_id] AS [news_id], 
+      [AdminNewsList].[news_title] AS [news_title], 
+      [AdminNewsList].[news_publish_date] AS [news_publish_date], 
+      [AdminNewsList].[news_isDeleted] AS [news_isDeleted], 
+      [AdminNewsList].[news_isOnIndex] AS [news_isOnIndex], 
+      [AdminNewsList].[news_image] AS [news_image], 
+      [AdminNewsList].[news_click_count] AS [news_click_count], 
+      [AdminNewsList].[news_content] AS [news_content], 
+      [AdminNewsList].[news_author] AS [news_author]
+      FROM [dbo].[AdminNewsList] AS [AdminNewsList]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
         <EntityType Name="ADMIN">
           <Key>
@@ -23,7 +37,7 @@
           <Property Name="admin_password" Type="char" Nullable="false" MaxLength="32" />
           <Property Name="admin_last_login_time" Type="date" Nullable="false" />
           <Property Name="admin_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
-          <Property Name="admin_nickname" Type="char" Nullable="false" MaxLength="32" />
+          <Property Name="admin_nickname" Type="nvarchar" Nullable="false" MaxLength="32" />
           <Property Name="admin_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="COURSE">
@@ -32,13 +46,14 @@
           </Key>
           <Property Name="c_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="course_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="course_name" Type="char" Nullable="false" MaxLength="256" />
+          <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="course_intro" Type="text" Nullable="false" />
           <Property Name="course_price" Type="float" Nullable="false" />
           <Property Name="course_robot_link" Type="char" Nullable="false" MaxLength="256" />
           <Property Name="course_begin_date" Type="date" Nullable="false" />
           <Property Name="course_isDeleted" Type="bit" Nullable="false" />
           <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="course_last_date" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="NEWS">
           <Key>
@@ -46,13 +61,13 @@
           </Key>
           <Property Name="n_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="news_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="news_title" Type="char" Nullable="false" MaxLength="128" />
+          <Property Name="news_title" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="news_content" Type="text" Nullable="false" />
           <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
           <Property Name="news_publish_date" Type="date" Nullable="false" />
           <Property Name="news_isDeleted" Type="bit" Nullable="false" />
           <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
-          <Property Name="news_image" Type="char" Nullable="false" MaxLength="256" />
+          <Property Name="news_image" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="news_click_count" Type="int" Nullable="false" />
           <Property Name="news_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -91,17 +106,44 @@
           <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="user_account" Type="char" Nullable="false" MaxLength="64" />
           <Property Name="user_password" Type="char" Nullable="false" MaxLength="32" />
-          <Property Name="user_nickname" Type="char" Nullable="false" MaxLength="32" />
+          <Property Name="user_nickname" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="user_sex" Type="bit" Nullable="false" />
-          <Property Name="user_head" Type="char" Nullable="false" MaxLength="256" />
+          <Property Name="user_head" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="user_isDeleted" Type="bit" Nullable="false" />
           <Property Name="user_isChecked" Type="bit" Nullable="false" />
           <Property Name="user_last_login_time" Type="date" Nullable="false" />
-          <Property Name="user_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
+          <Property Name="user_last_login_ip" Type="varchar" Nullable="false" MaxLength="64" />
           <Property Name="user_money" Type="float" Nullable="false" />
-          <Property Name="user_introduction" Type="char" Nullable="false" MaxLength="256" />
+          <Property Name="user_introduction" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="user_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="user_verify_code" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“avfun.dbo.AdminNewsList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="AdminNewsList">
+          <Key>
+            <PropertyRef Name="admin_nickname" />
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_title" />
+            <PropertyRef Name="news_publish_date" />
+            <PropertyRef Name="news_isDeleted" />
+            <PropertyRef Name="news_isOnIndex" />
+            <PropertyRef Name="news_image" />
+            <PropertyRef Name="news_click_count" />
+            <PropertyRef Name="news_content" />
+            <PropertyRef Name="news_author" />
+          </Key>
+          <Property Name="admin_nickname" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="news_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="news_title" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="news_publish_date" Type="date" Nullable="false" />
+          <Property Name="news_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
+          <Property Name="news_image" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="news_click_count" Type="int" Nullable="false" />
+          <Property Name="news_content" Type="text" Nullable="false" />
+          <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -147,6 +189,7 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="REVIEW" EntitySet="REVIEW" />
           </AssociationSet>
+          <EntitySet Name="AdminNewsList" EntityType="avfun_DAL_model.AdminNewsList" />
         </EntityContainer>
         <EntityType Name="ADMIN">
           <Key>
@@ -176,6 +219,7 @@
           <Property Type="Boolean" Name="course_isDeleted" Nullable="false" />
           <Property Type="Binary" Name="course_timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ORDER" Relationship="avfun_DAL_model.FK_ORDER_COURSE" FromRole="COURSE" ToRole="ORDER" />
+          <Property Type="Int32" Name="course_last_date" Nullable="false" />
         </EntityType>
         <EntityType Name="NEWS">
           <Key>
@@ -308,6 +352,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AdminNewsList">
+          <Key>
+            <PropertyRef Name="admin_nickname" />
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_title" />
+            <PropertyRef Name="news_publish_date" />
+            <PropertyRef Name="news_isDeleted" />
+            <PropertyRef Name="news_isOnIndex" />
+            <PropertyRef Name="news_image" />
+            <PropertyRef Name="news_click_count" />
+            <PropertyRef Name="news_content" />
+            <PropertyRef Name="news_author" />
+          </Key>
+          <Property Type="String" Name="admin_nickname" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Type="Guid" Name="news_id" Nullable="false" />
+          <Property Type="String" Name="news_title" Nullable="false" MaxLength="128" FixedLength="true" Unicode="false" />
+          <Property Type="DateTime" Name="news_publish_date" Nullable="false" />
+          <Property Type="Boolean" Name="news_isDeleted" Nullable="false" />
+          <Property Type="Boolean" Name="news_isOnIndex" Nullable="false" />
+          <Property Type="String" Name="news_image" Nullable="false" MaxLength="256" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="news_click_count" Nullable="false" />
+          <Property Type="String" Name="news_content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="news_author" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -331,6 +399,7 @@
           <EntitySetMapping Name="COURSE">
             <EntityTypeMapping TypeName="avfun_DAL_model.COURSE">
               <MappingFragment StoreEntitySet="COURSE">
+                <ScalarProperty Name="course_last_date" ColumnName="course_last_date" />
                 <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
                 <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
                 <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
@@ -410,6 +479,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AdminNewsList">
+            <EntityTypeMapping TypeName="avfun_DAL_model.AdminNewsList">
+              <MappingFragment StoreEntitySet="AdminNewsList">
+                <ScalarProperty Name="news_author" ColumnName="news_author" />
+                <ScalarProperty Name="news_content" ColumnName="news_content" />
+                <ScalarProperty Name="news_click_count" ColumnName="news_click_count" />
+                <ScalarProperty Name="news_image" ColumnName="news_image" />
+                <ScalarProperty Name="news_isOnIndex" ColumnName="news_isOnIndex" />
+                <ScalarProperty Name="news_isDeleted" ColumnName="news_isDeleted" />
+                <ScalarProperty Name="news_publish_date" ColumnName="news_publish_date" />
+                <ScalarProperty Name="news_title" ColumnName="news_title" />
+                <ScalarProperty Name="news_id" ColumnName="news_id" />
+                <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -443,9 +528,9 @@
           <ConnectorPoint PointX="3.75" PointY="14.6170556640625" />
         </AssociationConnector>
         <AssociationConnector Association="avfun_DAL_model.FK_ORDER_COURSE" >
-          <ConnectorPoint PointX="2.25" PointY="10.587565511067709" />
-          <ConnectorPoint PointX="3.75" PointY="10.587565511067709" />
-          <ConnectorPoint PointX="3.75" PointY="6.1161507161458353" />
+          <ConnectorPoint PointX="2.25" PointY="11.298371175130207" />
+          <ConnectorPoint PointX="3.15625" PointY="11.298371175130207" />
+          <ConnectorPoint PointX="3.15625" PointY="6.1161507161458353" />
         </AssociationConnector>
         <AssociationConnector Association="avfun_DAL_model.FK_REVIEW_NEWS" >
           <ConnectorPoint PointX="5.25" PointY="14.499095052083334" />
@@ -458,11 +543,12 @@
         </AssociationConnector>
         <AssociationConnector Association="avfun_DAL_model.FK_REVIEW_USER" >
           <ConnectorPoint PointX="2.25" PointY="6.4079597981770835" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="6.4079597981770826" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="6.4079597981770835" />
+          <ConnectorPoint PointX="3.0729166666666665" PointY="6.4079597981770826" />
+          <ConnectorPoint PointX="3.2395833333333335" PointY="6.4079597981770835" />
           <ConnectorPoint PointX="6.3437475" PointY="6.4079597981770835" />
           <ConnectorPoint PointX="6.3437475" PointY="6.0501310221354174" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="avfun_DAL_model.AdminNewsList" Width="1.5" PointX="3.375" PointY="7.75" Height="2.5430916341145817" />
       </Diagram>
     </Diagrams>
   </Designer>
