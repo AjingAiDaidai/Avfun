@@ -32,8 +32,6 @@
             <Columns>
                 <asp:BoundField DataField="admin_nickname" HeaderText="admin_nickname" 
                     SortExpression="admin_nickname" />
-                <asp:BoundField DataField="news_id" HeaderText="news_id" 
-                    SortExpression="news_id" ReadOnly="True" />
                 <asp:BoundField DataField="news_title" HeaderText="news_title" 
                     SortExpression="news_title" />
                 <asp:BoundField DataField="news_publish_date" HeaderText="news_publish_date" 
@@ -42,14 +40,10 @@
                     SortExpression="news_isDeleted" />
                 <asp:CheckBoxField DataField="news_isOnIndex" HeaderText="news_isOnIndex" 
                     SortExpression="news_isOnIndex" />
-<asp:BoundField DataField="news_image" HeaderText="news_image" 
-                    SortExpression="news_image"></asp:BoundField>
-                <asp:BoundField DataField="news_click_count" HeaderText="news_click_count" 
-                    SortExpression="news_click_count" />
-                <asp:BoundField DataField="news_content" HeaderText="news_content" 
-                    SortExpression="news_content" />
                 <asp:BoundField DataField="news_author" HeaderText="news_author" 
                     SortExpression="news_author" />
+                <asp:HyperLinkField DataNavigateUrlFields="news_id" 
+                    DataNavigateUrlFormatString="AddNews.aspx?news_id={0}" Text="修改新闻"  />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="AdminNewsListDataSource" runat="server" 
