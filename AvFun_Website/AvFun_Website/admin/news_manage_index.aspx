@@ -18,11 +18,13 @@
         <asp:TextBox ID="txtKeyWord" runat="server" MaxLength="32"></asp:TextBox>
         <asp:Label ID="lblScope" runat="server" Text="范围："></asp:Label>
         <asp:DropDownList ID="dpListKeyScope" runat="server">
-            <asp:ListItem Selected="True" Value="1">标题</asp:ListItem>
-            <asp:ListItem Value="2">作者</asp:ListItem>
-            <asp:ListItem Value="3">内容</asp:ListItem>
+            <asp:ListItem Value="news_title">标题</asp:ListItem>
+            <asp:ListItem Value="admin_nickname">作者</asp:ListItem>
+            <asp:ListItem Value="news_content">内容</asp:ListItem>
+            <asp:ListItem Selected="True" Value="all">(显示全部)</asp:ListItem>
         </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" onclick="btnSearch_Click" Text="搜索" />
+        <asp:Button ID="btnSearch" runat="server"  Text="搜索" 
+            onclick="btnSearch_Click" />
         <br />
         <asp:GridView ID="AdminNewsList" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
@@ -52,8 +54,17 @@
         </asp:GridView>
         <asp:SqlDataSource ID="AdminNewsListDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>" 
-            SelectCommand="SELECT * FROM [AdminNewsList]" >
+            SelectCommand="SELECT * FROM [AdminNewsList]"
+            FilterExpression="{0} LIKE '%{1}%'" 
+            onfiltering="AdminNewsListDataSource_Filtering">
+            <FilterParameters>
+                <asp:ControlParameter ControlID="dpListKeyScope" Name="FieldToSearch" 
+                    PropertyName="SelectedValue" Type="String" />
+                <asp:ControlParameter ControlID="txtKeyWord" Name="SearchCriteria" 
+                    Type="String" />
+            </FilterParameters>
         </asp:SqlDataSource>
+
     
     </div>
     </form>
