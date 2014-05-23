@@ -121,6 +121,30 @@ namespace AvFun_Website.Avfun_DAL
             return result;
         }
         /// <summary>
+        /// 根据给定的news_id将NEWS表中的对应新闻列isDeleted设为true
+        /// </summary>
+        /// <param name="news">填写了news_id的news类</param>
+        /// <returns>成功返回true，失败返回false</returns>
+        public Boolean DeleteNewsByID(News news)
+        {
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+            Boolean result = false;
+            try
+            {
+                NEWS destNews = (from d_news in DataEntity.NEWS
+                                 where d_news.news_id == news.Article_id
+                                 select d_news).Single();
+                destNews.news_isDeleted = true;
+                DataEntity.SaveChanges();
+                result = true;
+            }
+            catch
+            {
+                result = false;
+            }
+            return result;
+        }
+        /// <summary>
         /// 返回NewsData的一个实例，方便以后做成单例模式
         /// </summary>
         /// <returns>NewsData的一个实例</returns>

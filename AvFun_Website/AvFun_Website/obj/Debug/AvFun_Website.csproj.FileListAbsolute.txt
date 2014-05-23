@@ -4,3 +4,6 @@ E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\AvFun_Website.pdb
 E:\Class\AvFun\AvFun_Website\AvFun_Website\obj\Debug\AvFun_Website.dll
 E:\Class\AvFun\AvFun_Website\AvFun_Website\obj\Debug\AvFun_Website.pdb
 E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\CKEditor.NET.pdb
+E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\AspNetPager.xml
+E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\en\AspNetPager.resources.dll
+E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\zh-CHT\AspNetPager.resources.dll

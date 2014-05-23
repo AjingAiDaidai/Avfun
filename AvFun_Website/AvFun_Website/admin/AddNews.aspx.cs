@@ -43,6 +43,7 @@ namespace AvFun_Website.admin
                             txtNewsTitle.Text = entireNews.Article_title;
                             imgHeadImage.ImageUrl = entireNews.News_image;
                             Boolean isOnIndex = entireNews.News_isOnIndex;
+                            chkboxIsOnIndex.Checked = isOnIndex;
                         }
                         else
                         {
@@ -69,12 +70,14 @@ namespace AvFun_Website.admin
                             newsHeadImage = Request.Cookies["newsHeadImage"].Value.Replace("%2F","/");
                             //释放Cookies
                             HttpCookie newsHeadImageCookie = new HttpCookie("newsHeadImage");
-                            newsHeadImageCookie.Expires = DateTime.Now.AddDays(-1D);
+                            //这句不加清除不掉
+                            newsHeadImageCookie.Path = "/admin";
+                            newsHeadImageCookie.Expires = DateTime.Now.AddDays(-1d);
                             Response.Cookies.Add(newsHeadImageCookie);
                         }
                         else
                         {
-                            newsHeadImage = "news_image/default.jpg";
+                            newsHeadImage = "/news_image/default.jpg";
                         }
                         DateTime news_publish_date = DateTime.Now;
                         Boolean news_isDeleted = false;
@@ -128,8 +131,10 @@ namespace AvFun_Website.admin
                                 news_head = Request.Cookies["newsHeadImage"].Value.Replace("%2F","/");
                                 //释放Cookies
                                 HttpCookie newsHeadImageCookie = new HttpCookie("newsHeadImage");
-                                newsHeadImageCookie.Expires = DateTime.Now.AddDays(-1D);
-                                Response.Cookies.Add(newsHeadImageCookie);
+                                newsHeadImageCookie.Expires = DateTime.Now.AddDays(-1d);
+                                //这句不加清不掉
+                                newsHeadImageCookie.Path = "/admin";
+                                Response.Cookies.Add(newsHeadImageCookie);                               
                             }
                             Boolean isOnIndex = chkboxIsOnIndex.Checked;
 
@@ -141,7 +146,7 @@ namespace AvFun_Website.admin
 
                             if ( NewsOpr.UpdateNewsInfo(updateNews) )
                             {
-                                lblLoginStatus.Text= "修改成功！";
+                                lblLoginStatus.Text= "修改成功，若更改题头图片，请重新进入本页方能查看修改效果";
                                 lblLoginStatus.Visible = true;
                             }
                             else

@@ -68,7 +68,7 @@
      <asp:TextBox ID="txtNewsContent" runat="server" TextMode="MultiLine"  CssClass="ckeditor"></asp:TextBox>
         <br />
         <asp:RequiredFieldValidator ID="NewsContentRequired" runat="server" 
-            ControlToValidate="txtNewsContent" ErrorMessage="RequiredFieldValidator"></asp:RequiredFieldValidator>
+            ControlToValidate="txtNewsContent">请填写新闻正文</asp:RequiredFieldValidator>
         <br />
         <asp:Button ID="btnSubmitNews" runat="server" Text="提交" />
     </div>

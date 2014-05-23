@@ -106,5 +106,6 @@ namespace AvFun_Website.Avfun_DAL
         {
             return new AdminData();
         }
+
     }
 }

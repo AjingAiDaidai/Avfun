@@ -116,6 +116,25 @@ namespace AvFun_Website.Avfun_BLL
             }
             return result;
         }
-
+        /// <summary>
+        /// 根据给定新闻id删除新闻（UPDATE isDeleted = true），成功返回true，失败返回false
+        /// </summary>
+        /// <param name="news">要删除的新闻</param>
+        /// <returns>成功返回true，失败返回false</returns>
+        public static Boolean DeleteNewsByID(News news)
+        {
+            Boolean result = false;
+            //数据合法性检查
+            if (news.Article_id != null)
+            {
+                NewsData newsData = NewsData.GetInstance();
+                result = newsData.DeleteNewsByID(news);
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
+        }
     }
 }

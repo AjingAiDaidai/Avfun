@@ -128,5 +128,15 @@ namespace AvFun_Website.Avfun_BLL
             }
             return result;
         }
+        /// <summary>
+        /// 根据参数中的user_id返回给定Admin的信息
+        /// </summary>
+        /// <param name="admin">要查找的Admin实例，user_id必填</param>
+        /// <returns>成功返回Admin类，失败返回null</returns>
+        public static Admin GetAdminByID(Admin admin)
+        {
+            Admin result = null;
+            return result;
+        }
     }
 }

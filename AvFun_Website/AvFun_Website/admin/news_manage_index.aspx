@@ -40,10 +40,10 @@
                     SortExpression="news_isDeleted" />
                 <asp:CheckBoxField DataField="news_isOnIndex" HeaderText="news_isOnIndex" 
                     SortExpression="news_isOnIndex" />
-                <asp:BoundField DataField="news_author" HeaderText="news_author" 
-                    SortExpression="news_author" />
                 <asp:HyperLinkField DataNavigateUrlFields="news_id" 
-                    DataNavigateUrlFormatString="AddNews.aspx?news_id={0}" Text="修改新闻"  />
+                    DataNavigateUrlFormatString="AddNews.aspx?news_id={0}" Text="修改"  />
+                <asp:HyperLinkField DataNavigateUrlFields="news_id" 
+                    DataNavigateUrlFormatString="DeleteNews.aspx?news_id={0}" Text="删除" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="AdminNewsListDataSource" runat="server" 

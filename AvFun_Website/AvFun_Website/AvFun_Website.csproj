@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AspNetPager, Version=7.4.5.0, Culture=neutral, PublicKeyToken=fb0a0fe055d40fd4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="CKEditor.NET, Version=3.6.4.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKEditor.NET.dll</HintPath>
@@ -66,6 +69,7 @@
     <Content Include="admin\admin_changeInfo.aspx" />
     <Content Include="admin\admin_index.aspx" />
     <Content Include="admin\admin_login.aspx" />
+    <Content Include="admin\DeleteNews.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
@@ -421,6 +425,7 @@
     <Content Include="news_image\xiaobai1.jpg" />
     <Content Include="news_image\xiaobai2.jpg" />
     <Content Include="news_image\xiaobai3.jpg" />
+    <Content Include="news_index.aspx" />
     <Content Include="NewUser.aspx" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\uploadify\jquery.uploadify.js" />
@@ -437,6 +442,7 @@
     <Content Include="user_pages\ResendVerifyMail.aspx" />
     <Content Include="user_pages\user_changeinfo.aspx" />
     <Content Include="user_pages\user_index.aspx" />
+    <Content Include="ViewNews.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -514,6 +520,13 @@
     <Compile Include="admin\AdminLoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>AdminLoginVerifyCodeGenerator.ashx</DependentUpon>
     </Compile>
+    <Compile Include="admin\DeleteNews.aspx.cs">
+      <DependentUpon>DeleteNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DeleteNews.aspx.designer.cs">
+      <DependentUpon>DeleteNews.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\news_manage_index.aspx.cs">
       <DependentUpon>news_manage_index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -569,6 +582,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="news_index.aspx.cs">
+      <DependentUpon>news_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="news_index.aspx.designer.cs">
+      <DependentUpon>news_index.aspx</DependentUpon>
     </Compile>
     <Compile Include="NewUser.aspx.cs">
       <DependentUpon>NewUser.aspx</DependentUpon>
@@ -628,6 +648,13 @@
     </Compile>
     <Compile Include="user_pages\user_index.aspx.designer.cs">
       <DependentUpon>user_index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewNews.aspx.cs">
+      <DependentUpon>ViewNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewNews.aspx.designer.cs">
+      <DependentUpon>ViewNews.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
