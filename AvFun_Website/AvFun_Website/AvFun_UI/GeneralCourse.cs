@@ -43,9 +43,9 @@ namespace AvFun_Website.AvFun_UI
             get;
             set;
         }
-        protected float course_price;
+        protected Double course_price;
 
-        public abstract float Course_price
+        public abstract Double Course_price
         {
             get;
             set;

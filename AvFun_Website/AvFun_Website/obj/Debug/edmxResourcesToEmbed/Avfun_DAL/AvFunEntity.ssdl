@@ -44,11 +44,10 @@
     <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="course_intro" Type="text" Nullable="false" />
     <Property Name="course_price" Type="float" Nullable="false" />
-    <Property Name="course_robot_link" Type="char" Nullable="false" MaxLength="256" />
+    <Property Name="course_robot_link" Type="varchar" Nullable="false" MaxLength="256" />
     <Property Name="course_begin_date" Type="date" Nullable="false" />
     <Property Name="course_isDeleted" Type="bit" Nullable="false" />
     <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
-    <Property Name="course_last_date" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="NEWS">
     <Key>

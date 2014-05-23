@@ -70,7 +70,6 @@
     <Property Type="Boolean" Name="course_isDeleted" Nullable="false" />
     <Property Type="Binary" Name="course_timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
     <NavigationProperty Name="ORDER" Relationship="avfun_DAL_model.FK_ORDER_COURSE" FromRole="COURSE" ToRole="ORDER" />
-    <Property Type="Int32" Name="course_last_date" Nullable="false" />
   </EntityType>
   <EntityType Name="NEWS">
     <Key>

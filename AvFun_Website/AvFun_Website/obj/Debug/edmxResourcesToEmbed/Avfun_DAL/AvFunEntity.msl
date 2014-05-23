@@ -18,7 +18,6 @@
     <EntitySetMapping Name="COURSE">
       <EntityTypeMapping TypeName="avfun_DAL_model.COURSE">
         <MappingFragment StoreEntitySet="COURSE">
-          <ScalarProperty Name="course_last_date" ColumnName="course_last_date" />
           <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
           <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
           <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />

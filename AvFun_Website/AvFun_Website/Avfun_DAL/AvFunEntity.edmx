@@ -49,11 +49,10 @@
           <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="course_intro" Type="text" Nullable="false" />
           <Property Name="course_price" Type="float" Nullable="false" />
-          <Property Name="course_robot_link" Type="char" Nullable="false" MaxLength="256" />
+          <Property Name="course_robot_link" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="course_begin_date" Type="date" Nullable="false" />
           <Property Name="course_isDeleted" Type="bit" Nullable="false" />
           <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
-          <Property Name="course_last_date" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="NEWS">
           <Key>
@@ -219,7 +218,6 @@
           <Property Type="Boolean" Name="course_isDeleted" Nullable="false" />
           <Property Type="Binary" Name="course_timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ORDER" Relationship="avfun_DAL_model.FK_ORDER_COURSE" FromRole="COURSE" ToRole="ORDER" />
-          <Property Type="Int32" Name="course_last_date" Nullable="false" />
         </EntityType>
         <EntityType Name="NEWS">
           <Key>
@@ -399,7 +397,6 @@
           <EntitySetMapping Name="COURSE">
             <EntityTypeMapping TypeName="avfun_DAL_model.COURSE">
               <MappingFragment StoreEntitySet="COURSE">
-                <ScalarProperty Name="course_last_date" ColumnName="course_last_date" />
                 <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
                 <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
                 <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
@@ -518,7 +515,7 @@
     <Diagrams>
       <Diagram Name="AvFunEntity" ZoomLevel="99">
         <EntityTypeShape EntityType="avfun_DAL_model.ADMIN" Width="1.5" PointX="1.5" PointY="13.25" Height="2.7341113281249996" />
-        <EntityTypeShape EntityType="avfun_DAL_model.COURSE" Width="1.5" PointX="0.75" PointY="9.125" Height="2.9251310221354174" />
+        <EntityTypeShape EntityType="avfun_DAL_model.COURSE" Width="1.5" PointX="0.75" PointY="9.125" Height="2.9251310221354156" />
         <EntityTypeShape EntityType="avfun_DAL_model.NEWS" Width="1.5" PointX="3.75" PointY="12.75" Height="3.4981901041666674" />
         <EntityTypeShape EntityType="avfun_DAL_model.ORDER" Width="1.5" PointX="3" PointY="3" Height="3.1161507161458353" />
         <EntityTypeShape EntityType="avfun_DAL_model.REVIEW" Width="1.5" PointX="6" PointY="3.125" Height="2.9251310221354174" />
@@ -528,8 +525,8 @@
           <ConnectorPoint PointX="3.75" PointY="14.6170556640625" />
         </AssociationConnector>
         <AssociationConnector Association="avfun_DAL_model.FK_ORDER_COURSE" >
-          <ConnectorPoint PointX="2.25" PointY="11.298371175130207" />
-          <ConnectorPoint PointX="3.15625" PointY="11.298371175130207" />
+          <ConnectorPoint PointX="2.25" PointY="11.393881022135417" />
+          <ConnectorPoint PointX="3.15625" PointY="11.393881022135417" />
           <ConnectorPoint PointX="3.15625" PointY="6.1161507161458353" />
         </AssociationConnector>
         <AssociationConnector Association="avfun_DAL_model.FK_REVIEW_NEWS" >

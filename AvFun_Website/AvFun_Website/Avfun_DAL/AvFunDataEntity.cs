@@ -985,8 +985,7 @@ namespace AvFun_Website.Avfun_DAL
         /// <param name="course_begin_date">course_begin_date 属性的初始值。</param>
         /// <param name="course_isDeleted">course_isDeleted 属性的初始值。</param>
         /// <param name="course_timestamp">course_timestamp 属性的初始值。</param>
-        /// <param name="course_last_date">course_last_date 属性的初始值。</param>
-        public static COURSE CreateCOURSE(global::System.Int32 c_id, global::System.Guid course_id, global::System.String course_name, global::System.String course_intro, global::System.Double course_price, global::System.String course_robot_link, global::System.DateTime course_begin_date, global::System.Boolean course_isDeleted, global::System.Byte[] course_timestamp, global::System.Int32 course_last_date)
+        public static COURSE CreateCOURSE(global::System.Int32 c_id, global::System.Guid course_id, global::System.String course_name, global::System.String course_intro, global::System.Double course_price, global::System.String course_robot_link, global::System.DateTime course_begin_date, global::System.Boolean course_isDeleted, global::System.Byte[] course_timestamp)
         {
             COURSE cOURSE = new COURSE();
             cOURSE.c_id = c_id;
@@ -998,7 +997,6 @@ namespace AvFun_Website.Avfun_DAL
             cOURSE.course_begin_date = course_begin_date;
             cOURSE.course_isDeleted = course_isDeleted;
             cOURSE.course_timestamp = course_timestamp;
-            cOURSE.course_last_date = course_last_date;
             return cOURSE;
         }
 
@@ -1223,30 +1221,6 @@ namespace AvFun_Website.Avfun_DAL
         private global::System.Byte[] _course_timestamp;
         partial void Oncourse_timestampChanging(global::System.Byte[] value);
         partial void Oncourse_timestampChanged();
-    
-        /// <summary>
-        /// 没有元数据文档可用。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 course_last_date
-        {
-            get
-            {
-                return _course_last_date;
-            }
-            set
-            {
-                Oncourse_last_dateChanging(value);
-                ReportPropertyChanging("course_last_date");
-                _course_last_date = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("course_last_date");
-                Oncourse_last_dateChanged();
-            }
-        }
-        private global::System.Int32 _course_last_date;
-        partial void Oncourse_last_dateChanging(global::System.Int32 value);
-        partial void Oncourse_last_dateChanged();
 
         #endregion
     

@@ -75,6 +75,7 @@ namespace AvFun_Website.Avfun_DAL
             {
                 NEWS ResultNEWS = (from destNews in DataEntity.NEWS
                                   where destNews.news_id == news.Article_id
+                                  && destNews.news_timestamp == news.Article_timestamp
                                        select destNews ).Single();
                 
                 ResultNEWS.news_title = news.Article_title;

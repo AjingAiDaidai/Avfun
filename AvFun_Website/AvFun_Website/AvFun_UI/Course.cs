@@ -48,7 +48,7 @@ namespace AvFun_Website.AvFun_UI
             }
         }
 
-        public override float Course_price
+        public override Double Course_price
         {
             get
             {
@@ -96,13 +96,6 @@ namespace AvFun_Website.AvFun_UI
             }
         }
 
-        private int course_last_date;
-
-        public int Course_last_date
-        {
-            get { return course_last_date; }
-            set { course_last_date = value; }
-        }
         public Course(Course course)
         {
             this.c_id = course.C_id;
@@ -114,14 +107,16 @@ namespace AvFun_Website.AvFun_UI
             this.course_begin_date = course.Course_begin_date;
             this.course_isDeleted = course.Course_isDeleted;
         }
-        public Course(String course_name, String course_intro, float course_price, String course_robot_link, DateTime course_begin_date, int course_last_date)
+        public Course(String course_name, String course_intro, Double course_price, String course_robot_link, DateTime course_begin_date)
         {
             this.course_name = course_name;
             this.course_intro = course_intro;
             this.course_price = course_price;
             this.course_robot_link = course_robot_link;
             this.course_begin_date = course_begin_date;
-            this.course_last_date = course_last_date;
+        }
+        public Course()
+        {
         }
     }
 }

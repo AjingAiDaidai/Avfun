@@ -32,8 +32,9 @@
             <Columns>
                 <asp:BoundField DataField="admin_nickname" HeaderText="作者名称" 
                     SortExpression="admin_nickname" />
-                <asp:BoundField DataField="news_title" HeaderText="新闻标题" 
-                    SortExpression="news_title" />
+                <asp:HyperLinkField DataNavigateUrlFields="news_id" 
+                    DataNavigateUrlFormatString="/ViewNews.aspx?news_id={0}" 
+                    DataTextField="news_title" HeaderText="新闻标题" />
                 <asp:BoundField DataField="news_publish_date" HeaderText="发布日期" 
                     SortExpression="news_publish_date" />
                 <asp:CheckBoxField DataField="news_isDeleted" HeaderText="是否删除" 

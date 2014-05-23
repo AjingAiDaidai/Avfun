@@ -65,6 +65,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="admin\AddCourse.aspx" />
     <Content Include="admin\AddNews.aspx" />
     <Content Include="admin\admin_changeInfo.aspx" />
     <Content Include="admin\admin_index.aspx" />
@@ -490,6 +491,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\AddCourse.aspx.cs">
+      <DependentUpon>AddCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\AddCourse.aspx.designer.cs">
+      <DependentUpon>AddCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\AddNews.aspx.cs">
       <DependentUpon>AddNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -546,6 +554,7 @@
       <DependentUpon>NewsUploadHeadImage.ashx</DependentUpon>
     </Compile>
     <Compile Include="Avfun_BLL\AdminOpr.cs" />
+    <Compile Include="Avfun_BLL\CourseOpr.cs" />
     <Compile Include="Avfun_BLL\IGeneralUser.cs" />
     <Compile Include="Avfun_BLL\IUser.cs" />
     <Compile Include="Avfun_BLL\NewsOpr.cs" />
@@ -562,6 +571,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AvFunEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Avfun_DAL\CourseData.cs" />
     <Compile Include="Avfun_DAL\DataEntityManager.cs" />
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
