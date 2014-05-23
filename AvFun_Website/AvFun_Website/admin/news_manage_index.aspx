@@ -30,15 +30,15 @@
             AllowSorting="True" AutoGenerateColumns="False" 
             DataSourceID="AdminNewsListDataSource" DataKeyNames="news_id" >
             <Columns>
-                <asp:BoundField DataField="admin_nickname" HeaderText="admin_nickname" 
+                <asp:BoundField DataField="admin_nickname" HeaderText="作者名称" 
                     SortExpression="admin_nickname" />
-                <asp:BoundField DataField="news_title" HeaderText="news_title" 
+                <asp:BoundField DataField="news_title" HeaderText="新闻标题" 
                     SortExpression="news_title" />
-                <asp:BoundField DataField="news_publish_date" HeaderText="news_publish_date" 
+                <asp:BoundField DataField="news_publish_date" HeaderText="发布日期" 
                     SortExpression="news_publish_date" />
-                <asp:CheckBoxField DataField="news_isDeleted" HeaderText="news_isDeleted" 
+                <asp:CheckBoxField DataField="news_isDeleted" HeaderText="是否删除" 
                     SortExpression="news_isDeleted" />
-                <asp:CheckBoxField DataField="news_isOnIndex" HeaderText="news_isOnIndex" 
+                <asp:CheckBoxField DataField="news_isOnIndex" HeaderText="是否上首页" 
                     SortExpression="news_isOnIndex" />
                 <asp:HyperLinkField DataNavigateUrlFields="news_id" 
                     DataNavigateUrlFormatString="AddNews.aspx?news_id={0}" Text="修改"  />

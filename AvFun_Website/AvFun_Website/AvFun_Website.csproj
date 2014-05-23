@@ -69,6 +69,7 @@
     <Content Include="admin\admin_changeInfo.aspx" />
     <Content Include="admin\admin_index.aspx" />
     <Content Include="admin\admin_login.aspx" />
+    <Content Include="admin\course_manage_index.aspx" />
     <Content Include="admin\DeleteNews.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -519,6 +520,13 @@
     </Compile>
     <Compile Include="admin\AdminLoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>AdminLoginVerifyCodeGenerator.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\course_manage_index.aspx.cs">
+      <DependentUpon>course_manage_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\course_manage_index.aspx.designer.cs">
+      <DependentUpon>course_manage_index.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\DeleteNews.aspx.cs">
       <DependentUpon>DeleteNews.aspx</DependentUpon>

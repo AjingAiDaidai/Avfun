@@ -14,7 +14,7 @@
             Target="_self">登录</asp:HyperLink>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/NewUser.aspx" 
         Target="_self">注册</asp:HyperLink>    
-        <asp:HyperLink ID="urlNews" runat="server">本站新闻</asp:HyperLink>
+        <asp:HyperLink ID="urlNews" runat="server" NavigateUrl="~/news_index.aspx">本站新闻</asp:HyperLink>
         <asp:HyperLink ID="urlCourseIntro" runat="server">课程介绍</asp:HyperLink>
     </div>
     <div id="loginDiv" runat="server">
@@ -28,6 +28,37 @@
         <asp:HyperLink ID="urlChooseCourse" runat="server">选择女友</asp:HyperLink>
         <asp:HyperLink ID="urlChat" runat="server">临幸后宫</asp:HyperLink>
     </div>
+    <asp:SqlDataSource ID="IndexNewsDataSource" runat="server" 
+        ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>" 
+        SelectCommand="SELECT TOP 5 [news_id],[news_title],[admin_nickname], [news_isOnIndex], [news_image], [news_isDeleted], [news_publish_date] FROM [AdminNewsList] WHERE (([news_isDeleted] &lt;&gt; @news_isDeleted) AND ([news_isOnIndex] = @news_isOnIndex)) ORDER BY [news_publish_date] DESC">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="True" Name="news_isDeleted" Type="Boolean" />
+            <asp:Parameter DefaultValue="True" Name="news_isOnIndex" Type="Boolean" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    <br />    
+    <asp:DataList ID="ImageIndexNewsList" runat="server" DataKeyField="news_id" 
+        DataSourceID="IndexNewsDataSource">
+        <ItemTemplate>
+        <table>
+        <tr align="center" width="80%">
+            <td width="20%">
+                <asp:Label ID="news_title" runat="server" Text='<%# Eval("news_title") %>'></asp:Label>
+                <br />
+                <asp:Label ID="news_author"
+                    runat="server" Text='<%# Eval("admin_nickname") %>'></asp:Label>
+            </td>
+            <td width="80%">
+            <asp:HyperLink ID="NewsURL" runat="server" target="_blank"
+                NavigateUrl = '<%# String.Format("ViewNews.aspx?news_id={0}", Eval("news_id")) %>'>
+                <asp:Image ID="NewsImage" runat="server" ImageURL='<%# Eval("news_image") %>' Width = "480"
+                Height = "320"/>
+                </asp:HyperLink>
+            </td>
+         </tr>
+         </table>
+        </ItemTemplate>
+    </asp:DataList>
     </form>
 </body>
 </html>

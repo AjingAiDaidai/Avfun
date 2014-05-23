@@ -34,6 +34,9 @@ namespace AvFun_Website.admin
                 {
                     //未点击登出按钮
                     lblAdminInfo.Text = "尊敬的管理员：" + loginAdmin.User_nickname + "您好";
+                    lblShortInfo.Text =
+                        "您最后一次登录时间是" + loginAdmin.User_last_login_date.ToShortDateString()
+                        + "，最后一次登录IP为" + loginAdmin.User_last_login_ip;
                     lblAdminInfo.Visible = true;
                     AdminLoggedForm.Visible = true;
                     lblLoginStatus.Visible = false;

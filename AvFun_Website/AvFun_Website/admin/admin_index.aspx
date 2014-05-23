@@ -22,6 +22,10 @@
             NavigateUrl="~/admin/admin_changeInfo.aspx" Target="_blank">修改资料</asp:HyperLink>
         <asp:LinkButton ID="btnLogout" runat="server">登出</asp:LinkButton>
     
+        <br />
+        <br />
+        <asp:Label ID="lblShortInfo" runat="server"></asp:Label>
+    
     </div>
     </form>
 </body>
