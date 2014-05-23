@@ -13,10 +13,20 @@
         <asp:HyperLink ID="urlAddCourse" runat="server" Target="_blank" NavigateUrl="AddCourse.aspx">发布课程</asp:HyperLink>
 
         <br />
-        <asp:Label ID="lblCourseStatus" runat="server"></asp:Label>
+
+        <br />
+        <asp:Label ID="lblSearchKeyWords" runat="server" Text="关键字："></asp:Label>
+        <asp:TextBox ID="txtSearchKeyWords" runat="server" MaxLength="32"></asp:TextBox>
+        <asp:Label ID="lblKeyWords" runat="server" Text="范围："></asp:Label>
+        <asp:DropDownList ID="dplstSearchScope" runat="server">
+            <asp:ListItem Value="all">(显示全部)</asp:ListItem>
+            <asp:ListItem Value="course_name">课程名称</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Button ID="btnSearch" runat="server" Text="搜索" onclick="btnSearch_Click" />
         <br />
         <asp:GridView ID="CourseLists" runat="server" AutoGenerateColumns="False" 
-            DataKeyNames="course_id" DataSourceID="CourseManageDataSource">
+            DataKeyNames="course_id" DataSourceID="CourseManageDataSource" 
+            AllowPaging="True" AllowSorting="True">
             <Columns>
                 <asp:BoundField DataField="course_name" HeaderText="course_name" 
                     SortExpression="course_name" />
@@ -36,7 +46,15 @@
         </asp:GridView>
         <asp:SqlDataSource ID="CourseManageDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>" 
-            SelectCommand="SELECT [course_id], [course_name], [course_intro], [course_price], [course_begin_date], [course_robot_link], [course_isDeleted] FROM [COURSE] ORDER BY [course_begin_date] DESC">
+            SelectCommand="SELECT [course_id], [course_name], [course_intro], [course_price], [course_begin_date], [course_robot_link], [course_isDeleted] FROM [COURSE] ORDER BY [course_begin_date] DESC"
+            FilterExpression="{0} LIKE '%{1}%'" 
+            onfiltering="CourseManageDataSource_Filtering" >
+            <FilterParameters>
+                <asp:ControlParameter ControlID="dplstSearchScope" Name="FieldToSearch" 
+                    PropertyName="SelectedValue" Type="String" />
+                <asp:ControlParameter ControlID="txtSearchKeyWords" Name="SearchCriteria" 
+                    Type="String" />
+            </FilterParameters>
         </asp:SqlDataSource>
 
     </div>

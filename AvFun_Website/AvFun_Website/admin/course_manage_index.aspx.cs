@@ -33,5 +33,32 @@ namespace AvFun_Website.admin
                 //已经登录
             }
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            if ( dplstSearchScope.SelectedValue.Equals("all" ) )
+            {
+                //搜索全部的话，简单刷新即可。
+                Response.Redirect(Request.Url.ToString());
+            }
+        }
+
+        protected void CourseManageDataSource_Filtering(object sender, SqlDataSourceFilteringEventArgs e)
+        {
+            if (e.ParameterValues[1] != null)
+            {
+                //防注入，替换四个关键key
+                // e.ParameterValues[1].ToString().Replace("'", "''");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("'", "''");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("[", "[[]");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("%", "[%]");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("_", "[_]");
+                /*
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("[", "[[]"));
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("%", "[%]"));
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("_", "[_]"));
+                */
+            }
+        }
     }
 }
