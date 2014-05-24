@@ -13,8 +13,6 @@
         <asp:HyperLink ID="urlAddCourse" runat="server" Target="_blank" NavigateUrl="AddCourse.aspx">发布课程</asp:HyperLink>
 
         <br />
-
-        <br />
         <asp:Label ID="lblSearchKeyWords" runat="server" Text="关键字："></asp:Label>
         <asp:TextBox ID="txtSearchKeyWords" runat="server" MaxLength="32"></asp:TextBox>
         <asp:Label ID="lblKeyWords" runat="server" Text="范围："></asp:Label>
@@ -39,9 +37,11 @@
                 <asp:CheckBoxField DataField="course_isDeleted" HeaderText="course_isDeleted" 
                     SortExpression="course_isDeleted" />
                 <asp:HyperLinkField DataNavigateUrlFields="course_id" 
-                    DataNavigateUrlFormatString="AddCourse.Aspx?course_id={0}" Text="修改" />
+                    DataNavigateUrlFormatString="AddCourse.Aspx?course_id={0}" Text="修改" 
+                    Target="_blank" />
                 <asp:HyperLinkField DataNavigateUrlFields="course_id" 
-                    DataNavigateUrlFormatString="delCourse.aspx?course_id={0}" Text="删除" />
+                    DataNavigateUrlFormatString="delCourse.aspx?course_id={0}" Text="删除" 
+                    Target="_blank" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="CourseManageDataSource" runat="server" 

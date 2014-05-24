@@ -71,6 +71,7 @@
     <Content Include="admin\admin_index.aspx" />
     <Content Include="admin\admin_login.aspx" />
     <Content Include="admin\course_manage_index.aspx" />
+    <Content Include="admin\DelCourse.aspx" />
     <Content Include="admin\DeleteNews.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -414,6 +415,7 @@
     <Content Include="ckeditor\skins\v2\skin.js" />
     <Content Include="ckeditor\skins\v2\templates.css" />
     <Content Include="ckeditor\themes\default\theme.js" />
+    <Content Include="course_index.aspx" />
     <Content Include="ForgetPassword.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Login.aspx" />
@@ -536,6 +538,13 @@
     <Compile Include="admin\course_manage_index.aspx.designer.cs">
       <DependentUpon>course_manage_index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\DelCourse.aspx.cs">
+      <DependentUpon>DelCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DelCourse.aspx.designer.cs">
+      <DependentUpon>DelCourse.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\DeleteNews.aspx.cs">
       <DependentUpon>DeleteNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -579,6 +588,13 @@
     <Compile Include="Avfun_DAL\UserData.cs" />
     <Compile Include="admin\image_upload.ashx.cs">
       <DependentUpon>image_upload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="course_index.aspx.cs">
+      <DependentUpon>course_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="course_index.aspx.designer.cs">
+      <DependentUpon>course_index.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForgetPassword.aspx.cs">
       <DependentUpon>ForgetPassword.aspx</DependentUpon>

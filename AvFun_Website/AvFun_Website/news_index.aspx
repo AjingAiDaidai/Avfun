@@ -14,9 +14,12 @@
     
         <asp:SqlDataSource ID="NewsIndexDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>"             
-            SelectCommand="SELECT [news_id], [news_click_count], [admin_nickname], [news_publish_date], [news_content], [news_title] FROM [AdminNewsList] ORDER BY [news_publish_date] DESC"
+            SelectCommand="SELECT [admin_nickname], [news_id], [news_title], [news_publish_date], [news_click_count], [news_content] FROM [AdminNewsList] WHERE ([news_isDeleted] &lt;&gt; @news_isDeleted) ORDER BY [news_publish_date] DESC"
             FilterExpression="{0} LIKE '%{1}%'" 
             onfiltering="NewsIndexDataSource_Filtering" >
+             <SelectParameters>
+                <asp:Parameter DefaultValue="True" Name="news_isDeleted" Type="Boolean" />
+            </SelectParameters>
             <FilterParameters>
                 <asp:ControlParameter ControlID="dplstSearchScope" Name="FieldToSearch" 
                     PropertyName="SelectedValue" Type="String" />
