@@ -14,7 +14,8 @@
             Target="_self">返回首页</asp:HyperLink>
         <asp:HyperLink ID="urlChooseCourse" runat="server" 
             NavigateUrl="~/course_index.aspx" Target="_blank">选择女友</asp:HyperLink>
-        <asp:HyperLink ID="urlChat" runat="server">临幸后宫</asp:HyperLink>
+        <asp:HyperLink ID="urlChat" runat="server" 
+            NavigateUrl="~/user_pages/user_course_list.aspx" Target="_blank">临幸后宫</asp:HyperLink>
         <asp:HyperLink ID="urlChangInfo" runat="server" 
             NavigateUrl="~/user_pages/user_changeinfo.aspx" Target="_blank">修改资料</asp:HyperLink>
         <asp:HyperLink ID="urlAnalyze" runat="server">统计信息</asp:HyperLink>

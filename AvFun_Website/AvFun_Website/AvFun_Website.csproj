@@ -447,6 +447,7 @@
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="user_pages\ResendVerifyMail.aspx" />
     <Content Include="user_pages\user_changeinfo.aspx" />
+    <Content Include="user_pages\user_course_list.aspx" />
     <Content Include="user_pages\user_index.aspx" />
     <Content Include="ViewCourse.aspx" />
     <Content Include="ViewNews.aspx" />
@@ -694,6 +695,13 @@
     </Compile>
     <Compile Include="user_pages\user_changeinfo.aspx.designer.cs">
       <DependentUpon>user_changeinfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_pages\user_course_list.aspx.cs">
+      <DependentUpon>user_course_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_pages\user_course_list.aspx.designer.cs">
+      <DependentUpon>user_course_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="user_pages\user_index.aspx.cs">
       <DependentUpon>user_index.aspx</DependentUpon>

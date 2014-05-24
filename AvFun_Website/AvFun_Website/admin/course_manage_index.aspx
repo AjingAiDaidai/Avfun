@@ -26,15 +26,16 @@
             DataKeyNames="course_id" DataSourceID="CourseManageDataSource" 
             AllowPaging="True" AllowSorting="True">
             <Columns>
-                <asp:BoundField DataField="course_name" HeaderText="course_name" 
-                    SortExpression="course_name" />
-                <asp:BoundField DataField="course_price" HeaderText="course_price" 
+                <asp:HyperLinkField DataNavigateUrlFields="course_id" 
+                    DataNavigateUrlFormatString="/ViewCourse.aspx?course_id={0}" 
+                    DataTextField="course_name" DataTextFormatString="{0}" HeaderText="课程名称" />
+                <asp:BoundField DataField="course_price" HeaderText="课程价格" 
                     SortExpression="course_price" />
-                <asp:BoundField DataField="course_begin_date" HeaderText="course_begin_date" 
+                <asp:BoundField DataField="course_begin_date" HeaderText="发布时间" 
                     SortExpression="course_begin_date" />
-                <asp:BoundField DataField="course_robot_link" HeaderText="course_robot_link" 
+                <asp:BoundField DataField="course_robot_link" HeaderText="上课地址" 
                     SortExpression="course_robot_link" />
-                <asp:CheckBoxField DataField="course_isDeleted" HeaderText="course_isDeleted" 
+                <asp:CheckBoxField DataField="course_isDeleted" HeaderText="是否删除" 
                     SortExpression="course_isDeleted" />
                 <asp:HyperLinkField DataNavigateUrlFields="course_id" 
                     DataNavigateUrlFormatString="AddCourse.Aspx?course_id={0}" Text="修改" 
