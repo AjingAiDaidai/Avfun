@@ -27,9 +27,9 @@ namespace AvFun_Website.AvFun_UI
             get;
             set;
         }
-        protected float order_price;
+        protected Double order_price;
 
-        public abstract float Order_price
+        public abstract Double Order_price
         {
             get;
             set;

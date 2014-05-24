@@ -35,7 +35,7 @@
           <Property Name="admin_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="admin_account" Type="char" Nullable="false" MaxLength="64" />
           <Property Name="admin_password" Type="char" Nullable="false" MaxLength="32" />
-          <Property Name="admin_last_login_time" Type="date" Nullable="false" />
+          <Property Name="admin_last_login_time" Type="datetime" Nullable="false" />
           <Property Name="admin_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
           <Property Name="admin_nickname" Type="nvarchar" Nullable="false" MaxLength="32" />
           <Property Name="admin_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
@@ -50,7 +50,7 @@
           <Property Name="course_intro" Type="text" Nullable="false" />
           <Property Name="course_price" Type="float" Nullable="false" />
           <Property Name="course_robot_link" Type="varchar" Nullable="false" MaxLength="256" />
-          <Property Name="course_begin_date" Type="date" Nullable="false" />
+          <Property Name="course_begin_date" Type="datetime" Nullable="false" />
           <Property Name="course_isDeleted" Type="bit" Nullable="false" />
           <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -63,7 +63,7 @@
           <Property Name="news_title" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="news_content" Type="text" Nullable="false" />
           <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="news_publish_date" Type="date" Nullable="false" />
+          <Property Name="news_publish_date" Type="datetime" Nullable="false" />
           <Property Name="news_isDeleted" Type="bit" Nullable="false" />
           <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
           <Property Name="news_image" Type="varchar" Nullable="false" MaxLength="256" />
@@ -76,7 +76,7 @@
           </Key>
           <Property Name="o_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="order_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="order_date" Type="date" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
           <Property Name="order_price" Type="float" Nullable="false" />
           <Property Name="order_isPaid" Type="bit" Nullable="false" />
           <Property Name="order_isDeleted" Type="bit" Nullable="false" />
@@ -92,7 +92,7 @@
           <Property Name="review_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="review_content" Type="text" Nullable="false" />
           <Property Name="review_author" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="review_publish_date" Type="date" Nullable="false" />
+          <Property Name="review_publish_date" Type="datetime" Nullable="false" />
           <Property Name="review_isDeleted" Type="bit" Nullable="false" />
           <Property Name="review_news" Type="uniqueidentifier" Nullable="false" />
           <Property Name="review_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
@@ -110,7 +110,7 @@
           <Property Name="user_head" Type="varchar" Nullable="false" MaxLength="256" />
           <Property Name="user_isDeleted" Type="bit" Nullable="false" />
           <Property Name="user_isChecked" Type="bit" Nullable="false" />
-          <Property Name="user_last_login_time" Type="date" Nullable="false" />
+          <Property Name="user_last_login_time" Type="datetime" Nullable="false" />
           <Property Name="user_last_login_ip" Type="varchar" Nullable="false" MaxLength="64" />
           <Property Name="user_money" Type="float" Nullable="false" />
           <Property Name="user_introduction" Type="nvarchar" Nullable="false" MaxLength="256" />
@@ -144,24 +144,17 @@
           <Property Name="news_content" Type="text" Nullable="false" />
           <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <Function Name="CreateNewOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderPrice" Type="float" Mode="In" />
+          <Parameter Name="OrderUser" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderCourse" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderIsPaid" Type="binary" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="avfun_DAL_model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="avfunEntities" annotation:LazyLoadingEnabled="true">
-          <FunctionImport Name="CreateNewUser">
-            <Parameter Name="Account" Mode="In" Type="String" />
-            <Parameter Name="Password" Mode="In" Type="String" />
-            <Parameter Name="Nickname" Mode="In" Type="String" />
-            <Parameter Name="Sex" Mode="In" Type="Boolean" />
-            <Parameter Name="Head" Mode="In" Type="String" />
-            <Parameter Name="isDeleted" Mode="In" Type="Boolean" />
-            <Parameter Name="isChecked" Mode="In" Type="Boolean" />
-            <Parameter Name="LastLoginTime" Mode="In" Type="DateTime" />
-            <Parameter Name="LastLoginIp" Mode="In" Type="String" />
-            <Parameter Name="Money" Mode="In" Type="Double" />
-            <Parameter Name="Introduction" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="ADMIN" EntityType="avfun_DAL_model.ADMIN" />
           <EntitySet Name="COURSE" EntityType="avfun_DAL_model.COURSE" />
           <EntitySet Name="NEWS" EntityType="avfun_DAL_model.NEWS" />
@@ -189,6 +182,12 @@
             <End Role="REVIEW" EntitySet="REVIEW" />
           </AssociationSet>
           <EntitySet Name="AdminNewsList" EntityType="avfun_DAL_model.AdminNewsList" />
+          <FunctionImport Name="CreateNewOrder">
+            <Parameter Name="OrderPrice" Mode="In" Type="Double" />
+            <Parameter Name="OrderUser" Mode="In" Type="Guid" />
+            <Parameter Name="OrderCourse" Mode="In" Type="Guid" />
+            <Parameter Name="OrderIsPaid" Mode="In" Type="Binary" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ADMIN">
           <Key>
@@ -492,6 +491,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateNewOrder" FunctionName="avfun_DAL_model.Store.CreateNewOrder" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -507,7 +507,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>

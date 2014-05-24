@@ -74,6 +74,8 @@
     <Content Include="admin\DelCourse.aspx" />
     <Content Include="admin\DeleteNews.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
+    <Content Include="BuyCourse.aspx" />
+    <Content Include="checkUser.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\CHANGES.html" />
     <Content Include="ckeditor\ckeditor.js" />
@@ -568,6 +570,7 @@
     <Compile Include="Avfun_BLL\IGeneralUser.cs" />
     <Compile Include="Avfun_BLL\IUser.cs" />
     <Compile Include="Avfun_BLL\NewsOpr.cs" />
+    <Compile Include="Avfun_BLL\OrderOpr.cs" />
     <Compile Include="Avfun_BLL\ReadWebConfig.cs" />
     <Compile Include="Avfun_BLL\UserOpr.cs" />
     <Compile Include="Avfun_DAL\AdminData.cs" />
@@ -586,9 +589,24 @@
     <Compile Include="Avfun_DAL\IGeneralUserData.cs" />
     <Compile Include="Avfun_DAL\IUserData.cs" />
     <Compile Include="Avfun_DAL\NewsData.cs" />
+    <Compile Include="Avfun_DAL\OrderData.cs" />
     <Compile Include="Avfun_DAL\UserData.cs" />
     <Compile Include="admin\image_upload.ashx.cs">
       <DependentUpon>image_upload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="BuyCourse.aspx.cs">
+      <DependentUpon>BuyCourse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BuyCourse.aspx.designer.cs">
+      <DependentUpon>BuyCourse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkUser.aspx.cs">
+      <DependentUpon>checkUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkUser.aspx.designer.cs">
+      <DependentUpon>checkUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="course_index.aspx.cs">
       <DependentUpon>course_index.aspx</DependentUpon>

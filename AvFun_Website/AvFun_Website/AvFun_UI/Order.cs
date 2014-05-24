@@ -59,7 +59,7 @@ namespace AvFun_Website.AvFun_UI
             }
         }
 
-        public override float Order_price
+        public override Double Order_price
         {
             get
             {
@@ -105,6 +105,9 @@ namespace AvFun_Website.AvFun_UI
             this.order_price = order.Order_price;
             this.order_isPaid = order.Order_isPaid;
             this.order_isDeleted = order.Order_isDeleted;
+        }
+        public Order()
+        {
         }
         public Order(Guid user, Guid course, float price, DateTime date)
         {

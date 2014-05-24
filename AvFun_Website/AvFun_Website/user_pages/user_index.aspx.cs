@@ -39,7 +39,7 @@ namespace AvFun_Website.user_pages
                     //读取用户信息
                     nickName.Text = loggedUser.User_nickname;
                     head.ImageUrl = loggedUser.User_head.Trim(); //这里不取Domain是为了在以后上传的时候保持一致
-                    last_login_time.Text = loggedUser.User_last_login_date.ToString("yyyy年MM月dd日"); //本地日期保持一致
+                    last_login_time.Text = loggedUser.User_last_login_date.ToString(); //本地日期保持一致
                     last_login_ip.Text = loggedUser.User_last_login_ip;
                     money.Text = loggedUser.User_money.ToString();
                     //判断是否激活

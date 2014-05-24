@@ -251,130 +251,53 @@ namespace AvFun_Website.Avfun_DAL
         /// <summary>
         /// 没有元数据文档可用。
         /// </summary>
-        /// <param name="account">没有元数据文档可用。</param>
-        /// <param name="password">没有元数据文档可用。</param>
-        /// <param name="nickname">没有元数据文档可用。</param>
-        /// <param name="sex">没有元数据文档可用。</param>
-        /// <param name="head">没有元数据文档可用。</param>
-        /// <param name="isDeleted">没有元数据文档可用。</param>
-        /// <param name="isChecked">没有元数据文档可用。</param>
-        /// <param name="lastLoginTime">没有元数据文档可用。</param>
-        /// <param name="lastLoginIp">没有元数据文档可用。</param>
-        /// <param name="money">没有元数据文档可用。</param>
-        /// <param name="introduction">没有元数据文档可用。</param>
-        public int CreateNewUser(global::System.String account, global::System.String password, global::System.String nickname, Nullable<global::System.Boolean> sex, global::System.String head, Nullable<global::System.Boolean> isDeleted, Nullable<global::System.Boolean> isChecked, Nullable<global::System.DateTime> lastLoginTime, global::System.String lastLoginIp, Nullable<global::System.Double> money, global::System.String introduction)
+        /// <param name="orderPrice">没有元数据文档可用。</param>
+        /// <param name="orderUser">没有元数据文档可用。</param>
+        /// <param name="orderCourse">没有元数据文档可用。</param>
+        /// <param name="orderIsPaid">没有元数据文档可用。</param>
+        public int CreateNewOrder(Nullable<global::System.Double> orderPrice, Nullable<global::System.Guid> orderUser, Nullable<global::System.Guid> orderCourse, global::System.Byte[] orderIsPaid)
         {
-            ObjectParameter accountParameter;
-            if (account != null)
+            ObjectParameter orderPriceParameter;
+            if (orderPrice.HasValue)
             {
-                accountParameter = new ObjectParameter("Account", account);
+                orderPriceParameter = new ObjectParameter("OrderPrice", orderPrice);
             }
             else
             {
-                accountParameter = new ObjectParameter("Account", typeof(global::System.String));
+                orderPriceParameter = new ObjectParameter("OrderPrice", typeof(global::System.Double));
             }
     
-            ObjectParameter passwordParameter;
-            if (password != null)
+            ObjectParameter orderUserParameter;
+            if (orderUser.HasValue)
             {
-                passwordParameter = new ObjectParameter("Password", password);
+                orderUserParameter = new ObjectParameter("OrderUser", orderUser);
             }
             else
             {
-                passwordParameter = new ObjectParameter("Password", typeof(global::System.String));
+                orderUserParameter = new ObjectParameter("OrderUser", typeof(global::System.Guid));
             }
     
-            ObjectParameter nicknameParameter;
-            if (nickname != null)
+            ObjectParameter orderCourseParameter;
+            if (orderCourse.HasValue)
             {
-                nicknameParameter = new ObjectParameter("Nickname", nickname);
+                orderCourseParameter = new ObjectParameter("OrderCourse", orderCourse);
             }
             else
             {
-                nicknameParameter = new ObjectParameter("Nickname", typeof(global::System.String));
+                orderCourseParameter = new ObjectParameter("OrderCourse", typeof(global::System.Guid));
             }
     
-            ObjectParameter sexParameter;
-            if (sex.HasValue)
+            ObjectParameter orderIsPaidParameter;
+            if (orderIsPaid != null)
             {
-                sexParameter = new ObjectParameter("Sex", sex);
+                orderIsPaidParameter = new ObjectParameter("OrderIsPaid", orderIsPaid);
             }
             else
             {
-                sexParameter = new ObjectParameter("Sex", typeof(global::System.Boolean));
+                orderIsPaidParameter = new ObjectParameter("OrderIsPaid", typeof(global::System.Byte[]));
             }
     
-            ObjectParameter headParameter;
-            if (head != null)
-            {
-                headParameter = new ObjectParameter("Head", head);
-            }
-            else
-            {
-                headParameter = new ObjectParameter("Head", typeof(global::System.String));
-            }
-    
-            ObjectParameter isDeletedParameter;
-            if (isDeleted.HasValue)
-            {
-                isDeletedParameter = new ObjectParameter("isDeleted", isDeleted);
-            }
-            else
-            {
-                isDeletedParameter = new ObjectParameter("isDeleted", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter isCheckedParameter;
-            if (isChecked.HasValue)
-            {
-                isCheckedParameter = new ObjectParameter("isChecked", isChecked);
-            }
-            else
-            {
-                isCheckedParameter = new ObjectParameter("isChecked", typeof(global::System.Boolean));
-            }
-    
-            ObjectParameter lastLoginTimeParameter;
-            if (lastLoginTime.HasValue)
-            {
-                lastLoginTimeParameter = new ObjectParameter("LastLoginTime", lastLoginTime);
-            }
-            else
-            {
-                lastLoginTimeParameter = new ObjectParameter("LastLoginTime", typeof(global::System.DateTime));
-            }
-    
-            ObjectParameter lastLoginIpParameter;
-            if (lastLoginIp != null)
-            {
-                lastLoginIpParameter = new ObjectParameter("LastLoginIp", lastLoginIp);
-            }
-            else
-            {
-                lastLoginIpParameter = new ObjectParameter("LastLoginIp", typeof(global::System.String));
-            }
-    
-            ObjectParameter moneyParameter;
-            if (money.HasValue)
-            {
-                moneyParameter = new ObjectParameter("Money", money);
-            }
-            else
-            {
-                moneyParameter = new ObjectParameter("Money", typeof(global::System.Double));
-            }
-    
-            ObjectParameter introductionParameter;
-            if (introduction != null)
-            {
-                introductionParameter = new ObjectParameter("Introduction", introduction);
-            }
-            else
-            {
-                introductionParameter = new ObjectParameter("Introduction", typeof(global::System.String));
-            }
-    
-            return base.ExecuteFunction("CreateNewUser", accountParameter, passwordParameter, nicknameParameter, sexParameter, headParameter, isDeletedParameter, isCheckedParameter, lastLoginTimeParameter, lastLoginIpParameter, moneyParameter, introductionParameter);
+            return base.ExecuteFunction("CreateNewOrder", orderPriceParameter, orderUserParameter, orderCourseParameter, orderIsPaidParameter);
         }
 
         #endregion

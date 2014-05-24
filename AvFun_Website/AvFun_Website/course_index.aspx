@@ -52,7 +52,7 @@
                     <li runat="server" id="itemPlaceholder" />
                 </ul>
                         <div runat="server" style="">
-                            <asp:DataPager ID="DataPager1" runat="server" PageSize="12">
+                            <asp:DataPager ID="DataPager1" runat="server" PageSize="6">
                                 <Fields>
                                     <asp:NumericPagerField />
                                 </Fields>

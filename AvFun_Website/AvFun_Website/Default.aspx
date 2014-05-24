@@ -14,8 +14,6 @@
             Target="_self">登录</asp:HyperLink>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/NewUser.aspx" 
         Target="_self">注册</asp:HyperLink>    
-        <asp:HyperLink ID="urlNews" runat="server" NavigateUrl="~/news_index.aspx">本站新闻</asp:HyperLink>
-        <asp:HyperLink ID="urlCourseIntro" runat="server">课程介绍</asp:HyperLink>
     </div>
     <div id="loginDiv" runat="server">
         <asp:Label ID="WelcomeInfo1" runat="server" Text="亲爱的"></asp:Label>
@@ -25,9 +23,12 @@
 &nbsp;<asp:HyperLink ID="urlUserIndex" runat="server" 
             NavigateUrl="~/user_pages/user_index.aspx" Target="_blank">用户中心</asp:HyperLink>
         <asp:HyperLink ID="urlMoney" runat="server">令咒充值</asp:HyperLink>
-        <asp:HyperLink ID="urlChooseCourse" runat="server">选择女友</asp:HyperLink>
+        <asp:HyperLink ID="urlChooseCourse" runat="server" 
+            NavigateUrl="~/course_index.aspx">选择女友</asp:HyperLink>
         <asp:HyperLink ID="urlChat" runat="server">临幸后宫</asp:HyperLink>
     </div>
+        <asp:HyperLink ID="urlNews" runat="server" NavigateUrl="~/news_index.aspx">本站新闻</asp:HyperLink>
+        <asp:HyperLink ID="urlCourseIntro" runat="server">课程介绍</asp:HyperLink>
     <asp:SqlDataSource ID="IndexNewsDataSource" runat="server" 
         ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>" 
         SelectCommand="SELECT TOP 5 [news_id],[news_title],[admin_nickname], [news_isOnIndex], [news_image], [news_isDeleted], [news_publish_date] FROM [AdminNewsList] WHERE (([news_isDeleted] &lt;&gt; @news_isDeleted) AND ([news_isOnIndex] = @news_isOnIndex)) ORDER BY [news_publish_date] DESC">

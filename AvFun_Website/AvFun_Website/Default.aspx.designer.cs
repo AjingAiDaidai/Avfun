@@ -49,24 +49,6 @@ namespace AvFun_Website {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
         
         /// <summary>
-        /// urlNews 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlNews;
-        
-        /// <summary>
-        /// urlCourseIntro 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink urlCourseIntro;
-        
-        /// <summary>
         /// loginDiv 控件。
         /// </summary>
         /// <remarks>
@@ -146,6 +128,24 @@ namespace AvFun_Website {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink urlChat;
+        
+        /// <summary>
+        /// urlNews 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink urlNews;
+        
+        /// <summary>
+        /// urlCourseIntro 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink urlCourseIntro;
         
         /// <summary>
         /// IndexNewsDataSource 控件。

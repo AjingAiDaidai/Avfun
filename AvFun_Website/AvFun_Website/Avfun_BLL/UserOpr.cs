@@ -194,7 +194,7 @@ namespace AvFun_Website.Avfun_BLL
         /// </summary>
         /// <param name="user">要检查的用户类</param>
         /// <returns>Boolean，true为合法，false为非法</returns>
-        private static Boolean isLegalNewUser(User user)
+        public static Boolean isLegalNewUser(User user)
         {
             Boolean result = true;
             // 用户账号不能为空，不能不写，长度不能小于5，不能大于64
@@ -448,6 +448,43 @@ namespace AvFun_Website.Avfun_BLL
                 result = userData.UpdateUserInfo(user);
             }
             return result;
+        }
+        /// <summary>
+        /// 激活用户，激活成功返回true，激活失败返回false
+        /// </summary>
+        /// <param name="user">要激活的，包含完整信息的User类</param>
+        /// <param name="verifyCode">页面接受的验证码</param>
+        /// <returns>激活成功返回ture，激活失败返回false</returns>
+        public static Boolean CheckUser(User user, Guid verifyCode)
+        {
+            Boolean result = true;
+            if (!isLegalNewUser(user))
+            {
+                result = false;
+            }
+            //这里的数据检查比较麻烦。
+            if (user.User_verify_code == null
+                || verifyCode == null
+                || user.User_isChecked == true)
+            {
+                result = false;
+            }
+            else
+            {
+                if (user.User_verify_code == verifyCode)
+                {
+                    user.User_isChecked = true;
+                    UserData userData = UserData.GetNewInstance();
+                    result = userData.UpdateUserInfo(user);
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+
+            return result;
+
         }
     }
 }

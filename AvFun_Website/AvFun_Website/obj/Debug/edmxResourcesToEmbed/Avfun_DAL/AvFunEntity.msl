@@ -113,5 +113,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CreateNewOrder" FunctionName="avfun_DAL_model.Store.CreateNewOrder" />
   </EntityContainerMapping>
 </Mapping>
