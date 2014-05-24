@@ -32,8 +32,10 @@
             </EmptyDataTemplate>
             <ItemTemplate>
                 <td runat="server" style="">
-                    <asp:Label ID="course_nameLabel" runat="server" 
-                        Text='<%# Eval("course_name") %>' />
+                <asp:HyperLink ID="course_name_url" runat="server" Text='<%# Eval("course_name") %>'
+                 NavigateUrl='<%# String.Format("ViewCourse.aspx?course_id={0}", Eval("course_id")) %>'
+                 Target="_blank">
+                    </asp:HyperLink>
                         单日价格：
                     <asp:Label ID="course_priceLabel" runat="server" 
                         Text='<%# Eval("course_price") %>' />令咒
