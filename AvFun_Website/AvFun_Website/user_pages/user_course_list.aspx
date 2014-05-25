@@ -15,11 +15,13 @@
         <asp:TextBox ID="txtSearchKeyWords" runat="server"></asp:TextBox>
         <asp:Label ID="lblSearchScope" runat="server" Text="范围："></asp:Label>
         <asp:DropDownList ID="dplstSearchScope" runat="server">
+            <asp:ListItem Value="all" Selected="True">(全部显示)</asp:ListItem>
+            <asp:ListItem Value="course_name">女友名称</asp:ListItem>
         </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" Text="搜索" />
+        <asp:Button ID="btnSearch" runat="server" Text="搜索" onclick="btnSearch_Click" />
     
         <br />
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
+        <asp:GridView ID="UserCourseList" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
             DataKeyNames="course_id,user_id" DataSourceID="CourseListDataSource">
             <Columns>
@@ -38,7 +40,15 @@
             SelectCommand="SELECT [course_id] ,[user_id] ,[order_date],[course_name] ,[course_robot_link], SUM([order_price])/[course_price] AS last_date
                            FROM [avfun].[dbo].[UserCourseList] WHERE ([order_user] = @user_id) 
                            GROUP BY [order_date],[course_name],[course_robot_link],[course_price],[user_id],[course_id]
-                           ORDER BY [order_date] DESC">
+                           ORDER BY [order_date] DESC"
+            FilterExpression="{0} LIKE '%{1}%'" 
+            onfiltering="CourseListDataSource_Filtering">
+             <FilterParameters>
+                <asp:ControlParameter ControlID="dplstSearchScope" Name="FieldToSearch" 
+                    PropertyName="SelectedValue" Type="String" />
+                <asp:ControlParameter ControlID="txtSearchKeyWords" Name="SearchCriteria" 
+                    Type="String" />
+            </FilterParameters>
             <SelectParameters>
                 <asp:Parameter DefaultValue="00000000-0000-0000-0000-000000000000" Name="user_id" DbType="Guid" />
             </SelectParameters>

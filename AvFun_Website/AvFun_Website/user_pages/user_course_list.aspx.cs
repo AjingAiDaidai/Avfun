@@ -34,5 +34,37 @@ namespace AvFun_Website.user_pages
                 CourseListDataSource.SelectParameters["user_id"].DefaultValue = loggedUser.User_id.ToString();
             }
         }
+
+        protected void CourseListDataSource_Filtering(object sender, SqlDataSourceFilteringEventArgs e)
+        {
+            if (e.ParameterValues[0].ToString().Equals("all") )
+            {
+                e.ParameterValues[0] = null;
+                return;
+            }
+            if (e.ParameterValues[1] != null)
+            {
+                //防注入，替换四个关键key
+                // e.ParameterValues[1].ToString().Replace("'", "''");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("'", "''");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("[", "[[]");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("%", "[%]");
+                e.ParameterValues[1] = e.ParameterValues[1].ToString().Replace("_", "[_]");
+                /*
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("[", "[[]"));
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("%", "[%]"));
+                AdminNewsListDataSource.FilterExpression.Replace("{1}", e.ParameterValues[1].ToString().Replace("_", "[_]"));
+                */
+            }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (dplstSearchScope.SelectedValue.ToString().Equals("all"))
+            {
+                //全部搜索，简单刷新下就行
+                Response.Redirect(Request.Url.ToString());
+            }
+        }
     }
 }

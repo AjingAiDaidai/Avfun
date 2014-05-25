@@ -85,9 +85,28 @@ namespace AvFun_Website.Avfun_DAL
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 根据参数中User类实例的user_id获取包含完整信息的User对象
+        /// </summary>
+        /// <param name="user">包含user_id的User类实例</param>
+        /// <returns>成功返回包含完整信息的User类实例，失败返回null</returns>
         public User GetUserByID(User user)
         {
-            throw new NotImplementedException();
+            avfunEntities DataEntity = DataEntityManager.GetDataEntity();
+            User result = null;
+            try
+            {
+                USER ResultUSER = ( from usr in DataEntity.USER
+                           where usr.user_id == user.User_id
+                           select usr
+                           ).Single();
+                result = ConvertUSERToUser(ResultUSER);
+            }
+            catch
+            {
+                result = null;
+            }
+            return result;
         }
         /// <summary>
         /// DAL层，根据用户账号密码返回相应信息

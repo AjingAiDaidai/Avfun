@@ -10,6 +10,5 @@ namespace AvFun_Website.Avfun_DAL
         int CreateUser(User user);
         int InsertUser(User user);
         USER[] GetUsers();
-        User GetUserByID(User user);
     }
 }

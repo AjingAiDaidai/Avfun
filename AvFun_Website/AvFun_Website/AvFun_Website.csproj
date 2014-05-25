@@ -73,7 +73,10 @@
     <Content Include="admin\course_manage_index.aspx" />
     <Content Include="admin\DelCourse.aspx" />
     <Content Include="admin\DeleteNews.aspx" />
+    <Content Include="admin\DelUser.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
+    <Content Include="admin\user_manage_index.aspx" />
+    <Content Include="admin\ViewUserInformation.aspx" />
     <Content Include="BuyCourse.aspx" />
     <Content Include="checkUser.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -556,6 +559,13 @@
     <Compile Include="admin\DeleteNews.aspx.designer.cs">
       <DependentUpon>DeleteNews.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\DelUser.aspx.cs">
+      <DependentUpon>DelUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\DelUser.aspx.designer.cs">
+      <DependentUpon>DelUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\news_manage_index.aspx.cs">
       <DependentUpon>news_manage_index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -565,6 +575,20 @@
     </Compile>
     <Compile Include="admin\NewsUploadHeadImage.ashx.cs">
       <DependentUpon>NewsUploadHeadImage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\user_manage_index.aspx.cs">
+      <DependentUpon>user_manage_index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\user_manage_index.aspx.designer.cs">
+      <DependentUpon>user_manage_index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\ViewUserInformation.aspx.cs">
+      <DependentUpon>ViewUserInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ViewUserInformation.aspx.designer.cs">
+      <DependentUpon>ViewUserInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Avfun_BLL\AdminOpr.cs" />
     <Compile Include="Avfun_BLL\CourseOpr.cs" />

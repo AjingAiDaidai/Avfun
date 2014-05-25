@@ -7,7 +7,7 @@ using AvFun_Website.AvFun_UI;
 using AvFun_Website.Avfun_DAL;
 namespace AvFun_Website.Avfun_BLL
 {
-    public class UserOpr:IUser
+    public class UserOpr
     {
         ///<summary>
         ///生成随机字符串
@@ -50,9 +50,24 @@ namespace AvFun_Website.Avfun_BLL
         {
            return System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(str, "MD5").ToUpper();  
         }
-        public User GetUserByID(User user)
+        /// <summary>
+        /// 根据用户ID获取用户信息，ID写在参数的user_id中
+        /// </summary>
+        /// <param name="user">包含用户id的User类实例</param>
+        /// <returns>成功返回包含用户完整信息的User对象，失败返回null</returns>
+        public static User GetUserByID(User user)
         {
-            throw new NotImplementedException();
+            User result = null;
+            if (user.User_id == null)
+            {
+                result = null;
+            }
+            else
+            {
+                UserData userData = UserData.GetNewInstance();
+                result = userData.GetUserByID(user);
+            }
+            return result;
         }
         /// <summary>
         /// 向新注册的用户发送激活账户的邮件

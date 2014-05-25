@@ -16,8 +16,8 @@
             NavigateUrl="~/admin/news_manage_index.aspx" Target="_blank">新闻管理</asp:HyperLink>
         <asp:HyperLink ID="urlCourseAdmin" runat="server" 
             NavigateUrl="~/admin/course_manage_index.aspx">课程管理</asp:HyperLink>
-        <asp:HyperLink ID="urlUserAdmin" runat="server">用户管理</asp:HyperLink>
-        <asp:HyperLink ID="urlReviewAdmin" runat="server">评论管理</asp:HyperLink>
+        <asp:HyperLink ID="urlUserAdmin" runat="server" 
+            NavigateUrl="~/admin/user_manage_index.aspx">用户管理</asp:HyperLink>
         <asp:HyperLink ID="urlAnalyze" runat="server">统计信息</asp:HyperLink>
         <asp:HyperLink ID="urlModifyInfo" runat="server" 
             NavigateUrl="~/admin/admin_changeInfo.aspx" Target="_blank">修改资料</asp:HyperLink>
