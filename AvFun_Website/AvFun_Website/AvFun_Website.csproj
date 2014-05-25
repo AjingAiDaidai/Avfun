@@ -66,6 +66,7 @@
     <Content Include="admin\admin_changeInfo.aspx" />
     <Content Include="admin\admin_index.aspx" />
     <Content Include="admin\admin_login.aspx" />
+    <Content Include="admin\admin_statistical.aspx" />
     <Content Include="admin\course_manage_index.aspx" />
     <Content Include="admin\DelCourse.aspx" />
     <Content Include="admin\DeleteNews.aspx" />
@@ -447,6 +448,7 @@
     <Content Include="user_pages\user_changeinfo.aspx" />
     <Content Include="user_pages\user_course_list.aspx" />
     <Content Include="user_pages\user_index.aspx" />
+    <Content Include="user_pages\user_statistical.aspx" />
     <Content Include="ViewCourse.aspx" />
     <Content Include="ViewNews.aspx" />
     <Content Include="ViewUser.aspx" />
@@ -505,6 +507,13 @@
     </Compile>
     <Compile Include="admin\AdminLoginVerifyCodeGenerator.ashx.cs">
       <DependentUpon>AdminLoginVerifyCodeGenerator.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\admin_statistical.aspx.cs">
+      <DependentUpon>admin_statistical.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\admin_statistical.aspx.designer.cs">
+      <DependentUpon>admin_statistical.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\course_manage_index.aspx.cs">
       <DependentUpon>course_manage_index.aspx</DependentUpon>
@@ -694,6 +703,13 @@
     </Compile>
     <Compile Include="user_pages\user_index.aspx.designer.cs">
       <DependentUpon>user_index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user_pages\user_statistical.aspx.cs">
+      <DependentUpon>user_statistical.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user_pages\user_statistical.aspx.designer.cs">
+      <DependentUpon>user_statistical.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewCourse.aspx.cs">
       <DependentUpon>ViewCourse.aspx</DependentUpon>

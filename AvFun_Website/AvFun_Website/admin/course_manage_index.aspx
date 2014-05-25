@@ -19,6 +19,7 @@
         <asp:DropDownList ID="dplstSearchScope" runat="server">
             <asp:ListItem Value="all">(显示全部)</asp:ListItem>
             <asp:ListItem Value="course_name">课程名称</asp:ListItem>
+            <asp:ListItem Value="alreadyBuy">已被购买</asp:ListItem>
         </asp:DropDownList>
         <asp:Button ID="btnSearch" runat="server" Text="搜索" onclick="btnSearch_Click" />
         <br />
@@ -47,7 +48,7 @@
         </asp:GridView>
         <asp:SqlDataSource ID="CourseManageDataSource" runat="server" 
             ConnectionString="<%$ ConnectionStrings:AvfunNewsConnectingString %>" 
-            SelectCommand="SELECT [course_id], [course_name], [course_intro], [course_price], [course_begin_date], [course_robot_link], [course_isDeleted] FROM [COURSE] ORDER BY [course_begin_date] DESC"
+            SelectCommand="SELECT [course_id], [course_name], [course_price], [course_begin_date], [course_robot_link], [course_isDeleted] FROM [COURSE] ORDER BY [course_begin_date] DESC"
             FilterExpression="{0} LIKE '%{1}%'" 
             onfiltering="CourseManageDataSource_Filtering" >
             <FilterParameters>

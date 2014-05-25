@@ -41,6 +41,7 @@
                     SortExpression="news_isDeleted" />
                 <asp:CheckBoxField DataField="news_isOnIndex" HeaderText="是否上首页" 
                     SortExpression="news_isOnIndex" />
+                <asp:BoundField DataField="news_click_count" HeaderText="点击量" />
                 <asp:HyperLinkField DataNavigateUrlFields="news_id" 
                     DataNavigateUrlFormatString="AddNews.aspx?news_id={0}" Text="修改"  />
                 <asp:HyperLinkField DataNavigateUrlFields="news_id" 

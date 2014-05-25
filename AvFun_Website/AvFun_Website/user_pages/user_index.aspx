@@ -18,7 +18,7 @@
             NavigateUrl="~/user_pages/user_course_list.aspx" Target="_blank">临幸后宫</asp:HyperLink>
         <asp:HyperLink ID="urlChangInfo" runat="server" 
             NavigateUrl="~/user_pages/user_changeinfo.aspx" Target="_blank">修改资料</asp:HyperLink>
-        <asp:HyperLink ID="urlAnalyze" runat="server">统计信息</asp:HyperLink>
+        <asp:HyperLink ID="urlAnalyze" runat="server">充值明细</asp:HyperLink>
         <asp:Label ID="lblMoney" runat="server" Text="令咒充值"></asp:Label>
         <asp:HyperLink ID="urlResendMail" runat="server" 
             NavigateUrl="~/user_pages/ResendVerifyMail.aspx" Target="_blank">重发确认信</asp:HyperLink>

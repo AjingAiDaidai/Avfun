@@ -18,7 +18,7 @@
             <asp:ListItem>(全部显示)</asp:ListItem>
             <asp:ListItem Value="user_nickname">用户昵称</asp:ListItem>
         </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" Text="Button" />
+        <asp:Button ID="btnSearch" runat="server" Text="搜索" onclick="btnSearch_Click" />
         <br />
         <asp:GridView ID="UserGridView" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="user_id" 

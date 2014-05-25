@@ -36,10 +36,36 @@ namespace AvFun_Website.admin
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            if ( dplstSearchScope.SelectedValue.Equals("all" ) )
+            if (dplstSearchScope.SelectedValue.Equals("all"))
             {
                 //搜索全部的话，简单刷新即可。
                 Response.Redirect(Request.Url.ToString());
+            }
+            else
+            {
+
+                if (dplstSearchScope.SelectedValue.Equals("alreadyBuy"))
+                {
+                    BoundField buyCoursePeople = new BoundField();
+                    buyCoursePeople.DataField = "course_people";
+                    buyCoursePeople.DataFormatString = "{0}";
+                    buyCoursePeople.HeaderText = "购买人数";
+                    //魔法！别动！
+                    CourseManageDataSource.SelectCommand
+                        =
+    "SELECT [avfun].[dbo].[COURSE].[course_id],[avfun].[dbo].[COURSE].[course_name],[avfun].[dbo].[COURSE].[course_price],[avfun].[dbo].[COURSE].[course_robot_link],[avfun].[dbo].[COURSE].[course_begin_date],[avfun].[dbo].[COURSE].[course_isDeleted],[avfun].[dbo].[COURSE].[course_timestamp],count([user_id]) as course_people"
+    + " FROM [avfun].[dbo].[COURSE],[avfun].[dbo].[UserCourseList]"
+    + "  WHERE([avfun].[dbo].[COURSE].[course_id] = order_course )"
+    + "  GROUP BY [avfun].[dbo].[COURSE].[course_id],[avfun].[dbo].[COURSE].[course_name],[avfun].[dbo].[COURSE].[course_price],[avfun].[dbo].[COURSE].[course_robot_link],[avfun].[dbo].[COURSE].[course_begin_date],[avfun].[dbo].[COURSE].[course_isDeleted],[avfun].[dbo].[COURSE].[course_timestamp]"
+    + "  ORDER BY [avfun].[dbo].[COURSE].[course_begin_date] DESC";
+                    CourseLists.Columns.Add(buyCoursePeople);
+
+                }
+                else
+                {
+                    CourseLists.Columns.RemoveAt(CourseLists.Columns.Count - 1);
+                    CourseManageDataSource.SelectCommand = "SELECT [course_id], [course_name], [course_price], [course_begin_date], [course_robot_link], [course_isDeleted] FROM [COURSE] ORDER BY [course_begin_date] DESC";
+                }
             }
         }
 
