@@ -3,3 +3,5 @@ E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\AvFun_Website.dll
 E:\Class\AvFun\AvFun_Website\AvFun_Website\bin\AvFun_Website.pdb
 E:\Class\AvFun\AvFun_Website\AvFun_Website\obj\Debug\AvFun_Website.dll
 E:\Class\AvFun\AvFun_Website\AvFun_Website\obj\Debug\AvFun_Website.pdb
+E:\Class\AvFun\Avfun_Website_v2\AvFun_Website\obj\Debug\ResolveAssemblyReference.cache
+E:\Class\AvFun\Avfun_Website_v2\AvFun_Website\obj\Debug\AvFun_Website.dll
