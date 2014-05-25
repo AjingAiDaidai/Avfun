@@ -24,13 +24,14 @@
             AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="user_id" 
             DataSourceID="UserDataSource">
             <Columns>
-                <asp:BoundField DataField="user_nickname" HeaderText="user_nickname" 
-                    SortExpression="user_nickname" />
-                <asp:CheckBoxField DataField="user_isDeleted" HeaderText="user_isDeleted" 
+                <asp:HyperLinkField DataNavigateUrlFields="user_id" 
+                    DataNavigateUrlFormatString="/ViewUser.aspx?user_id={0}" 
+                    DataTextField="user_nickname" DataTextFormatString="{0}" HeaderText="用户昵称" />
+                <asp:CheckBoxField DataField="user_isDeleted" HeaderText="已删除" 
                     SortExpression="user_isDeleted" />
-                <asp:CheckBoxField DataField="user_isChecked" HeaderText="user_isChecked" 
+                <asp:CheckBoxField DataField="user_isChecked" HeaderText="已激活" 
                     SortExpression="user_isChecked" />
-                <asp:BoundField DataField="user_money" HeaderText="user_money" 
+                <asp:BoundField DataField="user_money" HeaderText="令咒余额" 
                     SortExpression="user_money" />
                 <asp:HyperLinkField DataNavigateUrlFields="user_id" 
                     DataNavigateUrlFormatString="Deluser.aspx?user_id={0}" Target="_blank" 

@@ -61,10 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Account\ChangePassword.aspx" />
-    <Content Include="Account\ChangePasswordSuccess.aspx" />
-    <Content Include="Account\Login.aspx" />
-    <Content Include="Account\Register.aspx" />
     <Content Include="admin\AddCourse.aspx" />
     <Content Include="admin\AddNews.aspx" />
     <Content Include="admin\admin_changeInfo.aspx" />
@@ -76,7 +72,6 @@
     <Content Include="admin\DelUser.aspx" />
     <Content Include="admin\news_manage_index.aspx" />
     <Content Include="admin\user_manage_index.aspx" />
-    <Content Include="admin\ViewUserInformation.aspx" />
     <Content Include="BuyCourse.aspx" />
     <Content Include="checkUser.aspx" />
     <Content Include="ckeditor\adapters\jquery.js" />
@@ -454,6 +449,7 @@
     <Content Include="user_pages\user_index.aspx" />
     <Content Include="ViewCourse.aspx" />
     <Content Include="ViewNews.aspx" />
+    <Content Include="ViewUser.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -471,34 +467,6 @@
     </Compile>
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\ChangePassword.aspx.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePassword.aspx.designer.cs">
-      <DependentUpon>ChangePassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.cs">
-      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\AddCourse.aspx.cs">
       <DependentUpon>AddCourse.aspx</DependentUpon>
@@ -582,13 +550,6 @@
     </Compile>
     <Compile Include="admin\user_manage_index.aspx.designer.cs">
       <DependentUpon>user_manage_index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\ViewUserInformation.aspx.cs">
-      <DependentUpon>ViewUserInformation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\ViewUserInformation.aspx.designer.cs">
-      <DependentUpon>ViewUserInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Avfun_BLL\AdminOpr.cs" />
     <Compile Include="Avfun_BLL\CourseOpr.cs" />
@@ -748,17 +709,21 @@
     <Compile Include="ViewNews.aspx.designer.cs">
       <DependentUpon>ViewNews.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewUser.aspx.cs">
+      <DependentUpon>ViewUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewUser.aspx.designer.cs">
+      <DependentUpon>ViewUser.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="AvFun_MVC_Model\" />
-    <Folder Include="AvFun_TestPages\" />
     <Folder Include="news\" />
     <Folder Include="orders\" />
     <Folder Include="user_pages\img\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>

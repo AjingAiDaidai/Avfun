@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AvFun_Website.admin
+namespace AvFun_Website
 {
-    public partial class ViewUserInformation : System.Web.UI.Page
+    public partial class ViewUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
