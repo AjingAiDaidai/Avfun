@@ -6,15 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 namespace AvFun_Website.admin
 {
     public partial class DeleteNews : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+            INewsBLL newsBLL = BLLFactory.CreateInstance<INewsBLL>("NewsBLL");
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if ( loggedAdmin == null )
             {
                 //未登录
@@ -36,7 +38,7 @@ namespace AvFun_Website.admin
                     //新闻id不为空
                     News deleteNews = new News();
                     deleteNews.Article_id = new Guid(Request.QueryString["news_id"]);
-                    if ( NewsOpr.DeleteNewsByID(deleteNews) )
+                    if ( newsBLL.DeleteNewsByID(deleteNews) )
                     {
                         lblDeleteStatus.Text = "删除成功，3秒后转向新闻管理首页";
                         HtmlMeta RedirectMeta = new HtmlMeta(); //重定向用Meta标签

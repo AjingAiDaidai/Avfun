@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="AvFun_Website.Avfun_BLL.UserOpr">
+  <Class Name="AvFun_Website.Avfun_BLL.userBLL">
     <Position X="4" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Avfun_BLL\UserOpr.cs</FileName>
+      <FileName>Avfun_BLL\userBLL.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>

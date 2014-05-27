@@ -23,7 +23,7 @@ namespace AvFun_Website.user_pages
                     try
                     {
                        // string UploadDir = "~/upload/Uploadify/";//图片保存的文件夹
-                        string UploadDir = AvFun_Website.Avfun_BLL.ReadWebConfig.GetAppSettingValue("UserHeadFolder");
+                        string UploadDir = ReadWebConfig.GetAppSettingValue("UserHeadFolder");
                         //图片保存的文件夹路径
                         string path = context.Server.MapPath(UploadDir);
                         //如果文件夹不存在，则创建

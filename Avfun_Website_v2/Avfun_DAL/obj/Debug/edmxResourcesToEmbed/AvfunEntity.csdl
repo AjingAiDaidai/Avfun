@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="avfunModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="avfunEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMIN" EntityType="avfunModel.ADMIN" />
+    <EntitySet Name="COURSE" EntityType="avfunModel.COURSE" />
+    <EntitySet Name="NEWS" EntityType="avfunModel.NEWS" />
+    <EntitySet Name="ORDER" EntityType="avfunModel.ORDER" />
+    <EntitySet Name="REVIEW" EntityType="avfunModel.REVIEW" />
+    <EntitySet Name="USER" EntityType="avfunModel.USER" />
+    <EntitySet Name="AdminNewsList" EntityType="avfunModel.AdminNewsList" />
+    <EntitySet Name="UserCourseList" EntityType="avfunModel.UserCourseList" />
+    <FunctionImport Name="CreateNewOrder">
+      <Parameter Name="OrderPrice" Mode="In" Type="Double" />
+      <Parameter Name="OrderUser" Mode="In" Type="Guid" />
+      <Parameter Name="OrderCourse" Mode="In" Type="Guid" />
+      <Parameter Name="OrderIsPaid" Mode="In" Type="Binary" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="a_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="admin_id" Type="Guid" Nullable="false" />
+    <Property Name="admin_account" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+    <Property Name="admin_password" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+    <Property Name="admin_last_login_time" Type="DateTime" Nullable="false" />
+    <Property Name="admin_last_login_ip" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+    <Property Name="admin_nickname" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="admin_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="COURSE">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="c_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="course_id" Type="Guid" Nullable="false" />
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="course_intro" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="course_price" Type="Double" Nullable="false" />
+    <Property Name="course_robot_link" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="course_begin_date" Type="DateTime" Nullable="false" />
+    <Property Name="course_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="course_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="news_id" />
+    </Key>
+    <Property Name="n_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="news_id" Type="Guid" Nullable="false" />
+    <Property Name="news_title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="news_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="news_author" Type="Guid" Nullable="false" />
+    <Property Name="news_publish_date" Type="DateTime" Nullable="false" />
+    <Property Name="news_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="news_isOnIndex" Type="Boolean" Nullable="false" />
+    <Property Name="news_image" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="news_click_count" Type="Int32" Nullable="false" />
+    <Property Name="news_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="o_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="Guid" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" />
+    <Property Name="order_price" Type="Double" Nullable="false" />
+    <Property Name="order_isPaid" Type="Boolean" Nullable="false" />
+    <Property Name="order_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="order_user" Type="Guid" Nullable="false" />
+    <Property Name="order_course" Type="Guid" Nullable="false" />
+    <Property Name="order_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="REVIEW">
+    <Key>
+      <PropertyRef Name="review_id" />
+    </Key>
+    <Property Name="r_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="review_id" Type="Guid" Nullable="false" />
+    <Property Name="review_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="review_author" Type="Guid" Nullable="false" />
+    <Property Name="review_publish_date" Type="DateTime" Nullable="false" />
+    <Property Name="review_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="review_news" Type="Guid" Nullable="false" />
+    <Property Name="review_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="u_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Guid" Nullable="false" />
+    <Property Name="user_account" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+    <Property Name="user_password" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+    <Property Name="user_nickname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="user_sex" Type="Boolean" Nullable="false" />
+    <Property Name="user_head" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="user_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="user_isChecked" Type="Boolean" Nullable="false" />
+    <Property Name="user_last_login_time" Type="DateTime" Nullable="false" />
+    <Property Name="user_last_login_ip" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+    <Property Name="user_money" Type="Double" Nullable="false" />
+    <Property Name="user_introduction" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="user_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="user_verify_code" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminNewsList">
+    <Key>
+      <PropertyRef Name="admin_nickname" />
+      <PropertyRef Name="news_id" />
+      <PropertyRef Name="news_title" />
+      <PropertyRef Name="news_publish_date" />
+      <PropertyRef Name="news_isDeleted" />
+      <PropertyRef Name="news_isOnIndex" />
+      <PropertyRef Name="news_image" />
+      <PropertyRef Name="news_click_count" />
+      <PropertyRef Name="news_content" />
+      <PropertyRef Name="news_author" />
+    </Key>
+    <Property Name="admin_nickname" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+    <Property Name="news_id" Type="Guid" Nullable="false" />
+    <Property Name="news_title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="news_publish_date" Type="DateTime" Nullable="false" />
+    <Property Name="news_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="news_isOnIndex" Type="Boolean" Nullable="false" />
+    <Property Name="news_image" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="news_click_count" Type="Int32" Nullable="false" />
+    <Property Name="news_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="news_author" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserCourseList">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="order_date" />
+      <PropertyRef Name="order_price" />
+      <PropertyRef Name="order_isPaid" />
+      <PropertyRef Name="order_user" />
+      <PropertyRef Name="order_course" />
+      <PropertyRef Name="course_id" />
+      <PropertyRef Name="course_name" />
+      <PropertyRef Name="course_intro" />
+      <PropertyRef Name="course_robot_link" />
+      <PropertyRef Name="course_price" />
+      <PropertyRef Name="course_begin_date" />
+      <PropertyRef Name="course_isDeleted" />
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="order_id" Type="Guid" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" />
+    <Property Name="order_price" Type="Double" Nullable="false" />
+    <Property Name="order_isPaid" Type="Boolean" Nullable="false" />
+    <Property Name="order_user" Type="Guid" Nullable="false" />
+    <Property Name="order_course" Type="Guid" Nullable="false" />
+    <Property Name="course_id" Type="Guid" Nullable="false" />
+    <Property Name="course_name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <Property Name="course_intro" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="course_robot_link" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+    <Property Name="course_price" Type="Double" Nullable="false" />
+    <Property Name="course_begin_date" Type="DateTime" Nullable="false" />
+    <Property Name="course_isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="user_id" Type="Guid" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -24,7 +24,7 @@ namespace AvFun_Website.admin
                 try
                 {
                     // string UploadDir = "~/upload/Uploadify/";//图片保存的文件夹
-                    string UploadDir = AvFun_Website.Avfun_BLL.ReadWebConfig.GetAppSettingValue("NewsImageFolder");
+                    string UploadDir = ReadWebConfig.GetAppSettingValue("NewsImageFolder");
                     string ReturnUploadDir = UploadDir.Replace("~", "..");
                     //图片保存的文件夹路径
                     string path = context.Server.MapPath(UploadDir);

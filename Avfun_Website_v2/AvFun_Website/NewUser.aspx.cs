@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website
 {
     public partial class NewUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
             if (!Page.IsPostBack)
             {
                 //第一次打开该页面
@@ -45,7 +46,7 @@ namespace AvFun_Website
                     Boolean userSex = strUserSex.ToUpper().Trim().Equals("MALE");
 
                     //密码MD5加密
-                    userPassword = UserOpr.MD5(userPassword);
+                    userPassword = userBLL.MD5(userPassword);
                     //测试用语句
                     /* RegResult.Text =
                         "注册信息为：" + "账号" + userAccount + "密码" + userPassword + "性别" + strUserSex +
@@ -61,8 +62,8 @@ namespace AvFun_Website
                     {
                         //验证码正确，这里记得刷新验证码以防后退提交！
                         Session.Remove(RegVerifyCodeGenerator.strIdentify); //防止后退提交
-                        #region 用户注册，与UserOpr打交道
-                        //开始注册用户，数据完整性检查在BLL.UserOpr类中
+                        #region 用户注册，与userBLL打交道
+                        //开始注册用户，数据完整性检查在BLL.userBLL类中
                         String user_head = "img/01.jpg"; //男生默认头像
                         if (userSex == false) //是女生
                             user_head = "img/00.jpg"; //女生默认头像
@@ -70,7 +71,7 @@ namespace AvFun_Website
                         User newUser = new User(userAccount, userPassword, userNickname, userSex, userLastLoginIp,user_head.Trim());
                         newUser.User_introduction = userIntroduction;
 
-                        if (UserOpr.CreateUser(newUser) > 0)
+                        if (userBLL.CreateUser(newUser) > 0)
                         {
                             RegResult.Text = "注册成功！请到您的邮箱" + userAccount + "中打开确认信完成激活，3秒钟之后自动跳转回主页";
                             RegUser.Visible = false; //注册表单不可见

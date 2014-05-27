@@ -1,0 +1,8 @@
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\bin\Debug\Avfun_DAL.dll.config
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\bin\Debug\Avfun_DAL.dll
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\bin\Debug\Avfun_DAL.pdb
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\bin\Debug\Avfun_UI.dll
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\bin\Debug\Avfun_UI.pdb
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\obj\Debug\ResolveAssemblyReference.cache
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\obj\Debug\Avfun_DAL.dll
+E:\Class\AvFun\Avfun_Website_v2\Avfun_DAL\obj\Debug\Avfun_DAL.pdb

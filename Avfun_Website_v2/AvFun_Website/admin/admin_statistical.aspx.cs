@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 
 namespace AvFun_Website.admin
 {
@@ -15,8 +15,9 @@ namespace AvFun_Website.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loginAdmin = AdminOpr.isLogged(Request);
-            if (loginAdmin == null)
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
+            if (loggedAdmin == null)
             {
                 //未登录
                 lblLoginStatus.Text = "您未登录或已经登录过期，请重新登录，3秒后转回管理员登录页。";

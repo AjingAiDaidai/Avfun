@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 
 namespace AvFun_Website
 {
@@ -15,7 +15,8 @@ namespace AvFun_Website
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            User loggedUser = UserOpr.isLogged(Request);
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            User loggedUser = userBLL.isLogged(Request);
             if (loggedUser == null)
             {
                 //未登录
@@ -29,45 +30,48 @@ namespace AvFun_Website
                 RedirectMeta.Content = "3;url=" + ReadWebConfig.GetAppSettingValue("LoginPageURL"); //时间为三秒，跳转到首页
                 this.Page.Header.Controls.Add(RedirectMeta);
             }
-            if (loggedUser.User_isChecked)
-            {
-                //已经激活
-                lblLoginStatus.Text = "您已经是激活用户，无需再次激活";
-                lblLoginStatus.Visible = true;
-            }
             else
             {
-                lblLoginStatus.Visible = false;
-                //获取Guid
-                if (Request.QueryString["VerifyCode"] != null)
+                if (loggedUser.User_isChecked)
                 {
-                    try
-                    {
-                        //这里有可能出错所以要用try...catch
-                        Guid userVerifyCode = new Guid(Request.QueryString["VerifyCode"]);
-                        if (UserOpr.CheckUser(loggedUser, userVerifyCode))
-                        {
-                            //验证通过
-                            lblCheckStatus.Text = "恭喜您，验证成功";
-                            lblCheckStatus.Visible = true;
-                        }
-                        else
-                        {
-                            lblCheckStatus.Text = "验证码不符，请尝试重发确认信";
-                            lblCheckStatus.Visible = true;
-                        }
-
-                    }
-                    catch
-                    {
-                        lblCheckStatus.Text = "验证码格式不正确";
-                        lblCheckStatus.Visible = true;
-                    }
+                    //已经激活
+                    lblLoginStatus.Text = "您已经是激活用户，无需再次激活";
+                    lblLoginStatus.Visible = true;
                 }
                 else
                 {
-                    lblCheckStatus.Text = "验证码不可以为空";
-                    lblCheckStatus.Visible = true;
+                    lblLoginStatus.Visible = false;
+                    //获取Guid
+                    if (Request.QueryString["VerifyCode"] != null)
+                    {
+                        try
+                        {
+                            //这里有可能出错所以要用try...catch
+                            Guid userVerifyCode = new Guid(Request.QueryString["VerifyCode"]);
+                            if (userBLL.CheckUser(loggedUser, userVerifyCode))
+                            {
+                                //验证通过
+                                lblCheckStatus.Text = "恭喜您，验证成功";
+                                lblCheckStatus.Visible = true;
+                            }
+                            else
+                            {
+                                lblCheckStatus.Text = "验证码不符，请尝试重发确认信";
+                                lblCheckStatus.Visible = true;
+                            }
+
+                        }
+                        catch
+                        {
+                            lblCheckStatus.Text = "验证码格式不正确";
+                            lblCheckStatus.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        lblCheckStatus.Text = "验证码不可以为空";
+                        lblCheckStatus.Visible = true;
+                    }
                 }
             }
         }

@@ -6,14 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website
 {
     public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
             if (!Page.IsPostBack)
             {
                 //第一次访问
@@ -40,9 +41,9 @@ namespace AvFun_Website
                     //验证码校验通过，设定要取回的User的账号密码
                     User verifyUser = new User();
                     verifyUser.User_account = userAccount;
-                    verifyUser.User_password = UserOpr.MD5(userPassword);
+                    verifyUser.User_password = userBLL.MD5(userPassword);
                     //验证用户是否是合法登录请求
-                    User entireUser = UserOpr.isLegalLogin(verifyUser);
+                    User entireUser = userBLL.isLegalLogin(verifyUser);
                     if (entireUser == null) //账号或密码错误，未注册，都是这个
                     {
                         LoginInfo.Text = "账号或密码错误";
@@ -54,7 +55,7 @@ namespace AvFun_Website
 
                         entireUser.User_last_login_date = DateTime.Now; //获取当前登录日期
                         entireUser.User_last_login_ip = HttpContext.Current.Request.UserHostAddress; //最后一次登录ip
-                        UserOpr.UpdateUserInfo(entireUser);
+                        userBLL.UpdateUserInfo(entireUser);
                         LoginInfo.Text = "登录成功！3秒后跳转回主页";
                         //授予Cookies，相当于授权了
 

@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.user_pages
 {
     public partial class user_index : System.Web.UI.Page
@@ -15,7 +15,8 @@ namespace AvFun_Website.user_pages
         protected void Page_Load(object sender, EventArgs e)
         {
             //判断是否已经登录
-            User loggedUser = UserOpr.isLogged(Request);
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            User loggedUser = userBLL.isLogged(Request);
             //未登录 
             if (loggedUser == null)
             {

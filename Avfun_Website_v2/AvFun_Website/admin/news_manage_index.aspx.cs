@@ -6,15 +6,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.admin
 {
     public partial class news_manage_index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (loggedAdmin == null)
             {
                 //未登录

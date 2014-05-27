@@ -1,0 +1,6 @@
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\bin\Debug\Avfun_UI.dll.config
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\bin\Debug\Avfun_UI.dll
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\bin\Debug\Avfun_UI.pdb
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\obj\Debug\ResolveAssemblyReference.cache
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\obj\Debug\Avfun_UI.dll
+E:\Class\AvFun\Avfun_Website_v2\AvfunUI\obj\Debug\Avfun_UI.pdb

@@ -6,16 +6,16 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.admin
 {
     public partial class admin_login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request); //获取信息
-
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (!Page.IsPostBack)
             {
                 //第一次显示
@@ -54,14 +54,14 @@ namespace AvFun_Website.admin
                     //验证码校验通过
                     Admin loginAdmin = new Admin();
                     loginAdmin.User_account = adminAccount;
-                    loginAdmin.User_password = UserOpr.MD5(adminPassword);
-                    Admin entireAdmin = AdminOpr.isLegalLogin(loginAdmin);
+                    loginAdmin.User_password = adminBLL.MD5(adminPassword);
+                    Admin entireAdmin = adminBLL.isLegalLogin(loginAdmin);
                     if (entireAdmin != null )
                     {
                         //合法登录请求
                         entireAdmin.User_last_login_date = DateTime.Now; //登录时间
                         entireAdmin.User_last_login_ip = HttpContext.Current.Request.UserHostAddress; //登录ip
-                        AdminOpr.UpdateAdminInfo(entireAdmin); //更新登录ip和时间
+                        adminBLL.UpdateAdminInfo(entireAdmin); //更新登录ip和时间
                         //分配cookies
                         HttpCookie adminAccountCookie = new HttpCookie("adminAccount");
                         HttpCookie adminPasswordCookie = new HttpCookie("adminPassword");

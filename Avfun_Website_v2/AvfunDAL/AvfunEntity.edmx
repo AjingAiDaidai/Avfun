@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="avfunModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="avfunModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="avfunModel.Store.ADMIN" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COURSE" EntityType="avfunModel.Store.COURSE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NEWS" EntityType="avfunModel.Store.NEWS" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ORDER" EntityType="avfunModel.Store.ORDER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="REVIEW" EntityType="avfunModel.Store.REVIEW" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="USER" EntityType="avfunModel.Store.USER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AdminNewsList" EntityType="avfunModel.Store.AdminNewsList" store:Type="Views" store:Schema="dbo" store:Name="AdminNewsList">
+            <DefiningQuery>SELECT 
+      [AdminNewsList].[admin_nickname] AS [admin_nickname], 
+      [AdminNewsList].[news_id] AS [news_id], 
+      [AdminNewsList].[news_title] AS [news_title], 
+      [AdminNewsList].[news_publish_date] AS [news_publish_date], 
+      [AdminNewsList].[news_isDeleted] AS [news_isDeleted], 
+      [AdminNewsList].[news_isOnIndex] AS [news_isOnIndex], 
+      [AdminNewsList].[news_image] AS [news_image], 
+      [AdminNewsList].[news_click_count] AS [news_click_count], 
+      [AdminNewsList].[news_content] AS [news_content], 
+      [AdminNewsList].[news_author] AS [news_author]
+      FROM [dbo].[AdminNewsList] AS [AdminNewsList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserCourseList" EntityType="avfunModel.Store.UserCourseList" store:Type="Views" store:Schema="dbo" store:Name="UserCourseList">
+            <DefiningQuery>SELECT 
+      [UserCourseList].[order_id] AS [order_id], 
+      [UserCourseList].[order_date] AS [order_date], 
+      [UserCourseList].[order_price] AS [order_price], 
+      [UserCourseList].[order_isPaid] AS [order_isPaid], 
+      [UserCourseList].[order_user] AS [order_user], 
+      [UserCourseList].[order_course] AS [order_course], 
+      [UserCourseList].[course_id] AS [course_id], 
+      [UserCourseList].[course_name] AS [course_name], 
+      [UserCourseList].[course_intro] AS [course_intro], 
+      [UserCourseList].[course_robot_link] AS [course_robot_link], 
+      [UserCourseList].[course_price] AS [course_price], 
+      [UserCourseList].[course_begin_date] AS [course_begin_date], 
+      [UserCourseList].[course_isDeleted] AS [course_isDeleted], 
+      [UserCourseList].[user_id] AS [user_id]
+      FROM [dbo].[UserCourseList] AS [UserCourseList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="a_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="admin_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="admin_account" Type="char" Nullable="false" MaxLength="64" />
+          <Property Name="admin_password" Type="char" Nullable="false" MaxLength="32" />
+          <Property Name="admin_last_login_time" Type="datetime" Nullable="false" />
+          <Property Name="admin_last_login_ip" Type="char" Nullable="false" MaxLength="64" />
+          <Property Name="admin_nickname" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="admin_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="c_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="course_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="course_intro" Type="text" Nullable="false" />
+          <Property Name="course_price" Type="float" Nullable="false" />
+          <Property Name="course_robot_link" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="course_begin_date" Type="datetime" Nullable="false" />
+          <Property Name="course_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="course_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="NEWS">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="n_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="news_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="news_title" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="news_content" Type="text" Nullable="false" />
+          <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="news_publish_date" Type="datetime" Nullable="false" />
+          <Property Name="news_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
+          <Property Name="news_image" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="news_click_count" Type="int" Nullable="false" />
+          <Property Name="news_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="o_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="order_price" Type="float" Nullable="false" />
+          <Property Name="order_isPaid" Type="bit" Nullable="false" />
+          <Property Name="order_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="order_user" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_course" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="REVIEW">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="r_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="review_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="review_content" Type="text" Nullable="false" />
+          <Property Name="review_author" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="review_publish_date" Type="datetime" Nullable="false" />
+          <Property Name="review_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="review_news" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="review_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="u_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="user_account" Type="char" Nullable="false" MaxLength="64" />
+          <Property Name="user_password" Type="char" Nullable="false" MaxLength="32" />
+          <Property Name="user_nickname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="user_sex" Type="bit" Nullable="false" />
+          <Property Name="user_head" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="user_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="user_isChecked" Type="bit" Nullable="false" />
+          <Property Name="user_last_login_time" Type="datetime" Nullable="false" />
+          <Property Name="user_last_login_ip" Type="varchar" Nullable="false" MaxLength="64" />
+          <Property Name="user_money" Type="float" Nullable="false" />
+          <Property Name="user_introduction" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="user_timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="user_verify_code" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“avfun.dbo.AdminNewsList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="AdminNewsList">
+          <Key>
+            <PropertyRef Name="admin_nickname" />
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_title" />
+            <PropertyRef Name="news_publish_date" />
+            <PropertyRef Name="news_isDeleted" />
+            <PropertyRef Name="news_isOnIndex" />
+            <PropertyRef Name="news_image" />
+            <PropertyRef Name="news_click_count" />
+            <PropertyRef Name="news_content" />
+            <PropertyRef Name="news_author" />
+          </Key>
+          <Property Name="admin_nickname" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="news_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="news_title" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="news_publish_date" Type="date" Nullable="false" />
+          <Property Name="news_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="news_isOnIndex" Type="bit" Nullable="false" />
+          <Property Name="news_image" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="news_click_count" Type="int" Nullable="false" />
+          <Property Name="news_content" Type="text" Nullable="false" />
+          <Property Name="news_author" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“avfun.dbo.UserCourseList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="UserCourseList">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="order_date" />
+            <PropertyRef Name="order_price" />
+            <PropertyRef Name="order_isPaid" />
+            <PropertyRef Name="order_user" />
+            <PropertyRef Name="order_course" />
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="course_name" />
+            <PropertyRef Name="course_intro" />
+            <PropertyRef Name="course_robot_link" />
+            <PropertyRef Name="course_price" />
+            <PropertyRef Name="course_begin_date" />
+            <PropertyRef Name="course_isDeleted" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="order_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="order_price" Type="float" Nullable="false" />
+          <Property Name="order_isPaid" Type="bit" Nullable="false" />
+          <Property Name="order_user" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_course" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="course_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="course_name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="course_intro" Type="text" Nullable="false" />
+          <Property Name="course_robot_link" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="course_price" Type="float" Nullable="false" />
+          <Property Name="course_begin_date" Type="datetime" Nullable="false" />
+          <Property Name="course_isDeleted" Type="bit" Nullable="false" />
+          <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Function Name="CreateNewOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="OrderPrice" Type="float" Mode="In" />
+          <Parameter Name="OrderUser" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderCourse" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="OrderIsPaid" Type="binary" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="avfunModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="avfunEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMIN" EntityType="avfunModel.ADMIN" />
+          <EntitySet Name="COURSE" EntityType="avfunModel.COURSE" />
+          <EntitySet Name="NEWS" EntityType="avfunModel.NEWS" />
+          <EntitySet Name="ORDER" EntityType="avfunModel.ORDER" />
+          <EntitySet Name="REVIEW" EntityType="avfunModel.REVIEW" />
+          <EntitySet Name="USER" EntityType="avfunModel.USER" />
+          <EntitySet Name="AdminNewsList" EntityType="avfunModel.AdminNewsList" />
+          <EntitySet Name="UserCourseList" EntityType="avfunModel.UserCourseList" />
+        </EntityContainer>
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="admin_id" />
+          </Key>
+          <Property Name="a_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_id" Type="Guid" Nullable="false" />
+          <Property Name="admin_account" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+          <Property Name="admin_password" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+          <Property Name="admin_last_login_time" Type="DateTime" Nullable="false" />
+          <Property Name="admin_last_login_ip" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+          <Property Name="admin_nickname" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="admin_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="COURSE">
+          <Key>
+            <PropertyRef Name="course_id" />
+          </Key>
+          <Property Name="c_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_id" Type="Guid" Nullable="false" />
+          <Property Name="course_name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="course_intro" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="course_price" Type="Double" Nullable="false" />
+          <Property Name="course_robot_link" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="course_begin_date" Type="DateTime" Nullable="false" />
+          <Property Name="course_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="course_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="NEWS">
+          <Key>
+            <PropertyRef Name="news_id" />
+          </Key>
+          <Property Name="n_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="news_id" Type="Guid" Nullable="false" />
+          <Property Name="news_title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="news_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="news_author" Type="Guid" Nullable="false" />
+          <Property Name="news_publish_date" Type="DateTime" Nullable="false" />
+          <Property Name="news_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="news_isOnIndex" Type="Boolean" Nullable="false" />
+          <Property Name="news_image" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="news_click_count" Type="Int32" Nullable="false" />
+          <Property Name="news_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="ORDER">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="o_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="Guid" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" />
+          <Property Name="order_price" Type="Double" Nullable="false" />
+          <Property Name="order_isPaid" Type="Boolean" Nullable="false" />
+          <Property Name="order_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="order_user" Type="Guid" Nullable="false" />
+          <Property Name="order_course" Type="Guid" Nullable="false" />
+          <Property Name="order_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="REVIEW">
+          <Key>
+            <PropertyRef Name="review_id" />
+          </Key>
+          <Property Name="r_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="review_id" Type="Guid" Nullable="false" />
+          <Property Name="review_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="review_author" Type="Guid" Nullable="false" />
+          <Property Name="review_publish_date" Type="DateTime" Nullable="false" />
+          <Property Name="review_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="review_news" Type="Guid" Nullable="false" />
+          <Property Name="review_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="u_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Guid" Nullable="false" />
+          <Property Name="user_account" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="true" />
+          <Property Name="user_password" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="true" />
+          <Property Name="user_nickname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="user_sex" Type="Boolean" Nullable="false" />
+          <Property Name="user_head" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="user_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="user_isChecked" Type="Boolean" Nullable="false" />
+          <Property Name="user_last_login_time" Type="DateTime" Nullable="false" />
+          <Property Name="user_last_login_ip" Type="String" Nullable="false" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="user_money" Type="Double" Nullable="false" />
+          <Property Name="user_introduction" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="user_timestamp" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="user_verify_code" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminNewsList">
+          <Key>
+            <PropertyRef Name="admin_nickname" />
+            <PropertyRef Name="news_id" />
+            <PropertyRef Name="news_title" />
+            <PropertyRef Name="news_publish_date" />
+            <PropertyRef Name="news_isDeleted" />
+            <PropertyRef Name="news_isOnIndex" />
+            <PropertyRef Name="news_image" />
+            <PropertyRef Name="news_click_count" />
+            <PropertyRef Name="news_content" />
+            <PropertyRef Name="news_author" />
+          </Key>
+          <Property Name="admin_nickname" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="news_id" Type="Guid" Nullable="false" />
+          <Property Name="news_title" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="news_publish_date" Type="DateTime" Nullable="false" />
+          <Property Name="news_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="news_isOnIndex" Type="Boolean" Nullable="false" />
+          <Property Name="news_image" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="news_click_count" Type="Int32" Nullable="false" />
+          <Property Name="news_content" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="news_author" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCourseList">
+          <Key>
+            <PropertyRef Name="order_id" />
+            <PropertyRef Name="order_date" />
+            <PropertyRef Name="order_price" />
+            <PropertyRef Name="order_isPaid" />
+            <PropertyRef Name="order_user" />
+            <PropertyRef Name="order_course" />
+            <PropertyRef Name="course_id" />
+            <PropertyRef Name="course_name" />
+            <PropertyRef Name="course_intro" />
+            <PropertyRef Name="course_robot_link" />
+            <PropertyRef Name="course_price" />
+            <PropertyRef Name="course_begin_date" />
+            <PropertyRef Name="course_isDeleted" />
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="order_id" Type="Guid" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" />
+          <Property Name="order_price" Type="Double" Nullable="false" />
+          <Property Name="order_isPaid" Type="Boolean" Nullable="false" />
+          <Property Name="order_user" Type="Guid" Nullable="false" />
+          <Property Name="order_course" Type="Guid" Nullable="false" />
+          <Property Name="course_id" Type="Guid" Nullable="false" />
+          <Property Name="course_name" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="course_intro" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="course_robot_link" Type="String" Nullable="false" MaxLength="256" Unicode="false" FixedLength="false" />
+          <Property Name="course_price" Type="Double" Nullable="false" />
+          <Property Name="course_begin_date" Type="DateTime" Nullable="false" />
+          <Property Name="course_isDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="user_id" Type="Guid" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="avfunModelStoreContainer" CdmEntityContainer="avfunEntities">
+          <EntitySetMapping Name="ADMIN"><EntityTypeMapping TypeName="avfunModel.ADMIN"><MappingFragment StoreEntitySet="ADMIN">
+            <ScalarProperty Name="a_id" ColumnName="a_id" />
+            <ScalarProperty Name="admin_id" ColumnName="admin_id" />
+            <ScalarProperty Name="admin_account" ColumnName="admin_account" />
+            <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+            <ScalarProperty Name="admin_last_login_time" ColumnName="admin_last_login_time" />
+            <ScalarProperty Name="admin_last_login_ip" ColumnName="admin_last_login_ip" />
+            <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
+            <ScalarProperty Name="admin_timestamp" ColumnName="admin_timestamp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="COURSE"><EntityTypeMapping TypeName="avfunModel.COURSE"><MappingFragment StoreEntitySet="COURSE">
+            <ScalarProperty Name="c_id" ColumnName="c_id" />
+            <ScalarProperty Name="course_id" ColumnName="course_id" />
+            <ScalarProperty Name="course_name" ColumnName="course_name" />
+            <ScalarProperty Name="course_intro" ColumnName="course_intro" />
+            <ScalarProperty Name="course_price" ColumnName="course_price" />
+            <ScalarProperty Name="course_robot_link" ColumnName="course_robot_link" />
+            <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+            <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
+            <ScalarProperty Name="course_timestamp" ColumnName="course_timestamp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NEWS"><EntityTypeMapping TypeName="avfunModel.NEWS"><MappingFragment StoreEntitySet="NEWS">
+            <ScalarProperty Name="n_id" ColumnName="n_id" />
+            <ScalarProperty Name="news_id" ColumnName="news_id" />
+            <ScalarProperty Name="news_title" ColumnName="news_title" />
+            <ScalarProperty Name="news_content" ColumnName="news_content" />
+            <ScalarProperty Name="news_author" ColumnName="news_author" />
+            <ScalarProperty Name="news_publish_date" ColumnName="news_publish_date" />
+            <ScalarProperty Name="news_isDeleted" ColumnName="news_isDeleted" />
+            <ScalarProperty Name="news_isOnIndex" ColumnName="news_isOnIndex" />
+            <ScalarProperty Name="news_image" ColumnName="news_image" />
+            <ScalarProperty Name="news_click_count" ColumnName="news_click_count" />
+            <ScalarProperty Name="news_timestamp" ColumnName="news_timestamp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ORDER"><EntityTypeMapping TypeName="avfunModel.ORDER"><MappingFragment StoreEntitySet="ORDER">
+            <ScalarProperty Name="o_id" ColumnName="o_id" />
+            <ScalarProperty Name="order_id" ColumnName="order_id" />
+            <ScalarProperty Name="order_date" ColumnName="order_date" />
+            <ScalarProperty Name="order_price" ColumnName="order_price" />
+            <ScalarProperty Name="order_isPaid" ColumnName="order_isPaid" />
+            <ScalarProperty Name="order_isDeleted" ColumnName="order_isDeleted" />
+            <ScalarProperty Name="order_user" ColumnName="order_user" />
+            <ScalarProperty Name="order_course" ColumnName="order_course" />
+            <ScalarProperty Name="order_timestamp" ColumnName="order_timestamp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="REVIEW"><EntityTypeMapping TypeName="avfunModel.REVIEW"><MappingFragment StoreEntitySet="REVIEW">
+            <ScalarProperty Name="r_id" ColumnName="r_id" />
+            <ScalarProperty Name="review_id" ColumnName="review_id" />
+            <ScalarProperty Name="review_content" ColumnName="review_content" />
+            <ScalarProperty Name="review_author" ColumnName="review_author" />
+            <ScalarProperty Name="review_publish_date" ColumnName="review_publish_date" />
+            <ScalarProperty Name="review_isDeleted" ColumnName="review_isDeleted" />
+            <ScalarProperty Name="review_news" ColumnName="review_news" />
+            <ScalarProperty Name="review_timestamp" ColumnName="review_timestamp" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="USER"><EntityTypeMapping TypeName="avfunModel.USER"><MappingFragment StoreEntitySet="USER">
+            <ScalarProperty Name="u_id" ColumnName="u_id" />
+            <ScalarProperty Name="user_id" ColumnName="user_id" />
+            <ScalarProperty Name="user_account" ColumnName="user_account" />
+            <ScalarProperty Name="user_password" ColumnName="user_password" />
+            <ScalarProperty Name="user_nickname" ColumnName="user_nickname" />
+            <ScalarProperty Name="user_sex" ColumnName="user_sex" />
+            <ScalarProperty Name="user_head" ColumnName="user_head" />
+            <ScalarProperty Name="user_isDeleted" ColumnName="user_isDeleted" />
+            <ScalarProperty Name="user_isChecked" ColumnName="user_isChecked" />
+            <ScalarProperty Name="user_last_login_time" ColumnName="user_last_login_time" />
+            <ScalarProperty Name="user_last_login_ip" ColumnName="user_last_login_ip" />
+            <ScalarProperty Name="user_money" ColumnName="user_money" />
+            <ScalarProperty Name="user_introduction" ColumnName="user_introduction" />
+            <ScalarProperty Name="user_timestamp" ColumnName="user_timestamp" />
+            <ScalarProperty Name="user_verify_code" ColumnName="user_verify_code" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="AdminNewsList"><EntityTypeMapping TypeName="avfunModel.AdminNewsList"><MappingFragment StoreEntitySet="AdminNewsList">
+            <ScalarProperty Name="admin_nickname" ColumnName="admin_nickname" />
+            <ScalarProperty Name="news_id" ColumnName="news_id" />
+            <ScalarProperty Name="news_title" ColumnName="news_title" />
+            <ScalarProperty Name="news_publish_date" ColumnName="news_publish_date" />
+            <ScalarProperty Name="news_isDeleted" ColumnName="news_isDeleted" />
+            <ScalarProperty Name="news_isOnIndex" ColumnName="news_isOnIndex" />
+            <ScalarProperty Name="news_image" ColumnName="news_image" />
+            <ScalarProperty Name="news_click_count" ColumnName="news_click_count" />
+            <ScalarProperty Name="news_content" ColumnName="news_content" />
+            <ScalarProperty Name="news_author" ColumnName="news_author" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserCourseList"><EntityTypeMapping TypeName="avfunModel.UserCourseList"><MappingFragment StoreEntitySet="UserCourseList">
+            <ScalarProperty Name="order_id" ColumnName="order_id" />
+            <ScalarProperty Name="order_date" ColumnName="order_date" />
+            <ScalarProperty Name="order_price" ColumnName="order_price" />
+            <ScalarProperty Name="order_isPaid" ColumnName="order_isPaid" />
+            <ScalarProperty Name="order_user" ColumnName="order_user" />
+            <ScalarProperty Name="order_course" ColumnName="order_course" />
+            <ScalarProperty Name="course_id" ColumnName="course_id" />
+            <ScalarProperty Name="course_name" ColumnName="course_name" />
+            <ScalarProperty Name="course_intro" ColumnName="course_intro" />
+            <ScalarProperty Name="course_robot_link" ColumnName="course_robot_link" />
+            <ScalarProperty Name="course_price" ColumnName="course_price" />
+            <ScalarProperty Name="course_begin_date" ColumnName="course_begin_date" />
+            <ScalarProperty Name="course_isDeleted" ColumnName="course_isDeleted" />
+            <ScalarProperty Name="user_id" ColumnName="user_id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="AvfunEntity">
+        <EntityTypeShape EntityType="avfunModel.ADMIN" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5430916341145835" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.COURSE" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7341113281249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.NEWS" Width="1.5" PointX="4.75" PointY="0.75" Height="3.1161507161458335" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.ORDER" Width="1.5" PointX="0.75" PointY="4.75" Height="2.7341113281249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.REVIEW" Width="1.5" PointX="2.75" PointY="4.75" Height="2.5430916341145835" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.USER" Width="1.5" PointX="4.75" PointY="4.75" Height="3.8802294921874996" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.AdminNewsList" Width="1.5" PointX="6.75" PointY="0.75" Height="2.9251310221354174" IsExpanded="true" />
+        <EntityTypeShape EntityType="avfunModel.UserCourseList" Width="1.5" PointX="6.75" PointY="4.75" Height="3.6892097981770817" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

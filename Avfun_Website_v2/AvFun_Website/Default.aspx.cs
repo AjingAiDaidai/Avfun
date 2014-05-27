@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 namespace AvFun_Website
 {
     public partial class Index : System.Web.UI.Page
@@ -14,7 +14,8 @@ namespace AvFun_Website
         protected void Page_Load(object sender, EventArgs e)
         {
             //查看是否授权
-            User loggedUser = UserOpr.isLogged(Request);
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            User loggedUser = userBLL.isLogged(Request);
             if (!Page.IsPostBack)
             {
                 //用户第一次访问

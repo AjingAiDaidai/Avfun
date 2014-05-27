@@ -23,15 +23,15 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
             DataSourceID="UserStatisticalDataSource">
             <Columns>
-                <asp:BoundField DataField="order_price" HeaderText="order_price" 
+                <asp:BoundField DataField="order_price" HeaderText="订单价格" 
                     SortExpression="order_price" />
-                <asp:CheckBoxField DataField="order_isPaid" HeaderText="order_isPaid" 
+                <asp:CheckBoxField DataField="order_isPaid" HeaderText="已经结算" 
                     SortExpression="order_isPaid" />
-                <asp:BoundField DataField="course_name" HeaderText="course_name" 
+                <asp:BoundField DataField="course_name" HeaderText="课程名称" 
                     SortExpression="course_name" />
-                <asp:BoundField DataField="course_price" HeaderText="course_price" 
+                <asp:BoundField DataField="course_price" HeaderText="课程价格（单日）" 
                     SortExpression="course_price" />
-                <asp:BoundField DataField="order_date" HeaderText="order_date" 
+                <asp:BoundField DataField="order_date" HeaderText="下单日期" 
                     SortExpression="order_date" />
             </Columns>
         </asp:GridView>

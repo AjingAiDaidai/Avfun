@@ -6,14 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website
 {
     public partial class ForgetPassword : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
             //每1分钟才能发一次找回密码请求
             Session.Timeout = 1;
             if (!Page.IsPostBack)
@@ -32,7 +33,7 @@ namespace AvFun_Website
                 //防止email轰炸
                 if (Session[forgetUser.User_account] == null)
                 {
-                    if (UserOpr.GetForgetPassword(forgetUser))
+                    if (userBLL.GetForgetPassword(forgetUser))
                     {
                         //成功取回密码
                         ForgetPswInfo.Text = "取回密码成功！请进入您的注册邮箱查收密码，3秒后跳转到主页";

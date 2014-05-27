@@ -6,15 +6,17 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.admin
 {
     public partial class AddCourse : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+            ICourseBLL courseBLL = BLLFactory.CreateInstance<ICourseBLL>("CourseBLL");
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (loggedAdmin == null)
             {
                 //没登录
@@ -33,7 +35,7 @@ namespace AvFun_Website.admin
                         //修改课程信息
                         Course toFindCourse = new Course();
                         toFindCourse.Course_id = new Guid(Request.QueryString["course_id"].ToString());
-                        Course entireCourse = CourseOpr.GetCourseByID(toFindCourse);
+                        Course entireCourse = courseBLL.GetCourseByID(toFindCourse);
                         if (entireCourse != null)
                         {
                             //找到了
@@ -73,7 +75,7 @@ namespace AvFun_Website.admin
                         newCourse.Course_robot_link = course_robot_link;
                         newCourse.Course_intro = course_intro;
                         newCourse.Course_isDeleted = course_is_deleted;
-                        if (CourseOpr.CreateCourse(newCourse))
+                        if (courseBLL.CreateCourse(newCourse))
                         {
                             lblLoginStatus.Text = "发布课程成功";
                             lblLoginStatus.Visible = true;
@@ -89,7 +91,7 @@ namespace AvFun_Website.admin
                         //修改课程信息
                         Course toFindCourse = new Course();
                         toFindCourse.Course_id = new Guid(Request.QueryString["course_id"].ToString());
-                        Course entireCourse = CourseOpr.GetCourseByID(toFindCourse);
+                        Course entireCourse = courseBLL.GetCourseByID(toFindCourse);
                         if (entireCourse != null)
                         {
                             //找到了
@@ -102,7 +104,7 @@ namespace AvFun_Website.admin
                             entireCourse.Course_price = course_price;
                             entireCourse.Course_robot_link = course_robot_link;
                             entireCourse.Course_intro = course_intro;
-                            if (CourseOpr.UpdateCourseInfo(entireCourse))
+                            if (courseBLL.UpdateCourseInfo(entireCourse))
                             {
                                 lblLoginStatus.Text = "修改课程信息成功";
                                 lblLoginStatus.Visible = true;

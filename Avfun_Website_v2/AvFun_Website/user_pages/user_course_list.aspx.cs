@@ -6,15 +6,16 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.user_pages
 {
     public partial class user_course_list : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            User loggedUser = UserOpr.isLogged(Request);
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            User loggedUser = userBLL.isLogged(Request);
             if (loggedUser == null)
             {
                 //未登录

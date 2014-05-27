@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 
 namespace AvFun_Website.user_pages
 {
@@ -17,7 +17,8 @@ namespace AvFun_Website.user_pages
         {
             //判断是否已经登录，注意，由于这里不管是不是postBack，因此取到的对象，timeStamp一定是最新的那个！
             //换而言之，我们的策略就是LastComesWin——最新的一次提交总是屌的！
-            User loggedUser = UserOpr.isLogged(Request);
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            User loggedUser = userBLL.isLogged(Request);
             //未登录 
             if (loggedUser == null)
             {
@@ -95,7 +96,7 @@ namespace AvFun_Website.user_pages
                         }
                         else
                         {
-                            if (!UserOpr.MD5(oldPassword).Equals(loggedUser.User_password))
+                            if (!userBLL.MD5(oldPassword).Equals(loggedUser.User_password))
                             {
                                 //旧密码与账号密码不匹配
                                 lblChangePasswordStatus.Text = "旧密码输入错误，请重新输入";
@@ -116,10 +117,10 @@ namespace AvFun_Website.user_pages
                                 else
                                 {
                                     //修改后一并提交
-                                    newInfoUser.User_password = UserOpr.MD5(newPassword);
+                                    newInfoUser.User_password = userBLL.MD5(newPassword);
                                     /*
                                     //修改用户密码
-                                    if (UserOpr.ChagneUserPassword(newInfoUser, UserOpr.MD5(newPassword)))
+                                    if (userBLL.ChagneUserPassword(newInfoUser, userBLL.MD5(newPassword)))
                                     {
                                         //更改成功
                                         lblChangePasswordStatus.Text = "修改密码成功，请重新登录";
@@ -141,7 +142,7 @@ namespace AvFun_Website.user_pages
                     }
                     #endregion
 
-                    #region 修改用户信息，这里不用加验证，userOpr里有
+                    #region 修改用户信息，这里不用加验证，userBLL里有
 
                     newInfoUser.User_introduction = userIntroduction;
                     newInfoUser.User_nickname = userNickname;
@@ -150,6 +151,7 @@ namespace AvFun_Website.user_pages
                         newInfoUser.User_head = userHead; //这里注意看一下是相对路径还是绝对路径
                         //释放Cookie
                         HttpCookie userHeadCookie = new HttpCookie("userHead");
+                        userHeadCookie.Path = "/user_pages";
                         userHeadCookie.Expires = DateTime.Now.AddDays(-1D);
                         Response.Cookies.Add(userHeadCookie);
                     }
@@ -159,7 +161,7 @@ namespace AvFun_Website.user_pages
 
 
                     //开始调用BLL
-                    if (UserOpr.UpdateUserInfo(newInfoUser))
+                    if (userBLL.UpdateUserInfo(newInfoUser))
                     {
                         //修改成功
                         logStatus.Text = "资料修改成功了哦，3秒后回到用户主页哦";

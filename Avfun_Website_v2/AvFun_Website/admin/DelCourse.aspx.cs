@@ -6,8 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 
 namespace AvFun_Website.admin
 {
@@ -15,7 +15,9 @@ namespace AvFun_Website.admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            ICourseBLL courseBLL = BLLFactory.CreateInstance<ICourseBLL>("CourseBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (loggedAdmin == null)
             {
                 lblLoginStatus.Text = "您未登录或已登录过期，请重新登录。3秒后转向登录页面";
@@ -41,12 +43,12 @@ namespace AvFun_Website.admin
                     String course_id = Request.QueryString["course_id"];
                     Course toDelCourse = new Course();
                     toDelCourse.Course_id = new Guid(course_id);
-                    Course entireCourse = CourseOpr.GetCourseByID(toDelCourse);
+                    Course entireCourse = courseBLL.GetCourseByID(toDelCourse);
                     if (entireCourse != null)
                     {
                         //获取到了course信息
                         entireCourse.Course_isDeleted = true;
-                        if (CourseOpr.UpdateCourseInfo(entireCourse))
+                        if (courseBLL.UpdateCourseInfo(entireCourse))
                         {
                             lblLoginStatus.Text = "删除课程成功";
                             lblLoginStatus.Visible = true;

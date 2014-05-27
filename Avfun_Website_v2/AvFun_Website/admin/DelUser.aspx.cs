@@ -6,16 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 namespace AvFun_Website.admin
 {
     public partial class DelUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (loggedAdmin == null)
             {
                 lblLoginStatus.Text = "您未登录或已登录过期，请重新登录。3秒后转向登录页面";
@@ -34,13 +36,13 @@ namespace AvFun_Website.admin
                     //这里有可能出错要用try...catch
                     Guid userID = new Guid(Request.QueryString["user_id"]);
                     toDelUser.User_id = userID;
-                    User entireUser = UserOpr.GetUserByID(toDelUser);
+                    User entireUser = userBLL.GetUserByID(toDelUser);
                     if (entireUser != null)
                     {
                         //找到了
                         //删除
                         entireUser.User_isDeleted = true;
-                        if (UserOpr.UpdateUserInfo(entireUser))
+                        if (userBLL.UpdateUserInfo(entireUser))
                         {
                             lblLoginStatus.Text = "删除用户成功";
                             lblLoginStatus.Visible = true;

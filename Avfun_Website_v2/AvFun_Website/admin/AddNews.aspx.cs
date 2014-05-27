@@ -6,15 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 namespace AvFun_Website.admin
 {
     public partial class AddNews : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loggedAdmin = AdminOpr.isLogged(Request);
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            INewsBLL newsBLL = BLLFactory.CreateInstance<INewsBLL>("NewsBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
             if (loggedAdmin == null)
             {
                 //未登录
@@ -35,7 +37,7 @@ namespace AvFun_Website.admin
                         //修改文章
                         News destNews = new News();
                         destNews.Article_id = new Guid(Request.QueryString["news_id"]);
-                        News entireNews = NewsOpr.GetNewsByID(destNews);
+                        News entireNews = newsBLL.GetNewsByID(destNews);
                         if (entireNews != null)
                         {
                             //找到了
@@ -98,7 +100,7 @@ namespace AvFun_Website.admin
                         newNews.News_image = newsHeadImage.Trim();
                         newNews.News_click_count = news_click_count;
 
-                        if (NewsOpr.CreateNews(newNews, loggedAdmin))
+                        if (newsBLL.CreateNews(newNews, loggedAdmin))
                         {
                             //创建成功
                             loginForm.Visible = true;
@@ -118,7 +120,7 @@ namespace AvFun_Website.admin
                         Guid news_id = new Guid(Request.QueryString["news_id"].ToString());
                         News destNews = new News();
                         destNews.Article_id = news_id;
-                        News updateNews = NewsOpr.GetNewsByID(destNews);
+                        News updateNews = newsBLL.GetNewsByID(destNews);
                         if ( updateNews != null )
                         {
                             String news_title = Request.Form[txtNewsTitle.ID];
@@ -144,7 +146,7 @@ namespace AvFun_Website.admin
                             updateNews.News_image = news_head;
                             updateNews.News_isOnIndex = isOnIndex;
 
-                            if ( NewsOpr.UpdateNewsInfo(updateNews) )
+                            if ( newsBLL.UpdateNewsInfo(updateNews) )
                             {
                                 lblLoginStatus.Text= "修改成功，若更改题头图片，请重新进入本页方能查看修改效果";
                                 lblLoginStatus.Visible = true;

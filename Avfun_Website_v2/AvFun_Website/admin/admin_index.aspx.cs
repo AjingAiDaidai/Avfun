@@ -6,16 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.AvFun_UI;
-using AvFun_Website.Avfun_BLL;
+using Avfun_UI;
+using Avfun_BLL;
 namespace AvFun_Website.admin
 {
     public partial class admin_index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Admin loginAdmin = AdminOpr.isLogged(Request);
-            if ( loginAdmin == null )
+            IAdminBLL adminBLL = BLLFactory.CreateInstance<IAdminBLL>("AdminBLL");
+            Admin loggedAdmin = adminBLL.isLogged(Request);
+            if (loggedAdmin == null)
             {
                 //未登录
                 lblLoginStatus.Text = "您未登录或已经登录过期，请重新登录，3秒后转回管理员登录页。";
@@ -33,10 +34,10 @@ namespace AvFun_Website.admin
                 if (!Page.IsPostBack)
                 {
                     //未点击登出按钮
-                    lblAdminInfo.Text = "尊敬的管理员：" + loginAdmin.User_nickname + "您好";
+                    lblAdminInfo.Text = "尊敬的管理员：" + loggedAdmin.User_nickname + "您好";
                     lblShortInfo.Text =
-                        "您最后一次登录时间是" + loginAdmin.User_last_login_date.ToString()
-                        + "，最后一次登录IP为" + loginAdmin.User_last_login_ip;
+                        "您最后一次登录时间是" + loggedAdmin.User_last_login_date.ToString()
+                        + "，最后一次登录IP为" + loggedAdmin.User_last_login_ip;
                     lblAdminInfo.Visible = true;
                     AdminLoggedForm.Visible = true;
                     lblLoginStatus.Visible = false;

@@ -6,15 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 
-using AvFun_Website.Avfun_BLL;
-using AvFun_Website.AvFun_UI;
+using Avfun_BLL;
+using Avfun_UI;
 namespace AvFun_Website
 {
     public partial class BuyCourse : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            User loggedUser = UserOpr.isLogged(Request);
+            ICourseBLL courseBLL = BLLFactory.CreateInstance<ICourseBLL>("CourseBLL");
+            IUserBLL userBLL = BLLFactory.CreateInstance<IUserBLL>("UserBLL");
+            IOrderBLL orderBLL = BLLFactory.CreateInstance<IOrderBLL>("OrderBLL");
+            User loggedUser = userBLL.isLogged(Request);
             if (loggedUser == null) //如果未登录
             {
                 BuyCourseForm.Visible = false;
@@ -46,7 +49,7 @@ namespace AvFun_Website
                             Guid courseID = new Guid(Request.QueryString["course_id"]);
                             Course toBuyCourse = new Course();
                             toBuyCourse.Course_id = courseID;
-                            Course entireCourse = CourseOpr.GetCourseByID(toBuyCourse);
+                            Course entireCourse = courseBLL.GetCourseByID(toBuyCourse);
                             if (entireCourse != null)
                             {
                                 //如果找到了课程
@@ -77,12 +80,12 @@ namespace AvFun_Website
                             Guid courseID = new Guid(Request.QueryString["course_id"]);
                             Course toBuyCourse = new Course();
                             toBuyCourse.Course_id = courseID;
-                            Course entireCourse = CourseOpr.GetCourseByID(toBuyCourse);
+                            Course entireCourse = courseBLL.GetCourseByID(toBuyCourse);
                             if (entireCourse != null)
                             {
                                 //找到了课程
                                 //好，这里Course和User全有了，我们就要Create一个Order了！
-                                Order newOrder = OrderOpr.CreateOrderByUserAndCourse(entireCourse, loggedUser);
+                                Order newOrder = orderBLL.CreateOrderByUserAndCourse(entireCourse, loggedUser);
                                 //这句话转换可能出错
                                 int toBuyDays = Convert.ToInt32(Request.Form[txtCourseTime.ID]);
                                 if (toBuyDays < 0)
@@ -102,7 +105,7 @@ namespace AvFun_Website
                                         newOrder.Order_isPaid = true;
                                         newOrder.Order_date = DateTime.Now;
                                         if (newOrder.Order_price <= loggedUser.User_money
-                                            && OrderOpr.CreateOrder(newOrder)
+                                            && orderBLL.CreateOrder(newOrder)
                                             )
                                         {
                                             lblCourseStateus.Text = "恭喜！召唤女友成功，快去后宫里面转转吧~";
