@@ -24,8 +24,9 @@ namespace Avfun_BLL
             }
             else
             {
-                NewsData newsData = NewsData.GetInstance();
-                result = newsData.UpdateNewsInfo(news);
+                INewsDAL newsDAL = DALFactory.CreateInstance<INewsDAL>("NewsDAL");
+
+                result = newsDAL.UpdateNewsInfo(news);
             }
             return result;
         }
@@ -46,8 +47,8 @@ namespace Avfun_BLL
             }
             else
             {
-                NewsData newsData = NewsData.GetInstance();
-                ResultNews = newsData.GetNewsByID(news);
+                INewsDAL newsDAL = DALFactory.CreateInstance<INewsDAL>("NewsDAL");
+                ResultNews = newsDAL.GetNewsByID(news);
             }
             return ResultNews;
         }
@@ -113,8 +114,8 @@ namespace Avfun_BLL
             else
             {
                 news.Article_author = author.User_id;
-                NewsData newsData = NewsData.GetInstance();
-                result = newsData.CreateNews(news);
+                INewsDAL newsDAL = DALFactory.CreateInstance<INewsDAL>("NewsDAL");
+                result = newsDAL.CreateNews(news);
             }
             return result;
         }
@@ -129,8 +130,8 @@ namespace Avfun_BLL
             //数据合法性检查
             if (news.Article_id != null)
             {
-                NewsData newsData = NewsData.GetInstance();
-                result = newsData.DeleteNewsByID(news);
+                INewsDAL newsDAL = DALFactory.CreateInstance<INewsDAL>("NewsDAL");
+                result = newsDAL.DeleteNewsByID(news);
             }
             else
             {

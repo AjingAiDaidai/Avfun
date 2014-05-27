@@ -86,8 +86,8 @@ namespace Avfun_BLL
             Admin result = null;
             if (isLegalLoginInfo(admin))
             {
-                AdminData adminData = AdminData.GetNewInstance();
-                result = adminData.GetAdminByAccountAndPassword(admin);
+                IAdminDAL adminDAL = DALFactory.CreateInstance<IAdminDAL>("AdminDAL");
+                result = adminDAL.GetAdminByAccountAndPassword(admin);
             }
             return result;
         }
@@ -131,8 +131,8 @@ namespace Avfun_BLL
             if (isLegalNewAdmin(admin))
             {
                 //数据完整性检查通过
-                AdminData adminData = AdminData.GetNewInstance();
-                result = adminData.UpdateAdminInfo(admin);
+                IAdminDAL adminDAL = DALFactory.CreateInstance<IAdminDAL>("AdminDAL");
+                result = adminDAL.UpdateAdminInfo(admin);
             }
             return result;
         }

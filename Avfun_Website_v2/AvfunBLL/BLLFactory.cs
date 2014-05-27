@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Avfun_BLL
 {
     /// <summary>
-    /// BLL层的抽象工厂类的具体实现
+    /// BLL层的反射工厂类的具体实现
     /// </summary>
     public class BLLFactory:IBLLFactory
     {
@@ -15,7 +15,10 @@ namespace Avfun_BLL
         private readonly static String assemblyName = Assembly.GetExecutingAssembly().FullName;
         
         //获取当前命名空间
-        private static String namespaceName = "Avfun_BLL";
+        private readonly static String namespaceName = "Avfun_BLL";
+
+        //当前使用的BLL套装版本，这是为了以后变更逻辑用的
+        private readonly static String bllVersion = "";
         /// <summary>
         /// 根据类名返回类的对应实例
         /// </summary>

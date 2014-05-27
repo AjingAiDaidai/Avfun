@@ -43,8 +43,8 @@ namespace Avfun_BLL
             Boolean result = true;
             if (isLegalCourse(course))
             {
-                CourseData courseData = CourseData.GetNewInstance();
-                result = courseData.CreateCourse(course);
+                ICourseDAL courseDAL = DALFactory.CreateInstance<ICourseDAL>("CourseDAL");
+                result = courseDAL.CreateCourse(course);
             }
             else
             {
@@ -63,8 +63,8 @@ namespace Avfun_BLL
             Course result = null;
             if (course.Course_id != null)
             {
-                CourseData courseData = CourseData.GetNewInstance();
-                result = courseData.GetCourseByID(course);
+                ICourseDAL courseDAL = DALFactory.CreateInstance<ICourseDAL>("CourseDAL");
+                result = courseDAL.GetCourseByID(course);
             }
             else
             {
@@ -82,8 +82,8 @@ namespace Avfun_BLL
             Boolean result = false;
             if (isLegalCourse(course))
             {
-                CourseData courseData = CourseData.GetNewInstance();
-                result = courseData.UpdateCourseInfo(course);
+                ICourseDAL courseDAL = DALFactory.CreateInstance<ICourseDAL>("CourseDAL");
+                result = courseDAL.UpdateCourseInfo(course);
             }
             else
             {

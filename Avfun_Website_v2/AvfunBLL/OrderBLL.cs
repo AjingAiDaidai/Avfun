@@ -40,8 +40,8 @@ namespace Avfun_BLL
             Boolean result = false;
             if (isLegalOrder(order))
             {
-                OrderData orderData = OrderData.GetNewInstance();
-                result = orderData.CreateOrder(order);
+                IOrderDAL orderDAL = DALFactory.CreateInstance<IOrderDAL>("OrderDAL");
+                result = orderDAL.CreateOrder(order);
             }
             else
             {

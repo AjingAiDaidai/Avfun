@@ -65,8 +65,8 @@ namespace Avfun_BLL
             }
             else
             {
-                UserData userData = UserData.GetNewInstance();
-                result = userData.GetUserByID(user);
+                IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+                result = userDAL.GetUserByID(user);
             }
             return result;
         }
@@ -277,8 +277,8 @@ namespace Avfun_BLL
                  */
                 try
                 {
-                    UserData UserData_Create = UserData.GetNewInstance();
-                    res = UserData_Create.CreateUser(user);
+                    IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+                    res = userDAL.CreateUser(user);
                     SendVerifyMailToNewUser(user);
                 }
                 catch (Exception)
@@ -306,8 +306,8 @@ namespace Avfun_BLL
             /*
              * 数据完整性检查
              * */
-            UserData UserData_Get = UserData.GetNewInstance();
-            ResultUser = UserData_Get.GetUserByAccountAndPassword(user);
+            IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+            ResultUser = userDAL.GetUserByAccountAndPassword(user);
             return ResultUser;
         }
         /// <summary>
@@ -320,7 +320,7 @@ namespace Avfun_BLL
         {
 
             Boolean result = false;
-            UserData userData = UserData.GetNewInstance();
+            IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
 
             if (user.User_account == null || //不为null
                 user.User_account.Equals("") || //不为空
@@ -334,7 +334,7 @@ namespace Avfun_BLL
                 //调用DAL重设密码
                 String newUserPassword = GenerateRandomString(8);// 生成8位新密码，包括大小写特殊字符等等等等
                 user.User_password = MD5(newUserPassword); //加密后传入数据库
-                if (userData.GetForgetPassword(user)) //数据库那边搞定了！~
+                if (userDAL.GetForgetPassword(user)) //数据库那边搞定了！~
                 {
                     result = true;
                     //给用户发邮件
@@ -384,8 +384,8 @@ namespace Avfun_BLL
                 /*操作数据库*/
                 try
                 {
-                    UserData userData = UserData.GetNewInstance();
-                    User entireUser = userData.GetUserByAccountAndPassword(user);
+                    IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+                    User entireUser = userDAL.GetUserByAccountAndPassword(user);
                     return entireUser;
                 }
                 catch (Exception)
@@ -434,8 +434,8 @@ namespace Avfun_BLL
                 result = false;
             if (!isLegalNewUser(user))
                 result = false;
-            UserData userData = UserData.GetNewInstance();
-            result = userData.ChangeUserPassword(user, newPassword);
+            IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+            result = userDAL.ChangeUserPassword(user, newPassword);
             return result;
         }
         /// <summary>
@@ -453,8 +453,8 @@ namespace Avfun_BLL
             }
             else
             {
-                UserData userData = UserData.GetNewInstance();
-                result = userData.UpdateUserInfo(user);
+                IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+                result = userDAL.UpdateUserInfo(user);
             }
             return result;
         }
@@ -483,8 +483,8 @@ namespace Avfun_BLL
                 if (user.User_verify_code == verifyCode)
                 {
                     user.User_isChecked = true;
-                    UserData userData = UserData.GetNewInstance();
-                    result = userData.UpdateUserInfo(user);
+                    IUserDAL userDAL = DALFactory.CreateInstance<IUserDAL>("UserDAL");
+                    result = userDAL.UpdateUserInfo(user);
                 }
                 else
                 {
